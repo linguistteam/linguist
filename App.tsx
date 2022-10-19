@@ -3,6 +3,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { Button } from '@rneui/base';
 
+// TODO: Set up @react-navigation here. Docs: https://reactnative.dev/docs/navigation
 export default function App() {
   return (
     <SafeAreaProvider>
