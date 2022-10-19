@@ -1,12 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { Button } from '@rneui/base';
 
 export default function App() {
   return (
     <View style={styles.container}>
       <Text>Hello there!</Text>
-      <Text>Test!</Text>
-      <StatusBar style="auto" />
+      <Button title="Hello World" />
     </View>
   );
 }
