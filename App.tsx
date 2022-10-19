@@ -1,12 +1,15 @@
 import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Button } from '@rneui/base';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Hello there!</Text>
-      <Button title="Hello World" />
-    </View>
+    <SafeAreaProvider>
+      <View style={styles.container}>
+        <Text>Hello there!</Text>
+        <Button title="Hello World" />
+      </View>
+    </SafeAreaProvider>
   );
 }
 
