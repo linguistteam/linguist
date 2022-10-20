@@ -2,9 +2,12 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
     container: {
-        // height: 400,
+        flexDirection: 'row',
+        justifyContent: 'center',
     },
     profileImage: {
-        height: 400,
+        width: 200,
+        height: 200,
+        borderRadius: 25,
     },
 });
