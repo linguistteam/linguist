@@ -5,6 +5,7 @@ export const styles = StyleSheet.create({
         // height: 400,
     },
     profileImage: {
+        width: 'auto',
         height: 400,
     },
 });
