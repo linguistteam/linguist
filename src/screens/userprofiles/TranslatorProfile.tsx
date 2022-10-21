@@ -5,13 +5,13 @@ import { styles } from './styles';
 // TODO: Fix eslint indent issues
 const TranslatorProfile = () => {
     // TODO: All values here should be editable by user and passed in from DB
-    const image = { uri: 'https://via.placeholder.com/400x400' };
-    const name = 'Jane Doe';
+    const image = '../../assets/images/stock/profile-user.jpeg';
+    const name = 'John Doe';
 
     return (
         <View style={styles.container}>
             <ScrollView>
-                <Image source={image} style={styles.profileImage} />
+                <Image source={require(image)} style={styles.profileImage} />
 
                 <Text h1>{name}</Text>
                 <Text>
