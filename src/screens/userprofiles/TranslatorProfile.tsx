@@ -9,10 +9,10 @@ const TranslatorProfile = () => {
     const name = 'John Doe';
 
     return (
-        <View style={styles.container}>
-            <ScrollView>
-                <Image source={require(image)} style={styles.profileImage} />
+        <ScrollView>
+            <Image source={require(image)} style={styles.profileImage} />
 
+            <View style={styles.profileContent}>
                 <Text h1>{name}</Text>
                 <Text>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
@@ -48,8 +48,8 @@ const TranslatorProfile = () => {
                     lobortis feugiat vivamus at augue eget arcu. Elementum facilisis leo vel fringilla est
                     ullamcorper eget. Metus aliquam eleifend mi in nulla posuere sollicitudin aliquam.
                 </Text>
-            </ScrollView>
-        </View>
+            </View>
+        </ScrollView>
     );
 };
 
