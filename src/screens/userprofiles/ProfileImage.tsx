@@ -15,6 +15,7 @@ const ProfileImage = ({ image }: ProfileImageProps) => {
       {imageIsLoading ? (
         <Skeleton animation="pulse" height={400} />
       ) : (
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         <Image source={require(image)} style={styles.profileImage} />
       )}
     </View>
