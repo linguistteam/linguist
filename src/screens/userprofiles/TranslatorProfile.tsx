@@ -6,12 +6,11 @@ import ProfileImage from './ProfileImage';
 // TODO: Fix eslint indent issues
 const TranslatorProfile = () => {
   // TODO: All values here should be editable by user and passed in from DB
-  const image = '../../assets/images/stock/profile-user.jpeg';
   const name = 'John Doe';
 
   return (
     <ScrollView>
-      <ProfileImage image={image} />
+      <ProfileImage />
 
       <View style={styles.profileContent}>
         <Text h1>{name}</Text>
