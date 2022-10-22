@@ -2,11 +2,10 @@ import { Image, View } from 'react-native';
 import { Skeleton } from '@rneui/base';
 import { styles } from './styles';
 
-type ProfileImageProps = {
-  image: string;
-};
+const ProfileImage = () => {
+  // TODO: All values here should be editable by user and passed in from DB
+  const image = '../../assets/images/stock/profile-user.jpeg';
 
-const ProfileImage = ({ image }: ProfileImageProps) => {
   // TODO: Should be set based on content loading from DB
   const imageIsLoading = false;
 
