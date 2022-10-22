@@ -8,7 +8,7 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <View style={styles.container}>
-        {/* TODO: Change status bar color based on theme */}
+        {/* TODO: Change status bar color bas  ed on theme */}
         <StatusBar style="dark" />
         <TranslatorProfile />
       </View>
