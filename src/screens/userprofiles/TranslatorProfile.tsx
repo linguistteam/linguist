@@ -1,5 +1,5 @@
 import { Image, ScrollView, View } from 'react-native';
-import { Text } from '@rneui/base';
+import { Skeleton, Text } from '@rneui/base';
 import { styles } from './styles';
 
 // TODO: Fix eslint indent issues
@@ -8,9 +8,16 @@ const TranslatorProfile = () => {
     const image = '../../assets/images/stock/profile-user.jpeg';
     const name = 'John Doe';
 
+    // TODO: Should be set based on content loading from DB
+    const imageIsLoading = false;
+
     return (
         <ScrollView>
-            <Image source={require(image)} style={styles.profileImage} />
+            {imageIsLoading ? (
+                <Skeleton animation="pulse" height={400} />
+            ) : (
+                <Image source={require(image)} style={styles.profileImage} />
+            )}
 
             <View style={styles.profileContent}>
                 <Text h1>{name}</Text>
