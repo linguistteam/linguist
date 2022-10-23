@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ScrollView, View } from 'react-native';
-import { Heading, Text } from 'native-base';
+import { Box, Heading, Text } from 'native-base';
 import { styles } from './styles';
 import { ProfileImage, UserRating } from '../../components/userprofiles';
 
@@ -30,14 +30,14 @@ const TranslatorProfile = () => {
     >
       <ProfileImage imageBlur={imageBlur} />
 
-      <View style={styles.profileContent}>
+      <Box style={styles.profileContent} shadow={2}>
         <Heading size="2xl">{name}</Heading>
         <UserRating />
         <Text>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua. In pellentesque massa placerat duis ultricies lacus sed.
         </Text>
-      </View>
+      </Box>
     </ScrollView>
   );
 };
