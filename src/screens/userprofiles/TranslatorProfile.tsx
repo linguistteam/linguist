@@ -4,7 +4,6 @@ import { Text } from '@rneui/base';
 import { styles } from './styles';
 import ProfileImage from './ProfileImage';
 
-// TODO: Fix eslint indent issues
 const TranslatorProfile = () => {
   // TODO: All values here should be editable by user and passed in from DB
   const name = 'John Doe';
