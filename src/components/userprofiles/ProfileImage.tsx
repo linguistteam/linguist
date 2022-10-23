@@ -1,5 +1,5 @@
 import { Image, View } from 'react-native';
-import { Skeleton } from '@rneui/base';
+import { Skeleton } from 'native-base';
 import { styles } from '../../screens/userprofiles/styles';
 
 type ProfileImageProps = {
@@ -16,7 +16,7 @@ const ProfileImage = ({ imageBlur }: ProfileImageProps) => {
   return (
     <View>
       {imageIsLoading ? (
-        <Skeleton animation="pulse" height={400} />
+        <Skeleton h="400" />
       ) : (
         <Image
           // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment

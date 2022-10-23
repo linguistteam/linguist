@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ScrollView, View } from 'react-native';
-import { Text } from '@rneui/base';
+import { Heading, Text } from 'native-base';
 import { styles } from './styles';
 import { ProfileImage, UserRating } from '../../components/userprofiles';
 
@@ -31,7 +31,7 @@ const TranslatorProfile = () => {
       <ProfileImage imageBlur={imageBlur} />
 
       <View style={styles.profileContent}>
-        <Text h1>{name}</Text>
+        <Heading size="2xl">{name}</Heading>
         <UserRating />
         <Text>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt

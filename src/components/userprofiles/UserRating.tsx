@@ -1,10 +1,10 @@
 import { View } from 'react-native';
-import { Text } from '@rneui/base';
+import { Text } from 'native-base';
 
 const UserRating = () => {
   return (
     <View>
-      <Text>UserRating</Text>
+      <Text>Rating goes here</Text>
     </View>
   );
 };
