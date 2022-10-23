@@ -1,6 +1,6 @@
 import { Image, View } from 'react-native';
 import { Skeleton } from '@rneui/base';
-import { styles } from './styles';
+import { styles } from '../../screens/userprofiles/styles';
 
 type ProfileImageProps = {
   imageBlur: boolean;
