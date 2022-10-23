@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import { Text } from '@rneui/base';
 import { styles } from './styles';
-import { ProfileImage } from '../../components/userprofiles';
+import { ProfileImage, UserRating } from '../../components/userprofiles';
 
 const TranslatorProfile = () => {
   // TODO: All values here should be editable by user and passed in from DB
@@ -32,6 +32,7 @@ const TranslatorProfile = () => {
 
       <View style={styles.profileContent}>
         <Text h1>{name}</Text>
+        <UserRating />
         <Text>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua. In pellentesque massa placerat duis ultricies lacus sed.
