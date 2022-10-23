@@ -10,7 +10,7 @@ export default function App() {
     <NativeBaseProvider>
       <SafeAreaProvider>
         <View style={styles.container}>
-          {/* TODO: Change status bar color bas  ed on theme */}
+          {/* TODO: Change status bar color based on theme */}
           <StatusBar style="dark" />
           <TranslatorProfile />
         </View>
