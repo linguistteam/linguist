@@ -11,7 +11,7 @@ const TranslatorProfile = () => {
   const [imageBlur, setImageBlur] = useState(false);
 
   // TODO: Fix blur on Android
-  const scrolledPastProfileImage = ({ contentOffset }) => {
+  const scrolledPastProfileImage = (contentOffset: { x: number; y: number }) => {
     const reachedMiddleOfImage = 100;
 
     return contentOffset.y >= reachedMiddleOfImage;
@@ -20,7 +20,7 @@ const TranslatorProfile = () => {
   return (
     <ScrollView
       onScroll={({ nativeEvent }) => {
-        if (scrolledPastProfileImage(nativeEvent)) {
+        if (scrolledPastProfileImage(nativeEvent.contentOffset)) {
           setImageBlur(true);
         } else {
           setImageBlur(false);
