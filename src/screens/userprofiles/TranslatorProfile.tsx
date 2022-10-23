@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import { Text } from '@rneui/base';
 import { styles } from './styles';
@@ -8,9 +9,24 @@ const TranslatorProfile = () => {
   // TODO: All values here should be editable by user and passed in from DB
   const name = 'John Doe';
 
+  const [imageBlur, setImageBlur] = useState(false);
+
+  const scrolledPastProfileImage = ({ contentOffset }) => {
+    const reachedEndOfImage = 100;
+
+    return contentOffset.y >= reachedEndOfImage;
+  };
+
   return (
-    <ScrollView>
-      <ProfileImage />
+    <ScrollView
+      onScroll={({ nativeEvent }) => {
+        if (scrolledPastProfileImage(nativeEvent)) {
+          setImageBlur(true);
+        }
+      }}
+      scrollEventThrottle={400}
+    >
+      <ProfileImage imageBlur={imageBlur} />
 
       <View style={styles.profileContent}>
         <Text h1>{name}</Text>

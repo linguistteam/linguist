@@ -2,7 +2,11 @@ import { Image, View } from 'react-native';
 import { Skeleton } from '@rneui/base';
 import { styles } from './styles';
 
-const ProfileImage = () => {
+type ProfileImageProps = {
+  imageBlur: boolean;
+};
+
+const ProfileImage = ({ imageBlur }: ProfileImageProps) => {
   // TODO: All values here should be editable by user and passed in from DB
   const image = '../../assets/images/stock/profile-user.jpeg';
 
@@ -15,7 +19,11 @@ const ProfileImage = () => {
         <Skeleton animation="pulse" height={400} />
       ) : (
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        <Image source={require(image)} style={styles.profileImage} />
+        <Image
+          source={require(image)}
+          blurRadius={imageBlur ? 10 : 0}
+          style={styles.profileImage}
+        />
       )}
     </View>
   );
