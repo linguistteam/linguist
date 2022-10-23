@@ -18,8 +18,8 @@ const ProfileImage = ({ imageBlur }: ProfileImageProps) => {
       {imageIsLoading ? (
         <Skeleton animation="pulse" height={400} />
       ) : (
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         <Image
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           source={require(image)}
           blurRadius={imageBlur ? 10 : 0}
           style={styles.profileImage}
