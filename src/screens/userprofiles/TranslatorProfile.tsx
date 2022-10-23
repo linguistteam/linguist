@@ -12,9 +12,9 @@ const TranslatorProfile = () => {
   const [imageBlur, setImageBlur] = useState(false);
 
   const scrolledPastProfileImage = ({ contentOffset }) => {
-    const reachedEndOfImage = 100;
+    const reachedMiddleOfImage = 100;
 
-    return contentOffset.y >= reachedEndOfImage;
+    return contentOffset.y >= reachedMiddleOfImage;
   };
 
   return (
@@ -22,6 +22,8 @@ const TranslatorProfile = () => {
       onScroll={({ nativeEvent }) => {
         if (scrolledPastProfileImage(nativeEvent)) {
           setImageBlur(true);
+        } else {
+          setImageBlur(false);
         }
       }}
       scrollEventThrottle={400}
