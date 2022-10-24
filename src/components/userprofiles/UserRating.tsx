@@ -8,10 +8,10 @@ const UserRating = () => {
 
   return (
     <View style={styles.container}>
-      <Text bold color="#2980F2">
+      <Text bold color="#2980F2" fontSize="xl" style={styles.contentItem}>
         {rating}
       </Text>
-      <StarRatingDisplay color="#2980F2" rating={rating} />
+      <StarRatingDisplay color="#2980F2" rating={rating} starSize={25} style={styles.contentItem} />
     </View>
   );
 };
