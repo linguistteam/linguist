@@ -4,6 +4,7 @@ import { StarRatingDisplay } from 'react-native-star-rating-widget';
 import { styles } from './styles';
 
 const UserRating = () => {
+  // TODO: Should be passed in from DB
   const rating = 4.5;
 
   return (
