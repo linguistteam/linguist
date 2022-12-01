@@ -10,9 +10,12 @@ const UserRating = () => {
 
   return (
     <View style={userRatingStyles.container}>
-      <Icon name="star" size={19} color={Colors.yellow} style={userRatingStyles.icon} />
-      <Text bold color={Colors.grey} fontSize="sm" style={userRatingStyles.contentItem}>
+      <Icon name="star" size={19} color={Colors.yellow} />
+      <Text bold color={Colors.grey} fontSize="sm" style={userRatingStyles.ratingNumber}>
         {rating}
+      </Text>
+      <Text bold color={Colors.grey} fontSize="sm" style={userRatingStyles.divider}>
+        ·
       </Text>
     </View>
   );
