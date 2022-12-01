@@ -12,8 +12,10 @@ export const userRatingStyles = StyleSheet.create({
   container: {
     flexDirection: 'row',
   },
+  icon: {
+    marginRight: 3,
+  },
   contentItem: {
     alignSelf: 'center',
-    marginRight: 10,
   },
 });
