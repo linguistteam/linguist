@@ -1,6 +1,6 @@
 import { View } from 'react-native';
 import { Text } from 'native-base';
-import Icon from 'react-native-vector-icons/AntDesign';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import Colors from '../../assets/colors';
 import { styles } from './styles';
 
@@ -11,7 +11,7 @@ const UserRating = () => {
   return (
     <View style={styles.container}>
       <Icon name="star" size={19} color={Colors.yellow} />
-      <Text bold color="#2980F2" fontSize="xl" style={styles.contentItem}>
+      <Text bold color={Colors.grey} fontSize="sm" style={styles.contentItem}>
         {rating}
       </Text>
     </View>
