@@ -8,14 +8,16 @@ export const profileImageStyles = StyleSheet.create({
   },
 });
 
+// TODO: Make all items center aligned
 export const userRatingStyles = StyleSheet.create({
   container: {
     flexDirection: 'row',
   },
-  icon: {
-    marginRight: 3,
+  divider: {
+    fontSize: 20,
+    marginHorizontal: 4,
   },
-  contentItem: {
+  ratingNumber: {
     alignSelf: 'center',
   },
 });
