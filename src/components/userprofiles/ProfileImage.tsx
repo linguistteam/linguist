@@ -1,6 +1,6 @@
 import { Image, View } from 'react-native';
 import { Skeleton } from 'native-base';
-import { styles } from '../../screens/userprofiles/styles';
+import { profileImageStyles } from './styles';
 
 type ProfileImageProps = {
   imageBlur: boolean;
@@ -22,7 +22,7 @@ const ProfileImage = ({ imageBlur }: ProfileImageProps) => {
           // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           source={require(image)}
           blurRadius={imageBlur ? 10 : 0}
-          style={styles.profileImage}
+          style={profileImageStyles.profileImage}
         />
       )}
     </View>

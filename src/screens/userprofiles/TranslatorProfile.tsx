@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import { Box, Heading, Text } from 'native-base';
-import { styles } from './styles';
+import { translatorProfileStyles } from './styles';
 import { ProfileImage, UserRating } from '../../components/userprofiles';
 
 const TranslatorProfile = () => {
@@ -30,7 +30,7 @@ const TranslatorProfile = () => {
     >
       <ProfileImage imageBlur={imageBlur} />
 
-      <Box style={styles.profileContent} shadow={2}>
+      <Box style={translatorProfileStyles.profileContent} shadow={2}>
         <Heading size="2xl">{name}</Heading>
         <UserRating />
         <Text>
