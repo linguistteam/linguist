@@ -7,15 +7,22 @@ import { userRatingStyles } from './styles';
 const UserRating = () => {
   // TODO: Should be passed in from DB
   const rating = 4.5;
+  const reviews = 474;
 
   return (
     <View style={userRatingStyles.container}>
       <Icon name="star" size={19} color={Colors.yellow} />
-      <Text bold color={Colors.grey} fontSize="sm" style={userRatingStyles.ratingNumber}>
+
+      <Text bold color={Colors.grey} fontSize="sm" style={userRatingStyles.rating}>
         {rating}
       </Text>
+
       <Text bold color={Colors.grey} fontSize="sm" style={userRatingStyles.divider}>
         ·
+      </Text>
+
+      <Text bold color={Colors.grey} fontSize="sm" style={userRatingStyles.reviews}>
+        {reviews} Reviews
       </Text>
     </View>
   );
