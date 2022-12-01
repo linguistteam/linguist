@@ -8,4 +8,9 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     marginRight: 10,
   },
+  profileImage: {
+    width: 'auto',
+    height: 400,
+    zIndex: 0,
+  },
 });
