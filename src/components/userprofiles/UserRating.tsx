@@ -13,7 +13,7 @@ const UserRating = () => {
     <View style={userRatingStyles.container}>
       <Icon name="star" size={19} color={Colors.yellow} />
 
-      <Text bold color={Colors.grey} fontSize="sm" style={userRatingStyles.rating}>
+      <Text bold color={Colors.grey} fontSize="sm">
         {rating}
       </Text>
 
@@ -21,6 +21,7 @@ const UserRating = () => {
         ·
       </Text>
 
+      {/* TODO: Clicking on Reviews should jump user to Reviews section */}
       <Text bold color={Colors.grey} fontSize="sm" style={userRatingStyles.reviews}>
         {reviews} Reviews
       </Text>
