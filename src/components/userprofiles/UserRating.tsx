@@ -13,7 +13,7 @@ const UserRating = () => {
     <View style={userRatingStyles.container}>
       <Icon name="star" size={19} color={Colors.yellow} />
 
-      <Text bold color={Colors.grey} fontSize="sm">
+      <Text bold color={Colors.grey} fontSize="sm" style={userRatingStyles.rating}>
         {rating}
       </Text>
 

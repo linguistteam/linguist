@@ -13,6 +13,9 @@ export const userRatingStyles = StyleSheet.create({
   container: {
     flexDirection: 'row',
   },
+  rating: {
+    marginLeft: 2,
+  },
   divider: {
     marginHorizontal: 4,
   },
