@@ -13,11 +13,7 @@ export const userRatingStyles = StyleSheet.create({
   container: {
     flexDirection: 'row',
   },
-  rating: {
-    alignSelf: 'center',
-  },
   divider: {
-    fontSize: 20,
     marginHorizontal: 4,
   },
   reviews: {
