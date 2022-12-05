@@ -8,9 +8,17 @@ export const profileImageStyles = StyleSheet.create({
   },
 });
 
+export const userLocationStyles = StyleSheet.create({
+  container: {
+    marginTop: -8,
+    marginBottom: 10,
+  },
+});
+
 export const userRatingStyles = StyleSheet.create({
   container: {
     flexDirection: 'row',
+    marginBottom: 10,
   },
   rating: {
     marginLeft: 2,
