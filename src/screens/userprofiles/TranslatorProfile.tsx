@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Box, Heading, ScrollView, Text } from 'native-base';
 import { translatorProfileStyles } from './styles';
-import { ProfileImage, UserRating } from '../../components/userprofiles';
+import { ProfileImage, UserLocation, UserRating } from '../../components/userprofiles';
 
 const TranslatorProfile = () => {
   // TODO: All values here should be editable by user and passed in from DB
@@ -31,7 +31,11 @@ const TranslatorProfile = () => {
 
       <Box style={translatorProfileStyles.profileContent} shadow={2}>
         <Heading size="2xl">{name}</Heading>
+
+        <UserLocation />
+
         <UserRating />
+
         <Text>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua. In pellentesque massa placerat duis ultricies lacus sed.
