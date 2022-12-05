@@ -7,8 +7,8 @@ const UserLocation = () => {
   const userLocation = 'Philadelphia, Pennsylvania';
 
   return (
-    <View>
-      <Text bold color={Colors.grey} fontSize="sm" style={userLocationStyles.container}>
+    <View style={userLocationStyles.container}>
+      <Text bold color={Colors.grey} fontSize="sm">
         {userLocation}
       </Text>
     </View>
