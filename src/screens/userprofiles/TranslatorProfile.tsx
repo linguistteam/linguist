@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { ScrollView } from 'react-native';
-import { Box, Heading, Text } from 'native-base';
+import { Box, Heading, ScrollView, Text } from 'native-base';
 import { translatorProfileStyles } from './styles';
 import { ProfileImage, UserRating } from '../../components/userprofiles';
 

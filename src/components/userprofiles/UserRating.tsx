@@ -1,5 +1,4 @@
-import { View } from 'react-native';
-import { Text } from 'native-base';
+import { Text, View } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Colors from '../../assets/colors';
 import { userRatingStyles } from './styles';
