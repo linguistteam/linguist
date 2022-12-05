@@ -10,7 +10,7 @@ export const profileImageStyles = StyleSheet.create({
 
 export const userLocationStyles = StyleSheet.create({
   container: {
-    marginTop: -8,
+    marginTop: -5,
     marginBottom: 10,
   },
 });
