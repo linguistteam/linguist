@@ -1,11 +1,15 @@
 import { Text, View } from 'native-base';
+import Colors from '../../assets/colors';
 
 const UserLocation = () => {
-  const userLocation = 'Philadeplhia, PA';
+  // TODO: Figure out how location data should be formatted
+  const userLocation = 'Philadelphia, Pennsylvania';
 
   return (
     <View>
-      <Text>{userLocation}</Text>
+      <Text bold color={Colors.grey} fontSize="sm">
+        {userLocation}
+      </Text>
     </View>
   );
 };
