@@ -3,6 +3,7 @@ import CountryFlag from 'react-native-country-flag';
 import { languagesStyles } from './styles';
 
 const Languages = () => {
+  // TODO: Figure out when we should show England flag vs US flag
   const languages = ['us', 'de', 'jp'];
 
   return (
