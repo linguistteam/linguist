@@ -6,13 +6,13 @@ import { topLinguistBadgeStyles } from './styles';
 const TopLinguistBadge = () => (
   <Flex direction="row">
     <Icon
-      name="message-star-outline"
+      name="star-shooting"
       size={20}
       color={Colors.yellow}
       style={topLinguistBadgeStyles.icon}
     />
 
-    <Text bold color={Colors.grey} fontSize="sm">
+    <Text color={Colors.grey} fontSize="sm">
       Top Linguist
     </Text>
   </Flex>
