@@ -7,6 +7,7 @@ import { translatorProfileStyles } from './styles';
 const TranslatorProfile = () => {
   // TODO: All values here should be editable by user and passed in from DB
   const name = 'John Doe';
+  const isTopLinguist = true;
 
   const [imageBlur, setImageBlur] = useState(false);
 
@@ -42,7 +43,7 @@ const TranslatorProfile = () => {
         <Flex direction="row" justifyContent="space-between">
           <UserRating />
 
-          <TopLinguistBadge />
+          <TopLinguistBadge isTopLinguist={isTopLinguist} />
         </Flex>
 
         <Text>

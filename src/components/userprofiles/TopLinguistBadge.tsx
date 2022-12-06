@@ -3,19 +3,27 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Colors from '@assets/colors';
 import { topLinguistBadgeStyles } from './styles';
 
-const TopLinguistBadge = () => (
-  <Flex direction="row">
-    <Icon
-      name="star-shooting"
-      size={20}
-      color={Colors.yellow}
-      style={topLinguistBadgeStyles.icon}
-    />
+type TopLinguistBadgeProps = {
+  isTopLinguist: boolean;
+};
 
-    <Text color={Colors.grey} fontSize="sm">
-      Top Linguist
-    </Text>
-  </Flex>
-);
+const TopLinguistBadge = ({ isTopLinguist }: TopLinguistBadgeProps) => {
+  if (!isTopLinguist) return null;
+
+  return (
+    <Flex direction="row">
+      <Icon
+        name="star-shooting"
+        size={20}
+        color={Colors.yellow}
+        style={topLinguistBadgeStyles.icon}
+      />
+
+      <Text color={Colors.grey} fontSize="sm">
+        Top Linguist
+      </Text>
+    </Flex>
+  );
+};
 
 export default TopLinguistBadge;
