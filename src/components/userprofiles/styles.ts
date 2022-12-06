@@ -11,7 +11,7 @@ export const profileImageStyles = StyleSheet.create({
 export const topLinguistBadgeStyles = StyleSheet.create({
   icon: {
     transform: [{ rotateY: '180deg' }],
-    marginRight: 2,
+    marginRight: 3,
   },
 });
 
