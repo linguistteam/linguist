@@ -1,3 +1,3 @@
-# TranslatorApp
+# Linguist
 
-WIP mobile app
+Travel anywhere with confidence!
