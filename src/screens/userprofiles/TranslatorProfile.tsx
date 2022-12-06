@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Box, Heading, ScrollView, Text } from 'native-base';
 import { translatorProfileStyles } from './styles';
+import { Button } from '../../components/common';
 import { ProfileImage, UserLocation, UserRating } from '../../components/userprofiles';
 
 const TranslatorProfile = () => {
@@ -31,6 +32,8 @@ const TranslatorProfile = () => {
 
       <Box style={translatorProfileStyles.profileContent} shadow={2}>
         <Heading size="2xl">{name}</Heading>
+
+        <Button text="Hire" />
 
         <UserLocation />
 
