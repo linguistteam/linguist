@@ -1,5 +1,5 @@
 import { Text, View } from 'native-base';
-import Colors from '../../assets/colors';
+import Colors from '@assets/colors';
 import { userLocationStyles } from './styles';
 
 const UserLocation = () => {

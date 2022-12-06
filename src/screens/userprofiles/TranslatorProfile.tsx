@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Box, Heading, ScrollView, Text } from 'native-base';
+import { Button } from '@common';
+import { ProfileImage, UserLocation, UserRating } from '@components/userprofiles';
 import { translatorProfileStyles } from './styles';
-import { Button } from '../../components/common';
-import { ProfileImage, UserLocation, UserRating } from '../../components/userprofiles';
 
 const TranslatorProfile = () => {
   // TODO: All values here should be editable by user and passed in from DB

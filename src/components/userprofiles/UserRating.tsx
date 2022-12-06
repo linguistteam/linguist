@@ -1,6 +1,6 @@
 import { Text, View } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Colors from '../../assets/colors';
+import Colors from '@assets/colors';
 import { userRatingStyles } from './styles';
 
 const UserRating = () => {

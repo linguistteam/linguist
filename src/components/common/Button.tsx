@@ -1,5 +1,5 @@
 import { Button as NativeBaseButton, Text } from 'native-base';
-import Colors from '../../assets/colors';
+import Colors from '@assets/colors';
 
 type ButtonProps = {
   text: string;
