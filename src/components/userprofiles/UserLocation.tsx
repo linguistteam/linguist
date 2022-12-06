@@ -3,15 +3,14 @@ import Colors from '../../assets/colors';
 import { userLocationStyles } from './styles';
 
 const UserLocation = () => {
-  // NOTE: When we have international country, display like:
-  // Frankfurt, Germany (omit the state)
-  const userCity = 'Philadelphia';
-  const userState = 'Pennsylvania';
+  // TODO: When user location text length is longer than
+  // certain amount of chars, truncate the text
+  const userLocation = 'Philadelphia, Pennsylvania, USA';
 
   return (
     <View style={userLocationStyles.container}>
       <Text bold color={Colors.grey} fontSize="sm">
-        {userCity}, {userState}
+        {userLocation}
       </Text>
     </View>
   );
