@@ -1,5 +1,11 @@
 import { StyleSheet } from 'react-native';
 
+export const languagesStyles = StyleSheet.create({
+  heading: {
+    marginTop: 20,
+  },
+});
+
 export const profileImageStyles = StyleSheet.create({
   profileImage: {
     width: 'auto',
