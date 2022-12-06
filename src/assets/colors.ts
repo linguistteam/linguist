@@ -4,6 +4,7 @@ const Colors = {
   smokyBlack: '#0D0D0D',
   grey: '#71767B',
   blueMagenta: '#5550F2',
+  lightenedBlueMagenta: '#7773f5',
   yellow: '#F2C029',
 };
 
