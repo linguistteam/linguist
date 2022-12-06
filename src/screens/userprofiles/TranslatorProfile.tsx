@@ -7,9 +7,11 @@ import { translatorProfileStyles } from './styles';
 const TranslatorProfile = () => {
   // TODO: All values here should be editable by user and passed in from DB
   const name = 'John Doe';
-  const isTopLinguist = true;
   const bio =
     'Egestas pretium aenean pharetra nisi lacus sed viverra tellus in hac habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras faucibus et porttitor ac feugiat sed lectus vestibulum mattis ullamcorper velit sed ullamcorper.';
+
+  // TODO: Should be passed in from DB
+  const isTopLinguist = true;
 
   const [imageBlur, setImageBlur] = useState(false);
 
