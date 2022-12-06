@@ -1,11 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export const styles = StyleSheet.create({
-  profileImage: {
-    width: 'auto',
-    height: 400,
-    zIndex: 0,
-  },
+export const translatorProfileStyles = StyleSheet.create({
   profileContent: {
     marginTop: -15,
     borderTopLeftRadius: 20,
