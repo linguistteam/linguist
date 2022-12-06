@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { Box, Flex, Heading, ScrollView, Text } from 'native-base';
 import { Button } from '@common';
-import { ProfileImage, UserLocation, UserRating } from '@components/userprofiles';
+import { ProfileImage, TopLinguistBadge, UserLocation, UserRating } from '@components/userprofiles';
 import { translatorProfileStyles } from './styles';
 
 const TranslatorProfile = () => {
   // TODO: All values here should be editable by user and passed in from DB
   const name = 'John Doe';
+  const isTopLinguist = true;
 
   const [imageBlur, setImageBlur] = useState(false);
 
@@ -39,7 +40,11 @@ const TranslatorProfile = () => {
 
         <UserLocation />
 
-        <UserRating />
+        <Flex direction="row" justifyContent="space-between">
+          <UserRating />
+
+          <TopLinguistBadge isTopLinguist={isTopLinguist} />
+        </Flex>
 
         <Text>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt

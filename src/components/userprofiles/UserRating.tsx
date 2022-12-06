@@ -21,7 +21,7 @@ const UserRating = () => {
       </Text>
 
       {/* TODO: Clicking on Reviews should jump user to Reviews section */}
-      <Text bold color={Colors.grey} fontSize="sm" style={userRatingStyles.reviews}>
+      <Text bold underline color={Colors.grey} fontSize="sm">
         {reviews} Reviews
       </Text>
     </View>

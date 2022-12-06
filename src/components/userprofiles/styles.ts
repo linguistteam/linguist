@@ -8,6 +8,13 @@ export const profileImageStyles = StyleSheet.create({
   },
 });
 
+export const topLinguistBadgeStyles = StyleSheet.create({
+  icon: {
+    transform: [{ rotateY: '180deg' }],
+    marginRight: 3,
+  },
+});
+
 export const userLocationStyles = StyleSheet.create({
   container: {
     marginTop: -5,
@@ -25,8 +32,5 @@ export const userRatingStyles = StyleSheet.create({
   },
   divider: {
     marginHorizontal: 4,
-  },
-  reviews: {
-    textDecorationLine: 'underline',
   },
 });

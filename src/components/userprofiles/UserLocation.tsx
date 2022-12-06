@@ -9,7 +9,7 @@ const UserLocation = () => {
 
   return (
     <View style={userLocationStyles.container}>
-      <Text bold color={Colors.grey} fontSize="sm">
+      <Text color={Colors.grey} fontSize="sm">
         {userLocation}
       </Text>
     </View>
