@@ -1,5 +1,6 @@
 import { Flex, Heading, View } from 'native-base';
 import CountryFlag from 'react-native-country-flag';
+import Colors from '@assets/colors';
 import { languagesStyles } from './styles';
 
 const Languages = () => {
@@ -14,12 +15,15 @@ const Languages = () => {
 
       <Flex direction="row" style={languagesStyles.countryFlagRow}>
         {languages.map((language) => (
-          <CountryFlag
-            isoCode={language}
+          <View
             key={language}
-            size={25}
-            style={languagesStyles.countryFlag}
-          />
+            // TODO: Dynamically set bg color
+            backgroundColor={Colors.transparentBlueMagenta}
+            borderColor={Colors.blueMagenta}
+            style={languagesStyles.countryFlagContainer}
+          >
+            <CountryFlag isoCode={language} size={25} style={languagesStyles.countryFlag} />
+          </View>
         ))}
       </Flex>
     </View>

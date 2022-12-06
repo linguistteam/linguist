@@ -7,11 +7,19 @@ export const languagesStyles = StyleSheet.create({
   countryFlagRow: {
     marginTop: 10,
   },
-  countryFlag: {
-    height: 20,
-    width: 20,
+  countryFlagContainer: {
+    height: 40,
+    width: 40,
     borderRadius: 50,
+    borderWidth: 3,
     marginRight: 20,
+  },
+  countryFlag: {
+    height: 30,
+    width: 30,
+    borderRadius: 50,
+    marginTop: 2,
+    marginLeft: 2,
   },
 });
 
