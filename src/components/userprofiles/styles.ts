@@ -4,6 +4,15 @@ export const languagesStyles = StyleSheet.create({
   heading: {
     marginTop: 20,
   },
+  countryFlagRow: {
+    marginTop: 10,
+  },
+  countryFlag: {
+    height: 20,
+    width: 20,
+    borderRadius: 50,
+    marginRight: 20,
+  },
 });
 
 export const profileImageStyles = StyleSheet.create({
