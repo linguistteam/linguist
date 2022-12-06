@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Box, Flex, Heading, ScrollView, Text } from 'native-base';
 import { Button } from '@common';
-import { ProfileImage, UserLocation, UserRating } from '@components/userprofiles';
+import { ProfileImage, TopLinguistBadge, UserLocation, UserRating } from '@components/userprofiles';
 import { translatorProfileStyles } from './styles';
 
 const TranslatorProfile = () => {
@@ -40,6 +40,8 @@ const TranslatorProfile = () => {
         <UserLocation />
 
         <UserRating />
+
+        <TopLinguistBadge />
 
         <Text>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
