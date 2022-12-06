@@ -39,9 +39,11 @@ const TranslatorProfile = () => {
 
         <UserLocation />
 
-        <UserRating />
+        <Flex direction="row" justifyContent="space-between">
+          <UserRating />
 
-        <TopLinguistBadge />
+          <TopLinguistBadge />
+        </Flex>
 
         <Text>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
