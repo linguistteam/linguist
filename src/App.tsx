@@ -1,5 +1,5 @@
-import { StyleSheet, View } from 'react-native';
-import { NativeBaseProvider } from 'native-base';
+import { StyleSheet } from 'react-native';
+import { NativeBaseProvider, View } from 'native-base';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { TranslatorProfile } from './screens/userprofiles';
