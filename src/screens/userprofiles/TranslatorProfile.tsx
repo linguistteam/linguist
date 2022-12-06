@@ -8,6 +8,8 @@ const TranslatorProfile = () => {
   // TODO: All values here should be editable by user and passed in from DB
   const name = 'John Doe';
   const isTopLinguist = true;
+  const bio =
+    'Egestas pretium aenean pharetra nisi lacus sed viverra tellus in hac habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras faucibus et porttitor ac feugiat sed lectus vestibulum mattis ullamcorper velit sed ullamcorper.';
 
   const [imageBlur, setImageBlur] = useState(false);
 
@@ -46,10 +48,7 @@ const TranslatorProfile = () => {
           <TopLinguistBadge isTopLinguist={isTopLinguist} />
         </Flex>
 
-        <Text>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. In pellentesque massa placerat duis ultricies lacus sed.
-        </Text>
+        <Text>{bio}</Text>
       </Box>
     </ScrollView>
   );
