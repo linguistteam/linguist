@@ -33,7 +33,4 @@ export const userRatingStyles = StyleSheet.create({
   divider: {
     marginHorizontal: 4,
   },
-  reviews: {
-    textDecorationLine: 'underline',
-  },
 });
