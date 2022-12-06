@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Box, Heading, ScrollView, Text } from 'native-base';
+import { Box, Flex, Heading, ScrollView, Text } from 'native-base';
 import { Button } from '@common';
 import { ProfileImage, UserLocation, UserRating } from '@components/userprofiles';
 import { translatorProfileStyles } from './styles';
@@ -31,9 +31,11 @@ const TranslatorProfile = () => {
       <ProfileImage imageBlur={imageBlur} />
 
       <Box style={translatorProfileStyles.profileContent} shadow={2}>
-        <Heading size="2xl">{name}</Heading>
+        <Flex direction="row" justifyContent="space-between">
+          <Heading size="2xl">{name}</Heading>
 
-        <Button text="Hire" />
+          <Button onPress={() => console.log('Pressed!')} text="Hire" width={100} />
+        </Flex>
 
         <UserLocation />
 
