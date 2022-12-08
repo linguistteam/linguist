@@ -32,6 +32,9 @@
       "@screens/*": [
         "src/screens/*"
       ],
+      "@utils": [
+        "src/utils/index"
+      ],
     }
   },
   "exclude": [
