@@ -6,6 +6,9 @@ import { languagesStyles } from './styles';
 
 const Languages = () => {
   // TODO: Figure out when we should show England flag vs US flag
+
+  // TODO: How should languages be ordered here? Should language in
+  // common always come first?
   const languages = ['us', 'de', 'jp'];
   const userLanguages = ['us'];
 
