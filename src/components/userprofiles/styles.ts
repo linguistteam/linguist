@@ -8,8 +8,8 @@ export const languagesStyles = StyleSheet.create({
     marginTop: 10,
   },
   countryFlagContainer: {
-    height: 40,
-    width: 40,
+    height: 45,
+    width: 45,
     borderRadius: 50,
     borderWidth: 3,
     marginRight: 20,
@@ -18,8 +18,8 @@ export const languagesStyles = StyleSheet.create({
     height: 30,
     width: 30,
     borderRadius: 50,
-    marginTop: 2,
-    marginLeft: 2,
+    marginTop: 4,
+    marginLeft: 4,
   },
 });
 
