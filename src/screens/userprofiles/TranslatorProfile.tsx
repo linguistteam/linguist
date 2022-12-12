@@ -1,7 +1,13 @@
 import { useState } from 'react';
 import { Box, Flex, Heading, ScrollView, Text } from 'native-base';
 import { Button } from '@common';
-import { ProfileImage, TopLinguistBadge, UserLocation, UserRating } from '@components/userprofiles';
+import {
+  Languages,
+  ProfileImage,
+  TopLinguistBadge,
+  UserLocation,
+  UserRating,
+} from '@components/userprofiles';
 import { translatorProfileStyles } from './styles';
 
 const TranslatorProfile = () => {
@@ -51,6 +57,8 @@ const TranslatorProfile = () => {
         </Flex>
 
         <Text>{bio}</Text>
+
+        <Languages />
       </Box>
     </ScrollView>
   );

@@ -1,5 +1,30 @@
 import { StyleSheet } from 'react-native';
 
+export const languagesStyles = StyleSheet.create({
+  heading: {
+    marginTop: 20,
+  },
+  countryFlagRow: {
+    marginTop: 10,
+    flexWrap: 'wrap',
+  },
+  countryFlagContainer: {
+    height: 28,
+    width: 28,
+    borderRadius: 5,
+    borderWidth: 2,
+    marginRight: 10,
+    marginTop: 5,
+  },
+  countryFlag: {
+    height: 25,
+    width: 25,
+    borderRadius: 4,
+    marginTop: -0.5,
+    marginLeft: -0.5,
+  },
+});
+
 export const profileImageStyles = StyleSheet.create({
   profileImage: {
     width: 'auto',
