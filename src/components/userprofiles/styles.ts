@@ -20,8 +20,8 @@ export const languagesStyles = StyleSheet.create({
     height: 25,
     width: 25,
     borderRadius: 5,
-    marginTop: -0.8,
-    marginLeft: -0.8,
+    marginTop: -0.5,
+    marginLeft: -0.5,
   },
 });
 
