@@ -4,8 +4,9 @@ import Colors from '@assets/colors';
 import { languagesStyles } from './styles';
 
 const Languages = () => {
+  // TODO: Lanugage data coming from DB needs to match ISO 3166-1 alpha-2
   // TODO: Figure out when we should show England flag vs US flag
-  const languages = ['us', 'de', 'jp', 'br', 'pl', 'ag', 'fr', 'es'];
+  const languages = ['us', 'de', 'jp'];
 
   return (
     <View>
