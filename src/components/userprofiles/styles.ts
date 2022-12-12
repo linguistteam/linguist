@@ -6,20 +6,22 @@ export const languagesStyles = StyleSheet.create({
   },
   countryFlagRow: {
     marginTop: 10,
+    flexWrap: 'wrap',
   },
   countryFlagContainer: {
-    height: 45,
-    width: 45,
-    borderRadius: 50,
+    height: 35,
+    width: 35,
+    borderRadius: 5,
     borderWidth: 3,
-    marginRight: 20,
+    marginRight: 15,
+    marginTop: 5,
   },
   countryFlag: {
     height: 30,
     width: 30,
-    borderRadius: 50,
-    marginTop: 4,
-    marginLeft: 4,
+    borderRadius: 5,
+    marginTop: -0.8,
+    marginLeft: -0.8,
   },
 });
 
