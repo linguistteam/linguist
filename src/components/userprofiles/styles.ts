@@ -13,7 +13,7 @@ export const languagesStyles = StyleSheet.create({
     width: 35,
     borderRadius: 5,
     borderWidth: 3,
-    marginRight: 15,
+    marginRight: 5,
     marginTop: 5,
   },
   countryFlag: {
