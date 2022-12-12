@@ -5,7 +5,7 @@ import { languagesStyles } from './styles';
 
 const Languages = () => {
   // TODO: Lanugage data coming from DB needs to match ISO 3166-1 alpha-2
-  // TODO: Figure out when we should show England flag vs US flag
+  // TODO: Figure out when we should show Great Britain/Australia/Ireland flag vs US flag (maybe just grab the user's country and base it on that?)
   const languages = ['us', 'de', 'jp'];
 
   return (
