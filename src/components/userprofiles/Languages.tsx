@@ -5,7 +5,7 @@ import { languagesStyles } from './styles';
 
 const Languages = () => {
   // TODO: Figure out when we should show England flag vs US flag
-  const languages = ['us', 'de', 'jp', 'br', 'pl', 'ag', 'fr'];
+  const languages = ['us', 'de', 'jp', 'br', 'pl', 'ag', 'fr', 'es'];
 
   return (
     <View>
@@ -18,8 +18,8 @@ const Languages = () => {
           return (
             <View
               key={language}
-              backgroundColor={Colors.grey}
-              borderColor={Colors.grey}
+              backgroundColor={Colors.transparentGrey}
+              borderColor={Colors.transparentGrey}
               style={languagesStyles.countryFlagContainer}
             >
               <CountryFlag isoCode={language} size={25} style={languagesStyles.countryFlag} />
