@@ -4,6 +4,7 @@ import { Button } from '@common';
 import {
   Languages,
   ProfileImage,
+  Reviews,
   TopLinguistBadge,
   UserLocation,
   UserRating,
@@ -59,6 +60,8 @@ const TranslatorProfile = () => {
         <Text>{bio}</Text>
 
         <Languages />
+
+        <Reviews />
       </Box>
     </ScrollView>
   );
