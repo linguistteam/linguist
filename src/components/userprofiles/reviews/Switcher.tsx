@@ -3,11 +3,11 @@ import { Flex, Pressable, Text, View } from 'native-base';
 import Colors from '@assets/colors';
 import { EN } from '@assets/strings';
 import { switcherHeaderStyles, switcherStyles } from './styles';
-import { ReviewsArrayType } from './Reviews';
+import { ReviewType } from './Reviews';
 
 interface SwitcherProps {
   isTranslatorProfile: boolean;
-  reviews: ReviewsArrayType[];
+  reviews: ReviewType[];
 }
 
 const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
@@ -16,14 +16,14 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
     translatorHeading: false,
   });
 
-  const numberOfReviews = (array: ReviewsArrayType[]) => array.length;
+  const numberOfReviews = (array: ReviewType[]) => array.length;
 
-  const sortedReviews = reviews.sort((a, b) => new Date(b.reviewDate) - new Date(a.reviewDate));
-
-  const reviewsFromClients: ReviewsArrayType[] = sortedReviews.filter(
-    (review) => !review.isTranslator,
+  const sortedReviews: ReviewType[] = reviews.sort(
+    (a: ReviewType, b: ReviewType) => b.reviewDate.valueOf() - a.reviewDate.valueOf(),
   );
-  const reviewsFromTranslators: ReviewsArrayType[] = sortedReviews.filter(
+
+  const reviewsFromClients: ReviewType[] = sortedReviews.filter((review) => !review.isTranslator);
+  const reviewsFromTranslators: ReviewType[] = sortedReviews.filter(
     (review) => review.isTranslator,
   );
 
