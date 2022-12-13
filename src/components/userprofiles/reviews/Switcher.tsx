@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Flex, Text, View } from 'native-base';
+import { Flex, Pressable, Text, View } from 'native-base';
 import Colors from '@assets/colors';
 import { EN } from '@assets/strings';
 import { switcherHeaderStyles, switcherStyles } from './styles';
@@ -64,8 +64,12 @@ const reviewsFromClients = reviews.filter((review) => !review.isTranslator);
 const reviewsFromTranslators: ReviewsArrayType[] = reviews.filter((review) => review.isTranslator);
 
 const Switcher = ({ isTranslatorProfile }: SwitcherProps) => {
-  const [clientHeadingActive, setClientHeadingActive] = useState(true);
-  const [translatorHeadingActive, setTranslatorHeadingActive] = useState(false);
+  // const [clientHeadingActive, setClientHeadingActive] = useState(true);
+  // const [translatorHeadingActive, setTranslatorHeadingActive] = useState(false);
+  const [activeHeading, setActiveHeading] = useState({
+    clientHeading: true,
+    translatorHeading: false,
+  });
 
   return (
     <View>
@@ -74,17 +78,33 @@ const Switcher = ({ isTranslatorProfile }: SwitcherProps) => {
       {/* TODO: Change text color to black and underline conditionally */}
       {isTranslatorProfile && (
         <Flex direction="row" justifyContent="space-between">
-          <View style={switcherHeaderStyles(clientHeadingActive).headingContainer}>
-            <Text bold fontSize="sm" style={switcherHeaderStyles(clientHeadingActive).heading}>
-              {EN.REVIEWS.FROM_CLIENTS} ({numberOfReviews(reviewsFromClients)})
-            </Text>
-          </View>
+          <Pressable
+            onPress={() => setActiveHeading({ clientHeading: true, translatorHeading: false })}
+          >
+            <View style={switcherHeaderStyles(activeHeading.clientHeading).headingContainer}>
+              <Text
+                bold
+                fontSize="sm"
+                style={switcherHeaderStyles(activeHeading.clientHeading).heading}
+              >
+                {EN.REVIEWS.FROM_CLIENTS} ({numberOfReviews(reviewsFromClients)})
+              </Text>
+            </View>
+          </Pressable>
 
-          <View style={switcherHeaderStyles(translatorHeadingActive).headingContainer}>
-            <Text bold fontSize="sm" style={switcherHeaderStyles(translatorHeadingActive).heading}>
-              {EN.REVIEWS.FROM_TRANSLATORS} ({numberOfReviews(reviewsFromTranslators)})
-            </Text>
-          </View>
+          <Pressable
+            onPress={() => setActiveHeading({ clientHeading: false, translatorHeading: true })}
+          >
+            <View style={switcherHeaderStyles(activeHeading.translatorHeading).headingContainer}>
+              <Text
+                bold
+                fontSize="sm"
+                style={switcherHeaderStyles(activeHeading.translatorHeading).heading}
+              >
+                {EN.REVIEWS.FROM_TRANSLATORS} ({numberOfReviews(reviewsFromTranslators)})
+              </Text>
+            </View>
+          </Pressable>
         </Flex>
       )}
 
