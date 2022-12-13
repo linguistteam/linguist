@@ -1,7 +1,8 @@
+import { useState } from 'react';
 import { Flex, Text, View } from 'native-base';
 import Colors from '@assets/colors';
 import { EN } from '@assets/strings';
-import { reviewSwitcherHeaderStyles, reviewsSwitcherStyles } from './styles';
+import { switcherHeaderStyles, switcherStyles } from './styles';
 
 interface SwitcherProps {
   isTranslatorProfile: boolean;
@@ -62,58 +63,63 @@ const reviewsFromClients = reviews.filter((review) => !review.isTranslator);
 // const reviewsFromTranslators: SwitcherProps[] = [];
 const reviewsFromTranslators: ReviewsArrayType[] = reviews.filter((review) => review.isTranslator);
 
-const Switcher = ({ isTranslatorProfile }: SwitcherProps) => (
-  <View>
-    {/* TODO: If profile is client, should only show translator reviews since
+const Switcher = ({ isTranslatorProfile }: SwitcherProps) => {
+  const [clientHeadingActive, setClientHeadingActive] = useState(true);
+  const [translatorHeadingActive, setTranslatorHeadingActive] = useState(false);
+
+  return (
+    <View>
+      {/* TODO: If profile is client, should only show translator reviews since
         they are not a translator; HIDE HEADINGS/SWITCHER FUNCTIONALITY */}
-    {/* TODO: Change text color to black and underline conditionally */}
-    {isTranslatorProfile && (
-      <Flex direction="row" justifyContent="space-between">
-        <View style={reviewSwitcherHeaderStyles(true).headingContainer}>
-          <Text bold fontSize="sm" style={reviewSwitcherHeaderStyles(true).heading}>
-            {EN.REVIEWS.FROM_CLIENTS} ({numberOfReviews(reviewsFromClients)})
-          </Text>
-        </View>
+      {/* TODO: Change text color to black and underline conditionally */}
+      {isTranslatorProfile && (
+        <Flex direction="row" justifyContent="space-between">
+          <View style={switcherHeaderStyles(clientHeadingActive).headingContainer}>
+            <Text bold fontSize="sm" style={switcherHeaderStyles(clientHeadingActive).heading}>
+              {EN.REVIEWS.FROM_CLIENTS} ({numberOfReviews(reviewsFromClients)})
+            </Text>
+          </View>
 
-        <View style={reviewSwitcherHeaderStyles(false).headingContainer}>
-          <Text bold fontSize="sm" style={reviewSwitcherHeaderStyles(false).heading}>
-            {EN.REVIEWS.FROM_TRANSLATORS} ({numberOfReviews(reviewsFromTranslators)})
-          </Text>
-        </View>
-      </Flex>
-    )}
-
-    {/* TODO: Can these be simplified into one function? */}
-    {/* CLIENT REVIEWS */}
-    <View style={reviewsSwitcherStyles.reviewsContainer}>
-      {!numberOfReviews(reviewsFromClients) && (
-        <Text bold color={Colors.grey}>
-          {EN.REVIEWS.NO_REVIEWS_YET}
-        </Text>
+          <View style={switcherHeaderStyles(translatorHeadingActive).headingContainer}>
+            <Text bold fontSize="sm" style={switcherHeaderStyles(translatorHeadingActive).heading}>
+              {EN.REVIEWS.FROM_TRANSLATORS} ({numberOfReviews(reviewsFromTranslators)})
+            </Text>
+          </View>
+        </Flex>
       )}
 
-      {reviewsFromClients.map((review) => (
-        <Text bold key={review.userId}>
-          {review.name}
-        </Text>
-      ))}
-    </View>
+      {/* TODO: Can these be simplified into one function? */}
+      {/* CLIENT REVIEWS */}
+      <View style={switcherStyles.reviewsContainer}>
+        {!numberOfReviews(reviewsFromClients) && (
+          <Text bold color={Colors.grey}>
+            {EN.REVIEWS.NO_REVIEWS_YET}
+          </Text>
+        )}
 
-    {/* TRANSALTOR REVIEWS */}
-    <View style={reviewsSwitcherStyles.reviewsContainer}>
-      {!numberOfReviews(reviewsFromTranslators) && (
-        <Text bold color={Colors.grey}>
-          {EN.REVIEWS.NO_REVIEWS_YET}
-        </Text>
-      )}
+        {reviewsFromClients.map((review) => (
+          <Text bold key={review.userId}>
+            {review.name}
+          </Text>
+        ))}
+      </View>
 
-      {reviewsFromTranslators.map((review) => (
-        <Text bold key={review.userId}>
-          {review.name}
-        </Text>
-      ))}
+      {/* TRANSALTOR REVIEWS */}
+      <View style={switcherStyles.reviewsContainer}>
+        {!numberOfReviews(reviewsFromTranslators) && (
+          <Text bold color={Colors.grey}>
+            {EN.REVIEWS.NO_REVIEWS_YET}
+          </Text>
+        )}
+
+        {reviewsFromTranslators.map((review) => (
+          <Text bold key={review.userId}>
+            {review.name}
+          </Text>
+        ))}
+      </View>
     </View>
-  </View>
-);
+  );
+};
 
 export default Switcher;
