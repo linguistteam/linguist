@@ -1,5 +1,6 @@
 import { Text, View } from 'native-base';
 import Colors from '@assets/colors';
+import { EN } from '@assets/strings';
 import { reviewsStyles } from '../styles';
 
 type SwitcherProps = {
@@ -60,34 +61,34 @@ const reviewsFromTranslators: SwitcherProps[] = reviews.filter((review) => revie
 const Switcher = () => (
   <View>
     {/* TODO: Conditionally add bottom border */}
-    {/* <Text bold fontSize="sm">
-      From clients ({numberOfReviews(reviewsFromClients)})
+    <Text bold fontSize="sm">
+      {EN.REVIEWS.FROM_CLIENTS} ({numberOfReviews(reviewsFromClients)})
     </Text>
 
     <View style={reviewsStyles.reviewsContainer}>
       {!numberOfReviews(reviewsFromClients) && (
         <Text bold color={Colors.grey}>
-          No reviews yet.
+          {EN.REVIEWS.NO_REVIEWS_YET}
         </Text>
       )}
 
       {reviewsFromClients.map((review) => (
         <Text key={review.userId}>{review.name}</Text>
       ))}
-    </View> */}
+    </View>
 
     {/* BEGIN TRANSALTOR REVIEWS */}
     {/* TODO: If profile is client, should only show translator reviews since
         they are not a translator; HIDE HEADINGS/SWITCHER FUNCTIONALITY */}
     {/* TODO: Change text color to black and underline conditionally */}
     <Text bold color={Colors.grey} fontSize="sm">
-      From translators ({numberOfReviews(reviewsFromTranslators)})
+      {EN.REVIEWS.FROM_TRANSLATORS} ({numberOfReviews(reviewsFromTranslators)})
     </Text>
 
     <View style={reviewsStyles.reviewsContainer}>
       {!numberOfReviews(reviewsFromTranslators) && (
         <Text bold color={Colors.grey}>
-          No reviews yet.
+          {EN.REVIEWS.NO_REVIEWS_YET}
         </Text>
       )}
 
