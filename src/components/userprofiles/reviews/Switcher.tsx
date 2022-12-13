@@ -60,6 +60,7 @@ const reviewsFromClients: SwitcherProps[] = [];
 
 const Switcher = () => (
   <View>
+    {/* TODO: Conditionally add bottom border */}
     <Text bold fontSize="sm">
       From clients ({numberOfReviews(reviewsFromClients)})
     </Text>
