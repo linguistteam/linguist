@@ -110,34 +110,38 @@ const Switcher = ({ isTranslatorProfile }: SwitcherProps) => {
 
       {/* TODO: Can these be simplified into one function? */}
       {/* CLIENT REVIEWS */}
-      <View style={switcherStyles.reviewsContainer}>
-        {!numberOfReviews(reviewsFromClients) && (
-          <Text bold color={Colors.grey}>
-            {EN.REVIEWS.NO_REVIEWS_YET}
-          </Text>
-        )}
+      {activeHeading.clientHeading && (
+        <View style={switcherStyles.reviewsContainer}>
+          {!numberOfReviews(reviewsFromClients) && (
+            <Text bold color={Colors.grey}>
+              {EN.REVIEWS.NO_REVIEWS_YET}
+            </Text>
+          )}
 
-        {reviewsFromClients.map((review) => (
-          <Text bold key={review.userId}>
-            {review.name}
-          </Text>
-        ))}
-      </View>
+          {reviewsFromClients.map((review) => (
+            <Text bold key={review.userId}>
+              {review.name}
+            </Text>
+          ))}
+        </View>
+      )}
 
       {/* TRANSALTOR REVIEWS */}
-      <View style={switcherStyles.reviewsContainer}>
-        {!numberOfReviews(reviewsFromTranslators) && (
-          <Text bold color={Colors.grey}>
-            {EN.REVIEWS.NO_REVIEWS_YET}
-          </Text>
-        )}
+      {activeHeading.translatorHeading && (
+        <View style={switcherStyles.reviewsContainer}>
+          {!numberOfReviews(reviewsFromTranslators) && (
+            <Text bold color={Colors.grey}>
+              {EN.REVIEWS.NO_REVIEWS_YET}
+            </Text>
+          )}
 
-        {reviewsFromTranslators.map((review) => (
-          <Text bold key={review.userId}>
-            {review.name}
-          </Text>
-        ))}
-      </View>
+          {reviewsFromTranslators.map((review) => (
+            <Text bold key={review.userId}>
+              {review.name}
+            </Text>
+          ))}
+        </View>
+      )}
     </View>
   );
 };
