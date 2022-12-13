@@ -1,9 +1,13 @@
-import { Text, View } from 'native-base';
+import { Flex, Text, View } from 'native-base';
 import Colors from '@assets/colors';
 import { EN } from '@assets/strings';
 import { reviewsStyles } from '../styles';
 
-type SwitcherProps = {
+interface SwitcherProps {
+  isTranslatorProfile: boolean;
+}
+
+interface ReviewsArrayType {
   userId: string;
   profileImage: string;
   name: string;
@@ -12,14 +16,14 @@ type SwitcherProps = {
   review: string;
   isTopLinguist?: boolean;
   isTranslator?: boolean;
-};
+}
 
 const dummyDateToday = new Date();
 const dummyDateYesterday = new Date(Date.now() - 86400000);
 const dummyDateTwoDaysAgo = new Date(Date.now() - 172800000);
 
 // TODO: User id should be generated from react-native-uuid
-const reviews: SwitcherProps[] = [
+const reviews: ReviewsArrayType[] = [
   {
     userId: '996c19c0-5aa0-4ad6-b0a2-c33de9034ebc',
     profileImage: 'Test 1',
@@ -52,18 +56,28 @@ const reviews: SwitcherProps[] = [
   },
 ];
 
-const numberOfReviews = (array: SwitcherProps[]) => array.length;
+const numberOfReviews = (array: ReviewsArrayType[]) => array.length;
 
 const reviewsFromClients = reviews.filter((review) => !review.isTranslator);
 // const reviewsFromTranslators: SwitcherProps[] = [];
-const reviewsFromTranslators: SwitcherProps[] = reviews.filter((review) => review.isTranslator);
+const reviewsFromTranslators: ReviewsArrayType[] = reviews.filter((review) => review.isTranslator);
 
-const Switcher = () => (
+const Switcher = ({ isTranslatorProfile }: SwitcherProps) => (
   <View>
-    {/* TODO: Conditionally add bottom border */}
-    <Text bold fontSize="sm">
-      {EN.REVIEWS.FROM_CLIENTS} ({numberOfReviews(reviewsFromClients)})
-    </Text>
+    {/* TODO: If profile is client, should only show translator reviews since
+        they are not a translator; HIDE HEADINGS/SWITCHER FUNCTIONALITY */}
+    {/* TODO: Change text color to black and underline conditionally */}
+    {isTranslatorProfile && (
+      <Flex direction="row" justifyContent="space-between">
+        <Text bold fontSize="sm">
+          {EN.REVIEWS.FROM_CLIENTS} ({numberOfReviews(reviewsFromClients)})
+        </Text>
+
+        <Text bold color={Colors.grey} fontSize="sm">
+          {EN.REVIEWS.FROM_TRANSLATORS} ({numberOfReviews(reviewsFromTranslators)})
+        </Text>
+      </Flex>
+    )}
 
     <View style={reviewsStyles.reviewsContainer}>
       {!numberOfReviews(reviewsFromClients) && (
@@ -78,13 +92,6 @@ const Switcher = () => (
     </View>
 
     {/* BEGIN TRANSALTOR REVIEWS */}
-    {/* TODO: If profile is client, should only show translator reviews since
-        they are not a translator; HIDE HEADINGS/SWITCHER FUNCTIONALITY */}
-    {/* TODO: Change text color to black and underline conditionally */}
-    <Text bold color={Colors.grey} fontSize="sm">
-      {EN.REVIEWS.FROM_TRANSLATORS} ({numberOfReviews(reviewsFromTranslators)})
-    </Text>
-
     <View style={reviewsStyles.reviewsContainer}>
       {!numberOfReviews(reviewsFromTranslators) && (
         <Text bold color={Colors.grey}>
