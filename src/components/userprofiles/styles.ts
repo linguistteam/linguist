@@ -33,6 +33,12 @@ export const profileImageStyles = StyleSheet.create({
   },
 });
 
+export const reviewsStyles = StyleSheet.create({
+  heading: {
+    marginTop: 20,
+  },
+});
+
 export const topLinguistBadgeStyles = StyleSheet.create({
   icon: {
     transform: [{ rotateY: '180deg' }],
