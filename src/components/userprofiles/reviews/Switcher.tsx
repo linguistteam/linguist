@@ -1,7 +1,7 @@
 import { Flex, Text, View } from 'native-base';
 import Colors from '@assets/colors';
 import { EN } from '@assets/strings';
-import { reviewsSwitcherStyles } from './styles';
+import { reviewSwitcherHeaderStyles, reviewsSwitcherStyles } from './styles';
 
 interface SwitcherProps {
   isTranslatorProfile: boolean;
@@ -69,13 +69,17 @@ const Switcher = ({ isTranslatorProfile }: SwitcherProps) => (
     {/* TODO: Change text color to black and underline conditionally */}
     {isTranslatorProfile && (
       <Flex direction="row" justifyContent="space-between">
-        <Text bold fontSize="sm" underline>
-          {EN.REVIEWS.FROM_CLIENTS} ({numberOfReviews(reviewsFromClients)})
-        </Text>
+        <View style={reviewSwitcherHeaderStyles(true).headingContainer}>
+          <Text bold fontSize="sm" style={reviewSwitcherHeaderStyles(true).heading}>
+            {EN.REVIEWS.FROM_CLIENTS} ({numberOfReviews(reviewsFromClients)})
+          </Text>
+        </View>
 
-        <Text bold color={Colors.grey} fontSize="sm">
-          {EN.REVIEWS.FROM_TRANSLATORS} ({numberOfReviews(reviewsFromTranslators)})
-        </Text>
+        <View style={reviewSwitcherHeaderStyles(false).headingContainer}>
+          <Text bold fontSize="sm" style={reviewSwitcherHeaderStyles(false).heading}>
+            {EN.REVIEWS.FROM_TRANSLATORS} ({numberOfReviews(reviewsFromTranslators)})
+          </Text>
+        </View>
       </Flex>
     )}
 
