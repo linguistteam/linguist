@@ -38,6 +38,9 @@ export const reviewsStyles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 10,
   },
+  reviewsContainer: {
+    marginTop: 10,
+  },
 });
 
 export const topLinguistBadgeStyles = StyleSheet.create({
