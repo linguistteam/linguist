@@ -1,6 +1,6 @@
 import { Text, View } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Colors from '../../assets/colors';
+import Colors from '@assets/colors';
 import { userRatingStyles } from './styles';
 
 const UserRating = () => {
@@ -21,7 +21,7 @@ const UserRating = () => {
       </Text>
 
       {/* TODO: Clicking on Reviews should jump user to Reviews section */}
-      <Text bold color={Colors.grey} fontSize="sm" style={userRatingStyles.reviews}>
+      <Text bold underline color={Colors.grey} fontSize="sm">
         {reviews} Reviews
       </Text>
     </View>
