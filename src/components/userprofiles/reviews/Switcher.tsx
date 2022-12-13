@@ -1,4 +1,6 @@
 import { Text, View } from 'native-base';
+import Colors from '@assets/colors';
+import { reviewsStyles } from '../styles';
 
 type SwitcherProps = {
   userId: string;
@@ -49,21 +51,37 @@ const reviews: SwitcherProps[] = [
   },
 ];
 
+const numberOfReviews = (array: SwitcherProps[]) => array.length;
+
 // const reviewsFromClients = reviews.filter((review) => !review.isTranslator);
 const reviewsFromClients: SwitcherProps[] = [];
-const reviewsFromTranslators = reviews.filter((review) => review.isTranslator);
+
+// const reviewsFromTranslators: SwitcherProps[] = reviews.filter((review) => review.isTranslator);
 
 const Switcher = () => (
   <View>
     <Text bold fontSize="sm">
-      From clients
+      From clients ({numberOfReviews(reviewsFromClients)})
     </Text>
 
-    {!reviewsFromClients && <Text>No reviews yet.</Text>}
+    <View style={reviewsStyles.reviewsContainer}>
+      {!numberOfReviews(reviewsFromClients) && (
+        <Text bold color={Colors.grey}>
+          No reviews yet.
+        </Text>
+      )}
 
-    {reviewsFromClients.map((review) => (
+      {reviewsFromClients.map((review) => (
+        <Text key={review.userId}>{review.name}</Text>
+      ))}
+    </View>
+
+    {/* BEGIN TRANSALTOR REVIEWS */}
+    {/* {!reviewsFromTranslators && <Text>No reviews yet.</Text>}
+
+    {reviewsFromTranslators.map((review) => (
       <Text key={review.userId}>{review.name}</Text>
-    ))}
+    ))} */}
   </View>
 );
 
