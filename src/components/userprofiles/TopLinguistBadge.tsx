@@ -3,9 +3,9 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Colors from '@assets/colors';
 import { topLinguistBadgeStyles } from './styles';
 
-type TopLinguistBadgeProps = {
+interface TopLinguistBadgeProps {
   isTopLinguist: boolean;
-};
+}
 
 const TopLinguistBadge = ({ isTopLinguist }: TopLinguistBadgeProps) => {
   if (!isTopLinguist) return null;

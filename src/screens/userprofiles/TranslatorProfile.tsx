@@ -4,6 +4,7 @@ import { Button } from '@common';
 import {
   Languages,
   ProfileImage,
+  Reviews,
   TopLinguistBadge,
   UserLocation,
   UserRating,
@@ -17,6 +18,7 @@ const TranslatorProfile = () => {
     'Egestas pretium aenean pharetra nisi lacus sed viverra tellus in hac habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras faucibus et porttitor ac feugiat sed lectus vestibulum mattis ullamcorper velit sed ullamcorper.';
 
   // TODO: Should be passed in from DB
+  const isTranslatorProfile = true;
   const isTopLinguist = true;
 
   const [imageBlur, setImageBlur] = useState(false);
@@ -59,6 +61,8 @@ const TranslatorProfile = () => {
         <Text>{bio}</Text>
 
         <Languages />
+
+        <Reviews isTranslatorProfile={isTranslatorProfile} />
       </Box>
     </ScrollView>
   );

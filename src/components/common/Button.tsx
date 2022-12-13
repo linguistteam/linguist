@@ -3,11 +3,11 @@ import { GestureResponderEvent } from 'react-native';
 import { Button as NativeBaseButton, Text } from 'native-base';
 import Colors from '@assets/colors';
 
-type ButtonProps = {
+interface ButtonProps {
   onPress: (event: GestureResponderEvent) => void;
   text: string;
   width?: number | string;
-};
+}
 
 const Button = ({ onPress, text, width }: ButtonProps) => {
   const [isPressed, setIsPressed] = useState(false);

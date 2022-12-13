@@ -1,9 +1,9 @@
 import { Image, Skeleton, View } from 'native-base';
 import { profileImageStyles } from './styles';
 
-type ProfileImageProps = {
+interface ProfileImageProps {
   imageBlur: boolean;
-};
+}
 
 const ProfileImage = ({ imageBlur }: ProfileImageProps) => {
   // TODO: All values here should be editable by user and passed in from DB
