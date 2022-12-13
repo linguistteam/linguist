@@ -36,6 +36,7 @@ export const profileImageStyles = StyleSheet.create({
 export const reviewsStyles = StyleSheet.create({
   heading: {
     marginTop: 20,
+    marginBottom: 10,
   },
 });
 
