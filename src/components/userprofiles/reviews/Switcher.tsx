@@ -59,13 +59,10 @@ const reviews: ReviewsArrayType[] = [
 
 const numberOfReviews = (array: ReviewsArrayType[]) => array.length;
 
-const reviewsFromClients = reviews.filter((review) => !review.isTranslator);
-// const reviewsFromTranslators: SwitcherProps[] = [];
+const reviewsFromClients: ReviewsArrayType[] = reviews.filter((review) => !review.isTranslator);
 const reviewsFromTranslators: ReviewsArrayType[] = reviews.filter((review) => review.isTranslator);
 
 const Switcher = ({ isTranslatorProfile }: SwitcherProps) => {
-  // const [clientHeadingActive, setClientHeadingActive] = useState(true);
-  // const [translatorHeadingActive, setTranslatorHeadingActive] = useState(false);
   const [activeHeading, setActiveHeading] = useState({
     clientHeading: true,
     translatorHeading: false,
@@ -75,7 +72,6 @@ const Switcher = ({ isTranslatorProfile }: SwitcherProps) => {
     <View>
       {/* TODO: If profile is client, should only show translator reviews since
         they are not a translator; HIDE HEADINGS/SWITCHER FUNCTIONALITY */}
-      {/* TODO: Change text color to black and underline conditionally */}
       {isTranslatorProfile && (
         <Flex direction="row" justifyContent="space-between">
           <Pressable
@@ -108,8 +104,6 @@ const Switcher = ({ isTranslatorProfile }: SwitcherProps) => {
         </Flex>
       )}
 
-      {/* TODO: Can these be simplified into one function? */}
-      {/* CLIENT REVIEWS */}
       {activeHeading.clientHeading && (
         <View style={switcherStyles.reviewsContainer}>
           {!numberOfReviews(reviewsFromClients) && (
@@ -126,7 +120,6 @@ const Switcher = ({ isTranslatorProfile }: SwitcherProps) => {
         </View>
       )}
 
-      {/* TRANSALTOR REVIEWS */}
       {activeHeading.translatorHeading && (
         <View style={switcherStyles.reviewsContainer}>
           {!numberOfReviews(reviewsFromTranslators) && (
