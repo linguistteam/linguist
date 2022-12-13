@@ -1,5 +1,5 @@
 import { Heading, View } from 'native-base';
-import { reviewsStyles } from '../styles';
+import { reviewsStyles } from './styles';
 import Switcher from './Switcher';
 
 interface ReviewsProps {

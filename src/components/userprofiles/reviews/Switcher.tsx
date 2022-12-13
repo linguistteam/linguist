@@ -1,7 +1,7 @@
 import { Flex, Text, View } from 'native-base';
 import Colors from '@assets/colors';
 import { EN } from '@assets/strings';
-import { reviewsStyles } from '../styles';
+import { reviewsSwitcherStyles } from './styles';
 
 interface SwitcherProps {
   isTranslatorProfile: boolean;
@@ -69,7 +69,7 @@ const Switcher = ({ isTranslatorProfile }: SwitcherProps) => (
     {/* TODO: Change text color to black and underline conditionally */}
     {isTranslatorProfile && (
       <Flex direction="row" justifyContent="space-between">
-        <Text bold fontSize="sm">
+        <Text bold fontSize="sm" underline>
           {EN.REVIEWS.FROM_CLIENTS} ({numberOfReviews(reviewsFromClients)})
         </Text>
 
@@ -79,7 +79,9 @@ const Switcher = ({ isTranslatorProfile }: SwitcherProps) => (
       </Flex>
     )}
 
-    <View style={reviewsStyles.reviewsContainer}>
+    {/* TODO: Can these be simplified into one function? */}
+    {/* CLIENT REVIEWS */}
+    <View style={reviewsSwitcherStyles.reviewsContainer}>
       {!numberOfReviews(reviewsFromClients) && (
         <Text bold color={Colors.grey}>
           {EN.REVIEWS.NO_REVIEWS_YET}
@@ -93,8 +95,8 @@ const Switcher = ({ isTranslatorProfile }: SwitcherProps) => (
       ))}
     </View>
 
-    {/* BEGIN TRANSALTOR REVIEWS */}
-    <View style={reviewsStyles.reviewsContainer}>
+    {/* TRANSALTOR REVIEWS */}
+    <View style={reviewsSwitcherStyles.reviewsContainer}>
       {!numberOfReviews(reviewsFromTranslators) && (
         <Text bold color={Colors.grey}>
           {EN.REVIEWS.NO_REVIEWS_YET}
