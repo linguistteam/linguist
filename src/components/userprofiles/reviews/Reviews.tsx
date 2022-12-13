@@ -7,7 +7,7 @@ interface ReviewsProps {
   isTranslatorProfile: boolean;
 }
 
-export interface ReviewsArrayType {
+export interface ReviewType {
   userId: string;
   profileImage: string;
   name: string;
@@ -25,7 +25,7 @@ const dummyDateTwoDaysAgo = new Date(Date.now() - 172800000);
 const dummyDateThreeDaysAgo = new Date(Date.now() - 172800000);
 
 // TODO: User id should be generated from react-native-uuid
-const reviews: ReviewsArrayType[] = [
+const reviews: ReviewType[] = [
   {
     userId: 'c5ca67d5-a754-465d-add9-7508cfe0d128',
     profileImage: 'Test 3',
