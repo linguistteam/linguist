@@ -53,15 +53,14 @@ const reviews: SwitcherProps[] = [
 
 const numberOfReviews = (array: SwitcherProps[]) => array.length;
 
-// const reviewsFromClients = reviews.filter((review) => !review.isTranslator);
-const reviewsFromClients: SwitcherProps[] = [];
-
-// const reviewsFromTranslators: SwitcherProps[] = reviews.filter((review) => review.isTranslator);
+const reviewsFromClients = reviews.filter((review) => !review.isTranslator);
+// const reviewsFromTranslators: SwitcherProps[] = [];
+const reviewsFromTranslators: SwitcherProps[] = reviews.filter((review) => review.isTranslator);
 
 const Switcher = () => (
   <View>
     {/* TODO: Conditionally add bottom border */}
-    <Text bold fontSize="sm">
+    {/* <Text bold fontSize="sm">
       From clients ({numberOfReviews(reviewsFromClients)})
     </Text>
 
@@ -75,14 +74,27 @@ const Switcher = () => (
       {reviewsFromClients.map((review) => (
         <Text key={review.userId}>{review.name}</Text>
       ))}
-    </View>
+    </View> */}
 
     {/* BEGIN TRANSALTOR REVIEWS */}
-    {/* {!reviewsFromTranslators && <Text>No reviews yet.</Text>}
+    {/* TODO: If profile is client, should only show translator reviews since
+        they are not a translator; HIDE HEADINGS/SWITCHER FUNCTIONALITY */}
+    {/* TODO: Change text color to black and underline conditionally */}
+    <Text bold color={Colors.grey} fontSize="sm">
+      From translators ({numberOfReviews(reviewsFromTranslators)})
+    </Text>
 
-    {reviewsFromTranslators.map((review) => (
-      <Text key={review.userId}>{review.name}</Text>
-    ))} */}
+    <View style={reviewsStyles.reviewsContainer}>
+      {!numberOfReviews(reviewsFromTranslators) && (
+        <Text bold color={Colors.grey}>
+          No reviews yet.
+        </Text>
+      )}
+
+      {reviewsFromTranslators.map((review) => (
+        <Text key={review.userId}>{review.name}</Text>
+      ))}
+    </View>
   </View>
 );
 
