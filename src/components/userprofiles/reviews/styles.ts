@@ -8,7 +8,7 @@ export const reviewsStyles = StyleSheet.create({
     },
 });
 
-export const reviewSwitcherHeaderStyles = (isHeadingActive: boolean) =>
+export const switcherHeaderStyles = (isHeadingActive: boolean) =>
     StyleSheet.create({
         headingContainer: {
             borderBottomWidth: isHeadingActive ? 1 : 0,
@@ -18,7 +18,7 @@ export const reviewSwitcherHeaderStyles = (isHeadingActive: boolean) =>
         },
     });
 
-export const reviewsSwitcherStyles = StyleSheet.create({
+export const switcherStyles = StyleSheet.create({
     reviewsContainer: {
         marginTop: 10,
     },
