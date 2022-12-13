@@ -18,8 +18,12 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
 
   const numberOfReviews = (array: ReviewsArrayType[]) => array.length;
 
-  const reviewsFromClients: ReviewsArrayType[] = reviews.filter((review) => !review.isTranslator);
-  const reviewsFromTranslators: ReviewsArrayType[] = reviews.filter(
+  const sortedReviews = reviews.sort((a, b) => new Date(b.reviewDate) - new Date(a.reviewDate));
+
+  const reviewsFromClients: ReviewsArrayType[] = sortedReviews.filter(
+    (review) => !review.isTranslator,
+  );
+  const reviewsFromTranslators: ReviewsArrayType[] = sortedReviews.filter(
     (review) => review.isTranslator,
   );
 
