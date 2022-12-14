@@ -73,7 +73,7 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
           )}
 
           {reviewsFromClients.map((review) => (
-            <Review key={review.userId} name={review.name} />
+            <Review key={review.userId} name={review.name} reviewDate={review.reviewDate} />
           ))}
         </View>
       )}
@@ -87,7 +87,7 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
           )}
 
           {reviewsFromTranslators.map((review) => (
-            <Review key={review.userId} name={review.name} />
+            <Review key={review.userId} name={review.name} reviewDate={review.reviewDate} />
           ))}
         </View>
       )}
