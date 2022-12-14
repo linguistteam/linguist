@@ -1,6 +1,15 @@
 import { StyleSheet } from 'react-native';
 import Colors from '@assets/colors';
 
+export const reviewStyles = StyleSheet.create({
+    reviewContainer: {
+        marginBottom: 10,
+    },
+    reviewText: {
+        marginTop: 10,
+    },
+});
+
 export const reviewsStyles = StyleSheet.create({
     heading: {
         marginTop: 20,
