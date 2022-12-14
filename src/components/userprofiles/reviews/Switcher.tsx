@@ -3,6 +3,7 @@ import { Flex, Pressable, Text, View } from 'native-base';
 import Colors from '@assets/colors';
 import { EN } from '@assets/strings';
 import { switcherHeaderStyles, switcherStyles } from './styles';
+import { Review } from '.';
 import { ReviewType } from './Reviews';
 
 interface SwitcherProps {
@@ -72,9 +73,7 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
           )}
 
           {reviewsFromClients.map((review) => (
-            <Text bold key={review.userId}>
-              {review.name}
-            </Text>
+            <Review key={review.userId} name={review.name} />
           ))}
         </View>
       )}
@@ -88,9 +87,7 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
           )}
 
           {reviewsFromTranslators.map((review) => (
-            <Text bold key={review.userId}>
-              {review.name}
-            </Text>
+            <Review key={review.userId} name={review.name} />
           ))}
         </View>
       )}
