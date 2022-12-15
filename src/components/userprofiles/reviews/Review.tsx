@@ -1,5 +1,4 @@
 import { Text, View } from 'native-base';
-import { DateTime } from 'luxon';
 import Colors from '@assets/colors';
 import { reviewStyles } from './styles';
 import { ReviewType } from './Reviews';
