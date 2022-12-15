@@ -3,7 +3,7 @@ import { Flex, Pressable, Text, View } from 'native-base';
 import Colors from '@assets/colors';
 import { EN } from '@assets/strings';
 import { switcherHeaderStyles, switcherStyles } from './styles';
-import { Review } from '.';
+import Review from './Review';
 import { ReviewType } from './Reviews';
 
 interface SwitcherProps {
