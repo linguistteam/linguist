@@ -19,11 +19,11 @@ export interface ReviewType {
   isTranslator?: boolean;
 }
 
-const dummyDateToday = moment();
-const dummyDateTomorrow = moment(dummyDateToday).add(1, 'days');
-const dummyDateOneHourAgo = moment(dummyDateToday).subtract(1, 'hours');
-const dummyDateYesterday = moment(dummyDateToday).subtract(1, 'days');
-const dummyDateOneWeeksAgo = moment(dummyDateToday).subtract(7, 'days');
+const dummyDateNow = moment();
+const dummyDateTomorrow = moment(dummyDateNow).add(1, 'days');
+const dummyDateOneHourAgo = moment(dummyDateNow).subtract(1, 'hours');
+const dummyDateYesterday = moment(dummyDateNow).subtract(1, 'days');
+const dummyDateOneWeeksAgo = moment(dummyDateNow).subtract(7, 'days');
 
 // TODO: User id should be generated from react-native-uuid
 const reviews: ReviewType[] = [
@@ -53,12 +53,23 @@ const reviews: ReviewType[] = [
     userId: '996c19c0-5aa0-4ad6-b0a2-c33de9034ebc',
     profileImage: 'Test 1',
     name: 'Jane Moe',
-    reviewDate: dummyDateToday,
+    reviewDate: dummyDateNow,
     rating: 4.7,
     review:
       'Mi sit amet mauris commodo. Dignissim diam quis enim lobortis scelerisque fermentum dui. Arcu risus quis varius quam quisque id diam. Lectus urna duis convallis convallis.',
     isTopLinguist: true,
     isTranslator: true,
+  },
+  {
+    userId: '996c19c0-5aa0-4ad6-b0a2-c33de9034ebc',
+    profileImage: 'Test 1',
+    name: 'Jane Stow',
+    reviewDate: dummyDateNow,
+    rating: 4.7,
+    review:
+      'Mi sit amet mauris commodo. Dignissim diam quis enim lobortis scelerisque fermentum dui. Arcu risus quis varius quam quisque id diam. Lectus urna duis convallis convallis.',
+    isTopLinguist: false,
+    isTranslator: false,
   },
   {
     userId: '3bc88969-df04-44d7-965a-149590e4bf90',
