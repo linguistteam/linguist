@@ -78,6 +78,7 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
               name={review.name}
               reviewDate={review.reviewDate}
               review={review.review}
+              rating={review.rating}
             />
           ))}
         </View>
@@ -97,6 +98,7 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
               name={review.name}
               reviewDate={review.reviewDate}
               review={review.review}
+              rating={review.rating}
             />
           ))}
         </View>

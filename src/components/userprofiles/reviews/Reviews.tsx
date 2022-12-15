@@ -26,6 +26,7 @@ const dummyDateYesterday = moment(dummyDateNow).subtract(1, 'days');
 const dummyDateOneWeeksAgo = moment(dummyDateNow).subtract(7, 'days');
 
 // TODO: User id should be generated from react-native-uuid
+// NOTE: Stars can only be full or half
 const reviews: ReviewType[] = [
   {
     userId: 'c5ca67d5-a754-465d-add9-7508cfe0d128',
@@ -43,7 +44,7 @@ const reviews: ReviewType[] = [
     profileImage: 'Test 2',
     name: 'Shane Doe',
     reviewDate: dummyDateYesterday,
-    rating: 4.8,
+    rating: 4.5,
     review:
       'Diam donec adipiscing tristique risus nec feugiat in fermentum posuere. Aliquam faucibus purus in massa tempor nec feugiat. Tortor consequat id porta nibh venenatis cras sed. Neque aliquam vestibulum morbi blandit cursus risus at ultrices. Id ornare arcu odio ut sem nulla pharetra diam sit.',
     isTopLinguist: false,
@@ -65,7 +66,7 @@ const reviews: ReviewType[] = [
     profileImage: 'Test 1',
     name: 'Jane Stow',
     reviewDate: dummyDateNow,
-    rating: 4.7,
+    rating: 4,
     review:
       'Mi sit amet mauris commodo. Dignissim diam quis enim lobortis scelerisque fermentum dui. Arcu risus quis varius quam quisque id diam. Lectus urna duis convallis convallis.',
     isTopLinguist: false,
@@ -76,7 +77,7 @@ const reviews: ReviewType[] = [
     profileImage: 'Test 2',
     name: 'Rain Doe',
     reviewDate: dummyDateOneWeeksAgo,
-    rating: 4.9,
+    rating: 4.5,
     review:
       'Etiam dignissim diam quis enim lobortis scelerisque fermentum. Enim blandit volutpat maecenas volutpat blandit. Gravida cum sociis natoque penatibus et magnis dis parturient montes. Sit amet mauris commodo quis imperdiet. Pulvinar elementum integer enim neque volutpat ac. Elementum integer enim neque volutpat. Cursus sit amet dictum sit amet justo donec enim. Cras adipiscing enim eu turpis egestas pretium. Sit amet aliquam id diam maecenas ultricies. Vulputate odio ut enim blandit volutpat maecenas volutpat blandit. Ultrices sagittis orci a scelerisque. Est lorem ipsum dolor sit amet. Ultrices neque ornare aenean euismod elementum nisi quis. Facilisis leo vel fringilla est ullamcorper eget nulla. Interdum velit euismod in pellentesque massa placerat. Sem nulla pharetra diam sit amet nisl suscipit adipiscing.',
     isTopLinguist: false,
@@ -87,7 +88,7 @@ const reviews: ReviewType[] = [
     profileImage: 'Test 1',
     name: 'Jane Doe',
     reviewDate: dummyDateTomorrow,
-    rating: 4.5,
+    rating: 5,
     review: 'Nec sagittis aliquam malesuada bibendum arcu vitae elementum.',
     isTopLinguist: false,
     isTranslator: false,
