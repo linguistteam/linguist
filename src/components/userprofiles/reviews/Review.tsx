@@ -4,7 +4,6 @@ import { reviewStyles } from './styles';
 import { ReviewType } from './Reviews';
 
 // TODO: Add proper type
-// TODO: Add Luxon to format date
 const Review = ({ name, review, reviewDate }: any) => (
   <View style={reviewStyles.reviewContainer}>
     <Text bold>{name}</Text>
