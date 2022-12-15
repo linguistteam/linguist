@@ -1,10 +1,15 @@
 import { Text, View } from 'native-base';
+import { Moment } from 'moment';
 import Colors from '@assets/colors';
 import { reviewStyles } from './styles';
-import { ReviewType } from './Reviews';
 
-// TODO: Add proper type
-const Review = ({ name, review, reviewDate }: any) => (
+interface ReviewProps {
+  name: string;
+  review: string;
+  reviewDate: Moment;
+}
+
+const Review = ({ name, review, reviewDate }: ReviewProps) => (
   <View style={reviewStyles.reviewContainer}>
     <Text bold>{name}</Text>
     <Text bold fontSize="xs" color={Colors.grey}>
