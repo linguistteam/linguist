@@ -28,11 +28,18 @@ const Review = ({ name, profileImage, rating, review, reviewDate }: ReviewProps)
       </View>
 
       <View style={reviewStyles.reviewContentContainer}>
-        <Text bold>{name}</Text>
-        <Text bold fontSize="xs" color={Colors.grey}>
-          {reviewDate.format('LL')}
-        </Text>
-        <StarRatingDisplay color={Colors.blueMagenta} rating={rating} starSize={17} />
+        <Flex direction="row" justifyContent="space-between">
+          <View>
+            <Text bold>{name}</Text>
+
+            <Text bold fontSize="xs" color={Colors.grey}>
+              {reviewDate.format('LL')}
+            </Text>
+          </View>
+
+          <StarRatingDisplay color={Colors.blueMagenta} rating={rating} starSize={17} />
+        </Flex>
+
         <Text style={reviewStyles.reviewText}>{review}</Text>
       </View>
     </Flex>
