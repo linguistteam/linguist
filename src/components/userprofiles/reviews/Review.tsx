@@ -3,7 +3,7 @@ import { Avatar, Flex, Text, View } from 'native-base';
 import { Moment } from 'moment';
 import { StarRatingDisplay } from 'react-native-star-rating-widget';
 import Colors from '@assets/colors';
-import { truncateText } from '@utils';
+import { extractInitials, truncateText } from '@utils';
 import { reviewStyles } from './styles';
 
 interface ReviewProps {
@@ -31,12 +31,12 @@ const Review = ({ name, profileImage, rating, review, reviewDate }: ReviewProps)
         <View style={reviewStyles.avatarContainer}>
           <Avatar
             bg={Colors.blueMagenta}
-            source={{
-              uri: profileImage,
-            }}
+          // source={{
+          //   uri: profileImage,
+          // }}
           >
             {/* TODO: Convert user's name to initials */}
-            AJ
+            {extractInitials(name)}
           </Avatar>
         </View>
 
