@@ -24,7 +24,8 @@ const Review = ({ name, profileImage, rating, review, reviewDate }: ReviewProps)
     }
   }, [review, reviewLongerThan200Chars]);
 
-  const truncate = (text: string) => (truncateReview ? `${text.substring(0, 200)}...` : text);
+  const truncate = (text: string) =>
+    truncateReview ? `${text.substring(0, 200).trim()}...` : text;
 
   return (
     <View style={reviewStyles.reviewContainer}>
