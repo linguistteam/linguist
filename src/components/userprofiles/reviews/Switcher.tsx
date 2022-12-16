@@ -76,9 +76,10 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
             <Review
               key={review.userId}
               name={review.name}
-              reviewDate={review.reviewDate}
-              review={review.review}
+              profileImage={review.profileImage}
               rating={review.rating}
+              review={review.review}
+              reviewDate={review.reviewDate}
             />
           ))}
         </View>
@@ -96,9 +97,10 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
             <Review
               key={review.userId}
               name={review.name}
-              reviewDate={review.reviewDate}
-              review={review.review}
+              profileImage={review.profileImage}
               rating={review.rating}
+              review={review.review}
+              reviewDate={review.reviewDate}
             />
           ))}
         </View>
