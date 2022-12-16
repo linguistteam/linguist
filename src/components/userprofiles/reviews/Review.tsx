@@ -29,12 +29,7 @@ const Review = ({ name, profileImage, rating, review, reviewDate }: ReviewProps)
     <View style={reviewStyles.reviewContainer}>
       <Flex direction="row" justifyContent="space-between">
         <View style={reviewStyles.avatarContainer}>
-          <Avatar
-            bg={Colors.blueMagenta}
-          // source={{
-          //   uri: profileImage,
-          // }}
-          >
+          <Avatar bg={Colors.blueMagenta} source={profileImage ? { uri: profileImage } : undefined}>
             {extractInitials(name)}
           </Avatar>
         </View>
