@@ -3,6 +3,7 @@ import { Avatar, Flex, Text, View } from 'native-base';
 import { Moment } from 'moment';
 import { StarRatingDisplay } from 'react-native-star-rating-widget';
 import Colors from '@assets/colors';
+import { truncateText } from '@utils';
 import { reviewStyles } from './styles';
 
 interface ReviewProps {
@@ -23,9 +24,6 @@ const Review = ({ name, profileImage, rating, review, reviewDate }: ReviewProps)
       setTruncateReview(true);
     }
   }, [review, reviewLongerThan200Chars]);
-
-  const truncate = (text: string) =>
-    truncateReview ? `${text.substring(0, 200).trim()}...` : text;
 
   return (
     <View style={reviewStyles.reviewContainer}>
@@ -57,7 +55,7 @@ const Review = ({ name, profileImage, rating, review, reviewDate }: ReviewProps)
 
           <View style={reviewStyles.reviewText}>
             <Text>
-              {truncate(review)}{' '}
+              {truncateText(truncateReview, review)}{' '}
               {reviewLongerThan200Chars && (
                 <Text bold underline onPress={() => setTruncateReview(!truncateReview)}>
                   {truncateReview ? 'read more' : 'read less'}
