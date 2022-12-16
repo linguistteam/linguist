@@ -15,8 +15,8 @@ export interface ReviewType {
   reviewDate: Moment;
   rating: number;
   review: string;
-  isTopLinguist?: boolean;
-  isTranslator?: boolean;
+  isTopLinguist: boolean;
+  isTranslator: boolean;
 }
 
 const dummyDateNow = moment();
