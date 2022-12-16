@@ -8,7 +8,7 @@ import { extractInitials, truncateText } from '@utils';
 import { reviewStyles } from './styles';
 
 interface ReviewProps {
-  isTopLinguist: boolean;
+  isTopLinguist?: boolean;
   name: string;
   profileImage: string;
   rating: number;
