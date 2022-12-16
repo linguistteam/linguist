@@ -35,7 +35,6 @@ const Review = ({ name, profileImage, rating, review, reviewDate }: ReviewProps)
           //   uri: profileImage,
           // }}
           >
-            {/* TODO: Convert user's name to initials */}
             {extractInitials(name)}
           </Avatar>
         </View>
