@@ -3,7 +3,7 @@ import Colors from '@assets/colors';
 
 export const reviewStyles = StyleSheet.create({
     reviewContainer: {
-        marginBottom: 10,
+        marginVertical: 5,
     },
     reviewText: {
         marginTop: 10,
