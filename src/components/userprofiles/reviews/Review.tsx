@@ -15,7 +15,7 @@ interface ReviewProps {
 const Review = ({ name, profileImage, rating, review, reviewDate }: ReviewProps) => (
   <View style={reviewStyles.reviewContainer}>
     <Flex direction="row" justifyContent="space-between">
-      <View>
+      <View style={reviewStyles.avatarContainer}>
         <Avatar
           bg={Colors.blueMagenta}
           source={{
@@ -25,16 +25,17 @@ const Review = ({ name, profileImage, rating, review, reviewDate }: ReviewProps)
           {/* TODO: Convert user's name to initials */}
           AJ
         </Avatar>
-        <Text bold>{name}</Text>
       </View>
 
-      <StarRatingDisplay color={Colors.blueMagenta} rating={rating} starSize={17} />
+      <View style={reviewStyles.reviewContentContainer}>
+        <Text bold>{name}</Text>
+        <Text bold fontSize="xs" color={Colors.grey}>
+          {reviewDate.format('LL')}
+        </Text>
+        <StarRatingDisplay color={Colors.blueMagenta} rating={rating} starSize={17} />
+        <Text style={reviewStyles.reviewText}>{review}</Text>
+      </View>
     </Flex>
-
-    <Text bold fontSize="xs" color={Colors.grey}>
-      {reviewDate.format('LL')}
-    </Text>
-    <Text style={reviewStyles.reviewText}>{review}</Text>
   </View>
 );
 

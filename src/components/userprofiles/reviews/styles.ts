@@ -8,6 +8,12 @@ export const reviewStyles = StyleSheet.create({
     reviewText: {
         marginTop: 10,
     },
+    avatarContainer: {
+        width: '20%',
+    },
+    reviewContentContainer: {
+        width: '80%',
+    },
 });
 
 export const reviewsStyles = StyleSheet.create({
