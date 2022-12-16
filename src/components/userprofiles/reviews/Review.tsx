@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Avatar, Flex, Text, View } from 'native-base';
 import { Moment } from 'moment';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { StarRatingDisplay } from 'react-native-star-rating-widget';
 import Colors from '@assets/colors';
 import { extractInitials, truncateText } from '@utils';
 import { reviewStyles } from './styles';
 
 interface ReviewProps {
+  isTopLinguist: boolean;
   name: string;
   profileImage: string;
   rating: number;
@@ -14,7 +16,7 @@ interface ReviewProps {
   reviewDate: Moment;
 }
 
-const Review = ({ name, profileImage, rating, review, reviewDate }: ReviewProps) => {
+const Review = ({ isTopLinguist, name, profileImage, rating, review, reviewDate }: ReviewProps) => {
   const reviewLongerThan200Chars = review.length > 200;
 
   const [truncateReview, setTruncateReview] = useState(false);
@@ -37,7 +39,10 @@ const Review = ({ name, profileImage, rating, review, reviewDate }: ReviewProps)
         <View style={reviewStyles.reviewContentContainer}>
           <Flex direction="row" justifyContent="space-between">
             <View>
-              <Text bold>{name}</Text>
+              <Text bold>
+                {name}{' '}
+                {isTopLinguist && <Icon name="star-shooting" size={15} color={Colors.yellow} />}
+              </Text>
 
               <Text bold fontSize="xs" color={Colors.grey}>
                 {reviewDate.format('LL')}
