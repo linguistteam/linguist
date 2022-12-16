@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Avatar, Flex, Pressable, Text, View } from 'native-base';
+import { Avatar, Flex, Text, View } from 'native-base';
 import { Moment } from 'moment';
 import { StarRatingDisplay } from 'react-native-star-rating-widget';
 import Colors from '@assets/colors';
@@ -54,16 +54,16 @@ const Review = ({ name, profileImage, rating, review, reviewDate }: ReviewProps)
             <StarRatingDisplay color={Colors.blueMagenta} rating={rating} starSize={17} />
           </Flex>
 
-          <Text style={reviewStyles.reviewText}>
-            {truncate(review)}{' '}
-            {reviewLongerThan200Chars && (
-              <Pressable onPress={() => setTruncateReview(!truncateReview)}>
-                <Text bold underline>
+          <View style={reviewStyles.reviewText}>
+            <Text>
+              {truncate(review)}{' '}
+              {reviewLongerThan200Chars && (
+                <Text bold underline onPress={() => setTruncateReview(!truncateReview)}>
                   {truncateReview ? 'read more' : 'read less'}
                 </Text>
-              </Pressable>
-            )}
-          </Text>
+              )}
+            </Text>
+          </View>
         </View>
       </Flex>
     </View>
