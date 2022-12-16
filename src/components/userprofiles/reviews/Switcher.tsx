@@ -74,6 +74,7 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
 
           {reviewsFromClients.map((review) => (
             <Review
+              isTopLinguist={review.isTopLinguist}
               key={review.userId}
               name={review.name}
               profileImage={review.profileImage}
@@ -95,6 +96,7 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
 
           {reviewsFromTranslators.map((review) => (
             <Review
+              isTopLinguist={review.isTopLinguist}
               key={review.userId}
               name={review.name}
               profileImage={review.profileImage}
