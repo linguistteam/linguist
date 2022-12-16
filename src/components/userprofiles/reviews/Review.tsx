@@ -17,8 +17,7 @@ const Review = ({ name, profileImage, rating, review, reviewDate }: ReviewProps)
     <Flex direction="row" justifyContent="space-between">
       <View>
         <Avatar
-          // TODO: Randomize background color
-          bg="green.500"
+          bg={Colors.blueMagenta}
           source={{
             uri: profileImage,
           }}
