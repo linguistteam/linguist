@@ -1,4 +1,6 @@
-import { Button, View } from 'native-base';
+import { Button, Text, View } from 'native-base';
+import Icon from 'react-native-vector-icons/Ionicons';
+import Colors from '@assets/colors';
 
 interface SeeMoreButtonProps {
   content: string;
@@ -6,7 +8,12 @@ interface SeeMoreButtonProps {
 
 const SeeMoreButton = ({ content }: SeeMoreButtonProps) => (
   <View>
-    <Button>{content}</Button>
+    <Button
+      leftIcon={<Icon name="md-chevron-down-circle" color={Colors.blueMagenta} size={16} />}
+      variant="unstyled"
+    >
+      <Text fontWeight="bold">{content}</Text>
+    </Button>
   </View>
 );
 
