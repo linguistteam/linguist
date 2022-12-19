@@ -34,6 +34,7 @@ export const switcherHeaderStyles = (isHeadingActive: boolean) =>
     });
 
 export const switcherStyles = StyleSheet.create({
+    switcherContainer: { marginBottom: 5 },
     reviewsContainer: {
         marginTop: 10,
     },

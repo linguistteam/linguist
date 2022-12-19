@@ -23,7 +23,7 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
     data.sort((a: ReviewType, b: ReviewType) => b.reviewDate.valueOf() - a.reviewDate.valueOf());
 
   return (
-    <View>
+    <View style={switcherStyles.switcherContainer}>
       {/* TODO: If profile is client, should only show translator reviews since
         they are not a translator; HIDE HEADINGS/SWITCHER FUNCTIONALITY */}
       {isTranslatorProfile && (
