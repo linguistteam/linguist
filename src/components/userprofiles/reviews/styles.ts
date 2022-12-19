@@ -37,4 +37,7 @@ export const switcherStyles = StyleSheet.create({
     reviewsContainer: {
         marginTop: 10,
     },
+    reviewsContent: {
+        marginBottom: 5,
+    },
 });
