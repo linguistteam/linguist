@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { useState } from 'react';
 import { Flex, Pressable, Text, View } from 'native-base';
 import Colors from '@assets/colors';
@@ -17,6 +18,15 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
     clientHeading: true,
     translatorHeading: false,
   });
+  const [reviewsLoading, setReviewsLoading] = useState(false);
+
+  const dummyLoadReviews = () => {
+    setReviewsLoading(true);
+
+    setTimeout(() => {
+      setReviewsLoading(false);
+    }, 1000);
+  };
 
   const numberOfReviews = (array: ReviewType[]) => array.length;
 
@@ -85,8 +95,9 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
           {numberOfReviews(reviews.fromClients) > 3 && (
             <SeeMoreButton
               content={EN.REVIEWS.SEE_MORE_REVIEWS}
-              isLoading={true}
+              isLoading={reviewsLoading}
               loadingText={EN.REVIEWS.LOADING_REVIEWS}
+              onPress={() => dummyLoadReviews()}
             />
           )}
         </View>
@@ -118,8 +129,9 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
           {numberOfReviews(reviews.fromClients) > 1 && (
             <SeeMoreButton
               content={EN.REVIEWS.SEE_MORE_REVIEWS}
-              isLoading={false}
+              isLoading={reviewsLoading}
               loadingText={EN.REVIEWS.LOADING_REVIEWS}
+              onPress={() => dummyLoadReviews()}
             />
           )}
         </View>
