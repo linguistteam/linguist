@@ -15,6 +15,8 @@ const SeeMoreButton = ({ content, isLoading, loadingText }: SeeMoreButtonProps) 
       isLoadingText={loadingText}
       leftIcon={<Icon name="md-chevron-down-circle" color={Colors.blueMagenta} size={18} />}
       variant="unstyled"
+      _spinner={{ color: Colors.blueMagenta }}
+      _loading={{ _text: { color: Colors.grey } }}
     >
       <Text fontWeight="bold">{content}</Text>
     </Button>
