@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { useState } from 'react';
 import { Flex, Pressable, Text, View } from 'native-base';
 import Colors from '@assets/colors';
