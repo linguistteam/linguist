@@ -9,7 +9,7 @@ interface SeeMoreButtonProps {
 const SeeMoreButton = ({ content }: SeeMoreButtonProps) => (
   <View>
     <Button
-      leftIcon={<Icon name="md-chevron-down-circle" color={Colors.blueMagenta} size={16} />}
+      leftIcon={<Icon name="md-chevron-down-circle" color={Colors.blueMagenta} size={18} />}
       variant="unstyled"
     >
       <Text fontWeight="bold">{content}</Text>
