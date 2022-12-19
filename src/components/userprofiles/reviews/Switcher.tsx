@@ -24,7 +24,7 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
     data.sort((a: ReviewType, b: ReviewType) => b.reviewDate.valueOf() - a.reviewDate.valueOf());
 
   return (
-    <View style={switcherStyles.switcherContainer}>
+    <View>
       {/* TODO: If profile is client, should only show translator reviews since
         they are not a translator; HIDE HEADINGS/SWITCHER FUNCTIONALITY */}
       {isTranslatorProfile && (
@@ -67,19 +67,28 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
             </Text>
           )}
 
-          {sortedReviews(reviews.fromClients).map((review: ReviewType) => (
-            <Review
-              isTopLinguist={review.isTopLinguist}
-              key={review.userId}
-              name={review.name}
-              profileImage={review.profileImage}
-              rating={review.rating}
-              review={review.review}
-              reviewDate={review.reviewDate}
-            />
-          ))}
+          <View style={switcherStyles.reviewsContent}>
+            {sortedReviews(reviews.fromClients).map((review: ReviewType) => (
+              <Review
+                isTopLinguist={review.isTopLinguist}
+                key={review.userId}
+                name={review.name}
+                profileImage={review.profileImage}
+                rating={review.rating}
+                review={review.review}
+                reviewDate={review.reviewDate}
+              />
+            ))}
+          </View>
 
-          <SeeMoreButton content={EN.REVIEWS.SEE_MORE_REVIEWS} />
+          {/* TODO: Switch number to 10 when done testing */}
+          {numberOfReviews(reviews.fromClients) > 3 && (
+            <SeeMoreButton
+              content={EN.REVIEWS.SEE_MORE_REVIEWS}
+              isLoading={true}
+              loadingText={EN.REVIEWS.LOADING_REVIEWS}
+            />
+          )}
         </View>
       )}
 
@@ -91,19 +100,28 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
             </Text>
           )}
 
-          {sortedReviews(reviews.fromTranslators).map((review: ReviewType) => (
-            <Review
-              isTopLinguist={review.isTopLinguist}
-              key={review.userId}
-              name={review.name}
-              profileImage={review.profileImage}
-              rating={review.rating}
-              review={review.review}
-              reviewDate={review.reviewDate}
-            />
-          ))}
+          <View style={switcherStyles.reviewsContent}>
+            {sortedReviews(reviews.fromTranslators).map((review: ReviewType) => (
+              <Review
+                isTopLinguist={review.isTopLinguist}
+                key={review.userId}
+                name={review.name}
+                profileImage={review.profileImage}
+                rating={review.rating}
+                review={review.review}
+                reviewDate={review.reviewDate}
+              />
+            ))}
+          </View>
 
-          <SeeMoreButton content={EN.REVIEWS.SEE_MORE_REVIEWS} />
+          {/* TODO: Switch number to 10 when done testing */}
+          {numberOfReviews(reviews.fromClients) > 1 && (
+            <SeeMoreButton
+              content={EN.REVIEWS.SEE_MORE_REVIEWS}
+              isLoading={false}
+              loadingText={EN.REVIEWS.LOADING_REVIEWS}
+            />
+          )}
         </View>
       )}
     </View>
