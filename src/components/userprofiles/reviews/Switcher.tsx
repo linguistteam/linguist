@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Flex, Pressable, Text, View } from 'native-base';
 import Colors from '@assets/colors';
 import { EN } from '@assets/strings';
+import { SeeMoreButton } from '@common';
 import { switcherHeaderStyles, switcherStyles } from './styles';
 import Review from './Review';
 import { ReviewType, ReviewsType } from './Reviews';
@@ -77,6 +78,8 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
               reviewDate={review.reviewDate}
             />
           ))}
+
+          <SeeMoreButton content={EN.REVIEWS.SEE_MORE_REVIEWS} />
         </View>
       )}
 
@@ -99,6 +102,8 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
               reviewDate={review.reviewDate}
             />
           ))}
+
+          <SeeMoreButton content={EN.REVIEWS.SEE_MORE_REVIEWS} />
         </View>
       )}
     </View>

@@ -2,7 +2,6 @@ import { Heading, View } from 'native-base';
 import moment, { Moment } from 'moment';
 import { EN } from '@assets/strings';
 import { reviewsStyles } from './styles';
-import { SeeMoreButton } from '@common';
 import Switcher from './Switcher';
 
 interface ReviewsProps {
@@ -106,8 +105,6 @@ const Reviews = ({ isTranslatorProfile }: ReviewsProps) => (
     </Heading>
 
     <Switcher isTranslatorProfile={isTranslatorProfile} reviews={reviews} />
-
-    <SeeMoreButton content={EN.REVIEWS.SEE_MORE_REVIEWS} />
   </View>
 );
 
