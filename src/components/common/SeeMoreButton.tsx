@@ -1,3 +1,4 @@
+import { GestureResponderEvent } from 'react-native';
 import { Button, Text, View } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Colors from '@assets/colors';
@@ -6,11 +7,13 @@ interface SeeMoreButtonProps {
   content: string;
   isLoading: boolean;
   loadingText?: string;
+  onPress: (event: GestureResponderEvent) => void;
 }
 
-const SeeMoreButton = ({ content, isLoading, loadingText }: SeeMoreButtonProps) => (
+const SeeMoreButton = ({ content, isLoading, loadingText, onPress }: SeeMoreButtonProps) => (
   <View>
     <Button
+      onPress={onPress}
       isLoading={isLoading}
       isLoadingText={loadingText}
       leftIcon={<Icon name="md-chevron-down-circle" color={Colors.blueMagenta} size={18} />}
