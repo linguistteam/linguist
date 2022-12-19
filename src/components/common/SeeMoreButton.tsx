@@ -4,11 +4,15 @@ import Colors from '@assets/colors';
 
 interface SeeMoreButtonProps {
   content: string;
+  isLoading: boolean;
+  loadingText?: string;
 }
 
-const SeeMoreButton = ({ content }: SeeMoreButtonProps) => (
+const SeeMoreButton = ({ content, isLoading, loadingText }: SeeMoreButtonProps) => (
   <View>
     <Button
+      isLoading={isLoading}
+      isLoadingText={loadingText}
       leftIcon={<Icon name="md-chevron-down-circle" color={Colors.blueMagenta} size={18} />}
       variant="unstyled"
     >
