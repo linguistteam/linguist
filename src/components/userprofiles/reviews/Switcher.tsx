@@ -103,15 +103,14 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
             ))}
           </View>
 
-          {numberOfReviews(reviews.fromClients) > 10 &&
-            currentEnd < numberOfReviews(reviews.fromClients) && (
-              <SeeMoreButton
-                content={EN.REVIEWS.SEE_MORE_REVIEWS}
-                isLoading={reviewsLoading}
-                loadingText={EN.REVIEWS.LOADING_REVIEWS}
-                onPress={() => dummyLoadReviews()}
-              />
-            )}
+          {currentEnd < numberOfReviews(reviews.fromClients) && (
+            <SeeMoreButton
+              content={EN.REVIEWS.SEE_MORE_REVIEWS}
+              isLoading={reviewsLoading}
+              loadingText={EN.REVIEWS.LOADING_REVIEWS}
+              onPress={() => dummyLoadReviews()}
+            />
+          )}
         </View>
       )}
 
@@ -137,15 +136,14 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
             ))}
           </View>
 
-          {numberOfReviews(reviews.fromClients) > 10 &&
-            currentEnd < numberOfReviews(reviews.fromTranslators) && (
-              <SeeMoreButton
-                content={EN.REVIEWS.SEE_MORE_REVIEWS}
-                isLoading={reviewsLoading}
-                loadingText={EN.REVIEWS.LOADING_REVIEWS}
-                onPress={() => dummyLoadReviews()}
-              />
-            )}
+          {currentEnd < numberOfReviews(reviews.fromTranslators) && (
+            <SeeMoreButton
+              content={EN.REVIEWS.SEE_MORE_REVIEWS}
+              isLoading={reviewsLoading}
+              loadingText={EN.REVIEWS.LOADING_REVIEWS}
+              onPress={() => dummyLoadReviews()}
+            />
+          )}
         </View>
       )}
     </View>
