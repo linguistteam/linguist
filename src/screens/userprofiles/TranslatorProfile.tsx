@@ -9,6 +9,7 @@ import {
   UserLocation,
   UserRating,
 } from '@components/userprofiles';
+import reviews from '@assets/dummyData/reviews';
 import { translatorProfileStyles } from './styles';
 
 const TranslatorProfile = () => {
@@ -62,7 +63,7 @@ const TranslatorProfile = () => {
 
         <Languages />
 
-        <Reviews isTranslatorProfile={isTranslatorProfile} />
+        <Reviews isTranslatorProfile={isTranslatorProfile} reviews={reviews} />
       </Box>
     </ScrollView>
   );
