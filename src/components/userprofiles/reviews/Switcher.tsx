@@ -18,12 +18,15 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
     translatorHeading: false,
   });
   const [reviewsLoading, setReviewsLoading] = useState(false);
+  const [currentReviewsSection, setCurrentReviewsSection] = useState(1);
 
+  // TODO: Remove this once we're pulling in actual data
   const dummyLoadReviews = () => {
     setReviewsLoading(true);
 
     setTimeout(() => {
       setReviewsLoading(false);
+      setCurrentReviewsSection(currentReviewsSection + 1);
     }, 1000);
   };
 
@@ -31,6 +34,17 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
 
   const sortedReviews = (data: ReviewType[]) =>
     data.sort((a: ReviewType, b: ReviewType) => b.reviewDate.valueOf() - a.reviewDate.valueOf());
+
+  const numberPerPage = 10;
+  let currentEnd = 10;
+
+  const pagination = (data: ReviewType[], currSection: number) => {
+    const sectionStart = (currSection - 1) * numberPerPage;
+    const sectionEnd = sectionStart + numberPerPage;
+    currentEnd = sectionEnd;
+
+    return sortedReviews(data).slice(0, sectionEnd);
+  };
 
   return (
     <View>
@@ -77,7 +91,7 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
           )}
 
           <View style={switcherStyles.reviewsContent}>
-            {sortedReviews(reviews.fromClients).map((review: ReviewType) => (
+            {pagination(reviews.fromClients, currentReviewsSection).map((review: ReviewType) => (
               <Review
                 isTopLinguist={review.isTopLinguist}
                 key={review.userId}
@@ -90,8 +104,7 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
             ))}
           </View>
 
-          {/* TODO: Switch number to 10 when done testing */}
-          {numberOfReviews(reviews.fromClients) > 3 && (
+          {currentEnd < numberOfReviews(reviews.fromClients) && (
             <SeeMoreButton
               content={EN.REVIEWS.SEE_MORE_REVIEWS}
               isLoading={reviewsLoading}
@@ -111,21 +124,22 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
           )}
 
           <View style={switcherStyles.reviewsContent}>
-            {sortedReviews(reviews.fromTranslators).map((review: ReviewType) => (
-              <Review
-                isTopLinguist={review.isTopLinguist}
-                key={review.userId}
-                name={review.name}
-                profileImage={review.profileImage}
-                rating={review.rating}
-                review={review.review}
-                reviewDate={review.reviewDate}
-              />
-            ))}
+            {pagination(reviews.fromTranslators, currentReviewsSection).map(
+              (review: ReviewType) => (
+                <Review
+                  isTopLinguist={review.isTopLinguist}
+                  key={review.userId}
+                  name={review.name}
+                  profileImage={review.profileImage}
+                  rating={review.rating}
+                  review={review.review}
+                  reviewDate={review.reviewDate}
+                />
+              ),
+            )}
           </View>
 
-          {/* TODO: Switch number to 10 when done testing */}
-          {numberOfReviews(reviews.fromClients) > 1 && (
+          {currentEnd < numberOfReviews(reviews.fromTranslators) && (
             <SeeMoreButton
               content={EN.REVIEWS.SEE_MORE_REVIEWS}
               isLoading={reviewsLoading}
