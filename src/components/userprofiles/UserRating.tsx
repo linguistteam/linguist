@@ -1,12 +1,21 @@
 import { Text, View } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Colors from '@assets/colors';
+import { EN } from '@assets/strings';
+import { ReviewType, ReviewsType } from '@components/userprofiles/reviews/Reviews';
 import { userRatingStyles } from './styles';
 
-const UserRating = () => {
+interface UserRatingProps {
+  reviews: ReviewsType;
+}
+
+const UserRating = ({ reviews }: UserRatingProps) => {
   // TODO: Should be passed in from DB
   const rating = 4.5;
-  const reviews = 474;
+  const numberOfReviews = (array: ReviewType[]) => array.length;
+
+  const combinedReviews =
+    numberOfReviews(reviews.fromClients) + numberOfReviews(reviews.fromTranslators);
 
   return (
     <View style={userRatingStyles.container}>
@@ -21,8 +30,8 @@ const UserRating = () => {
       </Text>
 
       {/* TODO: Clicking on Reviews should jump user to Reviews section */}
-      <Text bold underline color={Colors.grey} fontSize="sm">
-        {reviews} Reviews
+      <Text bold color={Colors.grey} fontSize="sm">
+        {combinedReviews} {EN.REVIEWS.REVIEWS}
       </Text>
     </View>
   );
