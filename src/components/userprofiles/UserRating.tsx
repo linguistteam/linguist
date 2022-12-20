@@ -29,7 +29,6 @@ const UserRating = ({ reviews }: UserRatingProps) => {
         ·
       </Text>
 
-      {/* TODO: Clicking on Reviews should jump user to Reviews section */}
       <Text bold color={Colors.grey} fontSize="sm">
         {combinedReviews} {EN.REVIEWS.REVIEWS}
       </Text>
