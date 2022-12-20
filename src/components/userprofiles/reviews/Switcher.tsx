@@ -34,16 +34,13 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
   const sortedReviews = (data: ReviewType[]) =>
     data.sort((a: ReviewType, b: ReviewType) => b.reviewDate.valueOf() - a.reviewDate.valueOf());
 
-  // TODO: Change to 10 when done testing
-  const numberPerPage = 5;
+  const numberPerPage = 10;
+  let currentEnd = 10;
 
   const pagination = (data: ReviewType[], currSection: number) => {
     const trimStart = (currSection - 1) * numberPerPage;
     const trimEnd = trimStart + numberPerPage;
-
-    console.log('trimStart', trimStart);
-
-    console.log('trimEnd', trimEnd);
+    currentEnd = trimEnd;
 
     return sortedReviews(data).slice(0, trimEnd);
   };
@@ -93,31 +90,28 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
           )}
 
           <View style={switcherStyles.reviewsContent}>
-            {pagination(sortedReviews(reviews.fromClients), currentReviewsSection).map(
-              (review: ReviewType) => (
-                <Review
-                  isTopLinguist={review.isTopLinguist}
-                  key={review.userId}
-                  name={review.name}
-                  profileImage={review.profileImage}
-                  rating={review.rating}
-                  review={review.review}
-                  reviewDate={review.reviewDate}
-                />
-              ),
-            )}
+            {pagination(reviews.fromClients, currentReviewsSection).map((review: ReviewType) => (
+              <Review
+                isTopLinguist={review.isTopLinguist}
+                key={review.userId}
+                name={review.name}
+                profileImage={review.profileImage}
+                rating={review.rating}
+                review={review.review}
+                reviewDate={review.reviewDate}
+              />
+            ))}
           </View>
 
-          {/* TODO: Switch number to 10 when done testing */}
-          {/* TODO: Hide when at end of reviews */}
-          {numberOfReviews(reviews.fromClients) > 10 && (
-            <SeeMoreButton
-              content={EN.REVIEWS.SEE_MORE_REVIEWS}
-              isLoading={reviewsLoading}
-              loadingText={EN.REVIEWS.LOADING_REVIEWS}
-              onPress={() => dummyLoadReviews()}
-            />
-          )}
+          {numberOfReviews(reviews.fromClients) > 10 &&
+            currentEnd < numberOfReviews(reviews.fromClients) && (
+              <SeeMoreButton
+                content={EN.REVIEWS.SEE_MORE_REVIEWS}
+                isLoading={reviewsLoading}
+                loadingText={EN.REVIEWS.LOADING_REVIEWS}
+                onPress={() => dummyLoadReviews()}
+              />
+            )}
         </View>
       )}
 
@@ -143,16 +137,15 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
             ))}
           </View>
 
-          {/* TODO: Switch number to 10 when done testing */}
-          {/* TODO: Hide when at end of reviews */}
-          {numberOfReviews(reviews.fromClients) > 10 && (
-            <SeeMoreButton
-              content={EN.REVIEWS.SEE_MORE_REVIEWS}
-              isLoading={reviewsLoading}
-              loadingText={EN.REVIEWS.LOADING_REVIEWS}
-              onPress={() => dummyLoadReviews()}
-            />
-          )}
+          {numberOfReviews(reviews.fromClients) > 10 &&
+            currentEnd < numberOfReviews(reviews.fromTranslators) && (
+              <SeeMoreButton
+                content={EN.REVIEWS.SEE_MORE_REVIEWS}
+                isLoading={reviewsLoading}
+                loadingText={EN.REVIEWS.LOADING_REVIEWS}
+                onPress={() => dummyLoadReviews()}
+              />
+            )}
         </View>
       )}
     </View>
