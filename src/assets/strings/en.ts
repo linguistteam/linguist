@@ -6,5 +6,6 @@ export const EN = {
         NO_REVIEWS_YET: 'No reviews yet.',
         SEE_MORE_REVIEWS: 'See more reviews',
         LOADING_REVIEWS: 'Loading reviews',
+        REVIEWS: 'Reviews',
     },
 };
