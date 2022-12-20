@@ -11,6 +11,14 @@ interface UserRatingProps {
 
 const UserRating = ({ reviews }: UserRatingProps) => {
   // TODO: Should be passed in from DB
+  console.log('reviews from clients', reviews.fromClients);
+  // console.log('reviews', reviews);
+
+  const ratingAverage = (array: ReviewType[]) =>
+    array.reduce((a: ReviewType, b: ReviewType) => a.rating + b.rating) / array.length;
+
+  console.log('ratingAverage', ratingAverage(reviews.fromClients));
+
   const rating = 4.5;
   const numberOfReviews = (array: ReviewType[]) => array.length;
 
