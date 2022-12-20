@@ -20,6 +20,7 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
   const [reviewsLoading, setReviewsLoading] = useState(false);
   const [currentReviewsSection, setCurrentReviewsSection] = useState(1);
 
+  // TODO: Remove this once we're pulling in actual data
   const dummyLoadReviews = () => {
     setReviewsLoading(true);
 
@@ -38,11 +39,11 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
   let currentEnd = 10;
 
   const pagination = (data: ReviewType[], currSection: number) => {
-    const trimStart = (currSection - 1) * numberPerPage;
-    const trimEnd = trimStart + numberPerPage;
-    currentEnd = trimEnd;
+    const sectionStart = (currSection - 1) * numberPerPage;
+    const sectionEnd = sectionStart + numberPerPage;
+    currentEnd = sectionEnd;
 
-    return sortedReviews(data).slice(0, trimEnd);
+    return sortedReviews(data).slice(0, sectionEnd);
   };
 
   return (
@@ -123,17 +124,19 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
           )}
 
           <View style={switcherStyles.reviewsContent}>
-            {sortedReviews(reviews.fromTranslators).map((review: ReviewType) => (
-              <Review
-                isTopLinguist={review.isTopLinguist}
-                key={review.userId}
-                name={review.name}
-                profileImage={review.profileImage}
-                rating={review.rating}
-                review={review.review}
-                reviewDate={review.reviewDate}
-              />
-            ))}
+            {pagination(reviews.fromTranslators, currentReviewsSection).map(
+              (review: ReviewType) => (
+                <Review
+                  isTopLinguist={review.isTopLinguist}
+                  key={review.userId}
+                  name={review.name}
+                  profileImage={review.profileImage}
+                  rating={review.rating}
+                  review={review.review}
+                  reviewDate={review.reviewDate}
+                />
+              ),
+            )}
           </View>
 
           {currentEnd < numberOfReviews(reviews.fromTranslators) && (
