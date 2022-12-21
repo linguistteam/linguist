@@ -16,9 +16,6 @@ const UserRating = ({ reviews }: UserRatingProps) => {
   const rating = fixedRatingAverage(combinedReviews);
   const numberOfReviews = (array: ReviewType[]) => array.length;
 
-  const combinedNumberOfReviews =
-    numberOfReviews(reviews.fromClients) + numberOfReviews(reviews.fromTranslators);
-
   return (
     <View style={userRatingStyles.container}>
       <Icon name="star" size={19} color={Colors.yellow} />
@@ -32,7 +29,7 @@ const UserRating = ({ reviews }: UserRatingProps) => {
       </Text>
 
       <Text bold color={Colors.grey} fontSize="sm">
-        {combinedNumberOfReviews} {EN.REVIEWS.REVIEWS}
+        {numberOfReviews(combinedReviews)} {EN.REVIEWS.REVIEWS}
       </Text>
     </View>
   );
