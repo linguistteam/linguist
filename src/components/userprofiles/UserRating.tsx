@@ -11,7 +11,7 @@ interface UserRatingProps {
 
 const UserRating = ({ reviews }: UserRatingProps) => {
   const ratingAverage = (array: ReviewType[]) =>
-    array.reduce((r, a: ReviewType) => r + a.rating, 0) / array.length;
+    array.reduce((prevValue, currentValue) => prevValue + currentValue.rating, 0) / array.length;
 
   const fixedRatingAverage = (array: ReviewType[]) => ratingAverage(array).toFixed(1);
 
