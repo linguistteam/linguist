@@ -5,6 +5,6 @@ const ratingAverage = (array: ReviewType[]) =>
   array.reduce((prevValue, currentValue) => prevValue + currentValue.rating, 0) / array.length;
 
 /* Convert average ratings to fixed amount */
-const fixedRatingAverage = (array: ReviewType[]) => ratingAverage(array).toFixed(1);
+const fixedRatingAverage = (array: ReviewType[]) => Number(ratingAverage(array).toFixed(1));
 
 export default fixedRatingAverage;
