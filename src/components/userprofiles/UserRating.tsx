@@ -15,7 +15,7 @@ const UserRating = ({ reviews }: UserRatingProps) => {
   // console.log('reviews', reviews);
 
   const ratingAverage = (array: ReviewType[]) =>
-    array.reduce((a: ReviewType, b: ReviewType) => a.rating + b.rating) / array.length;
+    array.reduce((r, a: ReviewType) => r + a.rating, 0) / array.length;
 
   console.log('ratingAverage', ratingAverage(reviews.fromClients));
 
