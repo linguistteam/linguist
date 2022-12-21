@@ -1,12 +1,27 @@
 import { Text, View } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Colors from '@assets/colors';
+import { EN } from '@assets/strings';
+import { ReviewType, ReviewsType } from '@components/userprofiles/reviews/Reviews';
 import { userRatingStyles } from './styles';
 
-const UserRating = () => {
-  // TODO: Should be passed in from DB
-  const rating = 4.5;
-  const reviews = 474;
+interface UserRatingProps {
+  reviews: ReviewsType;
+}
+
+const UserRating = ({ reviews }: UserRatingProps) => {
+  const ratingAverage = (array: ReviewType[]) =>
+    array.reduce((prevValue, currentValue) => prevValue + currentValue.rating, 0) / array.length;
+
+  const fixedRatingAverage = (array: ReviewType[]) => ratingAverage(array).toFixed(1);
+
+  const combinedReviews = reviews.fromClients.concat(reviews.fromTranslators);
+
+  const rating = fixedRatingAverage(combinedReviews);
+  const numberOfReviews = (array: ReviewType[]) => array.length;
+
+  const combinedNumberOfReviews =
+    numberOfReviews(reviews.fromClients) + numberOfReviews(reviews.fromTranslators);
 
   return (
     <View style={userRatingStyles.container}>
@@ -20,9 +35,8 @@ const UserRating = () => {
         ·
       </Text>
 
-      {/* TODO: Clicking on Reviews should jump user to Reviews section */}
-      <Text bold underline color={Colors.grey} fontSize="sm">
-        {reviews} Reviews
+      <Text bold color={Colors.grey} fontSize="sm">
+        {combinedNumberOfReviews} {EN.REVIEWS.REVIEWS}
       </Text>
     </View>
   );
