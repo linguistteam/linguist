@@ -5,7 +5,7 @@ import { reviewsStyles } from './styles';
 import Switcher from './Switcher';
 
 interface ReviewsProps {
-  isTranslatorProfile: boolean;
+  isTranslator: boolean;
   reviews: ReviewsType;
 }
 
@@ -24,13 +24,13 @@ export interface ReviewsType {
   fromTranslators: ReviewType[];
 }
 
-const Reviews = ({ isTranslatorProfile, reviews }: ReviewsProps) => (
+const Reviews = ({ isTranslator, reviews }: ReviewsProps) => (
   <View>
     <Heading bold size="md" style={reviewsStyles.heading}>
       {EN.REVIEWS.HEADING}
     </Heading>
 
-    <Switcher isTranslatorProfile={isTranslatorProfile} reviews={reviews} />
+    <Switcher isTranslator={isTranslator} reviews={reviews} />
   </View>
 );
 

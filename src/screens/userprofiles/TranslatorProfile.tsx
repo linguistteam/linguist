@@ -27,7 +27,7 @@ const bio =
   'Egestas pretium aenean pharetra nisi lacus sed viverra tellus in hac habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras faucibus et porttitor ac feugiat sed lectus vestibulum mattis ullamcorper velit sed ullamcorper.';
 
 // TODO: Should be passed in from DB
-const isTranslatorProfile = true;
+const isTranslator = true;
 
 const combinedReviews: ReviewType[] = reviews.fromClients.concat(reviews.fromTranslators);
 
@@ -78,7 +78,7 @@ const TranslatorProfile = () => {
 
         <Languages />
 
-        <Reviews isTranslatorProfile={isTranslatorProfile} reviews={reviews} />
+        <Reviews isTranslator={isTranslator} reviews={reviews} />
       </Box>
     </ScrollView>
   );
