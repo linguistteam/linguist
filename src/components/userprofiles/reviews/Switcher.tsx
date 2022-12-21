@@ -8,11 +8,11 @@ import Review from './Review';
 import { ReviewType, ReviewsType } from './Reviews';
 
 interface SwitcherProps {
-  isTranslatorProfile: boolean;
+  isTranslator: boolean;
   reviews: ReviewsType;
 }
 
-const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
+const Switcher = ({ isTranslator, reviews }: SwitcherProps) => {
   const [activeHeading, setActiveHeading] = useState({
     clientHeading: true,
     translatorHeading: false,
@@ -50,7 +50,7 @@ const Switcher = ({ isTranslatorProfile, reviews }: SwitcherProps) => {
     <View>
       {/* TODO: If profile is client, should only show translator reviews since
         they are not a translator; HIDE HEADINGS/SWITCHER FUNCTIONALITY */}
-      {isTranslatorProfile && (
+      {isTranslator && (
         <Flex direction="row" justifyContent="space-between">
           <Pressable
             onPress={() => setActiveHeading({ clientHeading: true, translatorHeading: false })}
