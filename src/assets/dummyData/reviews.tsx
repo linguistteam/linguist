@@ -124,7 +124,7 @@ const reviews: ReviewsType = {
         'https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
       name: 'Jane Moe',
       reviewDate: dummyDateNow,
-      rating: 4.7,
+      rating: 5,
       review:
         'Mi sit amet mauris commodo. Dignissim diam quis enim lobortis scelerisque fermentum dui. Arcu risus quis varius quam quisque id diam. Lectus urna duis convallis convallis.',
       isTopLinguist: true,
