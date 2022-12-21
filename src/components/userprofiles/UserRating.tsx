@@ -17,12 +17,15 @@ const UserRating = ({ reviews }: UserRatingProps) => {
   const ratingAverage = (array: ReviewType[]) =>
     array.reduce((r, a: ReviewType) => r + a.rating, 0) / array.length;
 
-  console.log('ratingAverage', ratingAverage(reviews.fromClients));
+  const roundedRatingAverage = (array: ReviewType[]) =>
+    (Math.round(ratingAverage(array) * 2) / 2).toFixed(1);
 
-  const rating = 4.5;
+  const combinedReviews = reviews.fromClients.concat(reviews.fromTranslators);
+
+  const rating = roundedRatingAverage(combinedReviews);
   const numberOfReviews = (array: ReviewType[]) => array.length;
 
-  const combinedReviews =
+  const combinedNumberOfReviews =
     numberOfReviews(reviews.fromClients) + numberOfReviews(reviews.fromTranslators);
 
   return (
@@ -38,7 +41,7 @@ const UserRating = ({ reviews }: UserRatingProps) => {
       </Text>
 
       <Text bold color={Colors.grey} fontSize="sm">
-        {combinedReviews} {EN.REVIEWS.REVIEWS}
+        {combinedNumberOfReviews} {EN.REVIEWS.REVIEWS}
       </Text>
     </View>
   );
