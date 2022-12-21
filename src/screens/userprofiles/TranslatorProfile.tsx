@@ -20,19 +20,30 @@ import { translatorProfileStyles } from './styles';
 //   emailAddress: string;
 //   firstName: string;
 //   lastName: string;
+//   languages: string[];
+//   location: string;
 //   bio: string;
 //   currency: string;
 //   isTranslator: boolean;
 //   isTopLinguist: boolean;
 // }
 
-// TODO: All values here should be editable by user and passed in from DB
-const name = 'John Doe';
-const bio =
-  'Egestas pretium aenean pharetra nisi lacus sed viverra tellus in hac habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras faucibus et porttitor ac feugiat sed lectus vestibulum mattis ullamcorper velit sed ullamcorper.';
+// TODO: Values here should be editable by user and passed in from DB
+// TODO: When user location text length is longer than certain amount of chars, truncate the text
+// TODO: Lanugage data coming from DB needs to match ISO 3166-1 alpha-2: https://www.iban.com/country-codes
+const user = {
+  userId: 'c5ca67d5-a754-465d-add9-7508cfe0d821',
+  emailAddress: 'john@getlinguist.app',
+  name: 'John Smith',
+  languages: ['gb', 'kr', 'jp', 'cn'],
+  location: 'Philadelphia, Pennsylvania, USA',
+  bio: 'Egestas pretium aenean pharetra nisi lacus sed viverra tellus in hac habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras faucibus et porttitor ac feugiat sed lectus vestibulum mattis ullamcorper velit sed ullamcorper.',
+  currency: 'usd',
+  isTranslator: true,
+  isTopLinguist: true,
+};
 
-// TODO: Should be passed in from DB
-const isTranslator = true;
+const { name, bio, location, languages, isTranslator } = user;
 
 const combinedReviews: ReviewType[] = reviews.fromClients.concat(reviews.fromTranslators);
 
@@ -71,7 +82,7 @@ const TranslatorProfile = () => {
           <Button onPress={() => console.log('Pressed!')} text="Hire" width={100} />
         </Flex>
 
-        <UserLocation />
+        <UserLocation location={location} />
 
         <Flex direction="row" justifyContent="space-between">
           <UserRating reviews={reviews} />
@@ -81,7 +92,7 @@ const TranslatorProfile = () => {
 
         <Text>{bio}</Text>
 
-        <Languages />
+        <Languages languages={languages} />
 
         <Reviews isTranslator={isTranslator} reviews={reviews} />
       </Box>
