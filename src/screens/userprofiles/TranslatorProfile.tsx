@@ -14,11 +14,16 @@ import { ReviewType } from '@components/userprofiles/reviews/Reviews';
 import { fixedRatingAverage } from '@utils';
 import { translatorProfileStyles } from './styles';
 
+// TODO: Figure out user data structure
 // interface TranslatorProfileProps {
-//   name: string;
+//   userId: string;
+//   emailAddress: string;
+//   firstName: string;
+//   lastName: string;
 //   bio: string;
 //   currency: string;
 //   isTranslator: boolean;
+//   isTopLinguist: boolean;
 // }
 
 // TODO: All values here should be editable by user and passed in from DB
@@ -34,7 +39,7 @@ const combinedReviews: ReviewType[] = reviews.fromClients.concat(reviews.fromTra
 const numberOfReviews = (array: ReviewType[]) => array.length;
 
 const isTopLinguist =
-  numberOfReviews(combinedReviews) > 10 && fixedRatingAverage(combinedReviews) >= 4.5;
+  numberOfReviews(combinedReviews) >= 10 && fixedRatingAverage(combinedReviews) >= 4.5;
 
 const TranslatorProfile = () => {
   const [imageBlur, setImageBlur] = useState(false);
