@@ -3,10 +3,11 @@ import CountryFlag from 'react-native-country-flag';
 import Colors from '@assets/colors';
 import { languagesStyles } from './styles';
 
-const Languages = () => {
-  // TODO: Lanugage data coming from DB needs to match ISO 3166-1 alpha-2
-  const languages = ['gb', 'de', 'jp'];
+interface LanguagesProps {
+  languages: string[];
+}
 
+const Languages = ({ languages }: LanguagesProps) => {
   return (
     <View>
       <Heading bold size="md" style={languagesStyles.heading}>
