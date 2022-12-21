@@ -8,7 +8,7 @@ const dummyDateYesterday = moment(dummyDateNow).subtract(1, 'days');
 const dummyDateOneWeeksAgo = moment(dummyDateNow).subtract(7, 'days');
 
 // TODO: User id should be generated from react-native-uuid
-// NOTE: Stars can only be full or half
+// NOTE: Should stars only be full or half?
 const reviews: ReviewsType = {
   fromClients: [
     {
@@ -75,7 +75,7 @@ const reviews: ReviewsType = {
         'https://images.unsplash.com/photo-1510771463146-e89e6e86560e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80',
       name: 'Jane Low',
       reviewDate: dummyDateNow,
-      rating: 4,
+      rating: 4.3,
       review:
         'Mi sit amet mauris commodo. Dignissim diam quis enim lobortis scelerisque fermentum dui. Arcu risus quis varius quam quisque id diam. Lectus urna duis convallis convallis.',
     },
@@ -85,7 +85,7 @@ const reviews: ReviewsType = {
         'https://images.unsplash.com/photo-1510771463146-e89e6e86560e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80',
       name: 'Jane Foe',
       reviewDate: dummyDateNow,
-      rating: 4,
+      rating: 4.7,
       review:
         'Mi sit amet mauris commodo. Dignissim diam quis enim lobortis scelerisque fermentum dui. Arcu risus quis varius quam quisque id diam. Lectus urna duis convallis convallis.',
     },
@@ -95,7 +95,7 @@ const reviews: ReviewsType = {
         'https://images.unsplash.com/photo-1542740348-39501cd6e2b4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
       name: 'Jane Woe',
       reviewDate: dummyDateTomorrow,
-      rating: 5,
+      rating: 4.9,
       review: 'Nec sagittis aliquam malesuada bibendum arcu vitae elementum.',
     },
     {
@@ -145,7 +145,7 @@ const reviews: ReviewsType = {
       profileImage: '',
       name: 'Main Doe',
       reviewDate: dummyDateOneWeeksAgo,
-      rating: 4.5,
+      rating: 4.8,
       review:
         'Etiam dignissim diam quis enim lobortis scelerisque fermentum. Enim blandit volutpat maecenas volutpat blandit. Gravida cum sociis natoque penatibus et magnis dis parturient montes. Sit amet mauris commodo quis imperdiet. Pulvinar elementum integer enim neque volutpat ac. Elementum integer enim neque volutpat. Cursus sit amet dictum sit amet justo donec enim. Cras adipiscing enim eu turpis egestas pretium. Sit amet aliquam id diam maecenas ultricies. Vulputate odio ut enim blandit volutpat maecenas volutpat blandit. Ultrices sagittis orci a scelerisque. Est lorem ipsum dolor sit amet. Ultrices neque ornare aenean euismod elementum nisi quis. Facilisis leo vel fringilla est ullamcorper eget nulla. Interdum velit euismod in pellentesque massa placerat. Sem nulla pharetra diam sit amet nisl suscipit adipiscing.',
       isTopLinguist: true,
