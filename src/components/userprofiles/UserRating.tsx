@@ -13,8 +13,7 @@ const UserRating = ({ reviews }: UserRatingProps) => {
   const ratingAverage = (array: ReviewType[]) =>
     array.reduce((r, a: ReviewType) => r + a.rating, 0) / array.length;
 
-  const roundedRatingAverage = (array: ReviewType[]) =>
-    (Math.round(ratingAverage(array) * 2) / 2).toFixed(1);
+  const roundedRatingAverage = (array: ReviewType[]) => ratingAverage(array).toFixed(2);
 
   const combinedReviews = reviews.fromClients.concat(reviews.fromTranslators);
 
