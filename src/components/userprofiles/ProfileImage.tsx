@@ -3,13 +3,11 @@ import { profileImageStyles } from './styles';
 
 interface ProfileImageProps {
   imageBlur: boolean;
+  name: string;
+  profileImage: string;
 }
 
-const ProfileImage = ({ imageBlur }: ProfileImageProps) => {
-  // TODO: All values here should be editable by user and passed in from DB
-  const image = '../../assets/images/stock/profile-user.jpeg';
-  const imageAlt = 'John Doe';
-
+const ProfileImage = ({ imageBlur, name, profileImage }: ProfileImageProps) => {
   // TODO: Should be set based on content loading from DB
   const imageIsLoading = false;
 
@@ -19,10 +17,9 @@ const ProfileImage = ({ imageBlur }: ProfileImageProps) => {
         <Skeleton h="400" />
       ) : (
         <Image
-          alt={imageAlt}
+          alt={name}
           blurRadius={imageBlur ? 10 : 0}
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-          source={require(image)}
+          source={{ uri: profileImage }}
           style={profileImageStyles.profileImage}
         />
       )}
