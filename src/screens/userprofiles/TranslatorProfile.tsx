@@ -11,7 +11,7 @@ import {
 } from '@components/userprofiles';
 import reviews from '@assets/dummyData/reviews';
 import { ReviewType } from '@components/userprofiles/reviews/Reviews';
-import { fixedRatingAverage } from '@utils';
+import { fixedRatingAverage, isLongName } from '@utils';
 import { translatorProfileStyles } from './styles';
 
 // TODO: Figure out user data structure
@@ -55,8 +55,6 @@ const numberOfReviews = (array: ReviewType[]) => array.length;
 const isTopLinguist =
   numberOfReviews(combinedReviews) >= 10 && Number(fixedRatingAverage(combinedReviews)) >= 4.5;
 
-const isLongName = name.length > 13;
-
 const TranslatorProfile = () => {
   const [imageBlur, setImageBlur] = useState(false);
 
@@ -84,7 +82,7 @@ const TranslatorProfile = () => {
         <Flex direction="row" justifyContent="space-between">
           <Heading size="xl">{name}</Heading>
 
-          {!isLongName && (
+          {!isLongName(name) && (
             <Button onPress={() => console.log('Pressed!')} text="Hire" width={100} />
           )}
         </Flex>
@@ -97,7 +95,7 @@ const TranslatorProfile = () => {
           <TopLinguistBadge isTopLinguist={isTopLinguist} />
         </Flex>
 
-        {isLongName && (
+        {isLongName(name) && (
           <View style={translatorProfileStyles.hireButtonExpanded}>
             <Button onPress={() => console.log('Pressed!')} text="Hire" />
           </View>
