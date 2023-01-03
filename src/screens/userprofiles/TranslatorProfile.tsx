@@ -35,7 +35,7 @@ import { translatorProfileStyles } from './styles';
 const user = {
   userId: 'c5ca67d5-a754-465d-add9-7508cfe0d821',
   emailAddress: 'john@getlinguist.app',
-  name: 'John Smith',
+  name: 'John Smithonsontonmon',
   profileImage:
     'https://images.unsplash.com/photo-1544168190-79c17527004f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=776&q=80',
   languages: ['gb', 'kr', 'jp', 'cn'],
@@ -53,7 +53,7 @@ const combinedReviews: ReviewType[] = reviews.fromClients.concat(reviews.fromTra
 const numberOfReviews = (array: ReviewType[]) => array.length;
 
 const isTopLinguist =
-  numberOfReviews(combinedReviews) >= 10 && fixedRatingAverage(combinedReviews) >= 4.5;
+  numberOfReviews(combinedReviews) >= 10 && Number(fixedRatingAverage(combinedReviews)) >= 4.5;
 
 const TranslatorProfile = () => {
   const [imageBlur, setImageBlur] = useState(false);
