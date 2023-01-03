@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Box, Flex, Heading, ScrollView, Text, View } from 'native-base';
 import { Button } from '@common';
+import { fixedRatingAverage, isLongName } from '@utils';
+import { EN } from '@assets/strings';
 import {
   Languages,
   ProfileImage,
@@ -11,7 +13,6 @@ import {
 } from '@components/userprofiles';
 import reviews from '@assets/dummyData/reviews';
 import { ReviewType } from '@components/userprofiles/reviews/Reviews';
-import { fixedRatingAverage, isLongName } from '@utils';
 import { translatorProfileStyles } from './styles';
 
 // TODO: Figure out user data structure
@@ -83,7 +84,11 @@ const TranslatorProfile = () => {
           <Heading size="xl">{name}</Heading>
 
           {!isLongName(name) && (
-            <Button onPress={() => console.log('Pressed!')} text="Hire" width={100} />
+            <Button
+              onPress={() => console.log('Pressed!')}
+              text={EN.TRANSLATOR_PROFILE.HIRE}
+              width={100}
+            />
           )}
         </Flex>
 
@@ -97,7 +102,7 @@ const TranslatorProfile = () => {
 
         {isLongName(name) && (
           <View style={translatorProfileStyles.hireButtonExpanded}>
-            <Button onPress={() => console.log('Pressed!')} text="Hire" />
+            <Button onPress={() => console.log('Pressed!')} text={EN.TRANSLATOR_PROFILE.HIRE} />
           </View>
         )}
 
