@@ -20,6 +20,7 @@ import { translatorProfileStyles } from './styles';
 //   emailAddress: string;
 //   firstName: string;
 //   lastName: string;
+//   profileImage: string;
 //   languages: string[];
 //   location: string;
 //   bio: string;
@@ -36,6 +37,8 @@ const user = {
   userId: 'c5ca67d5-a754-465d-add9-7508cfe0d821',
   emailAddress: 'john@getlinguist.app',
   name: 'John Smith',
+  profileImage:
+    'https://images.unsplash.com/photo-1544168190-79c17527004f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=776&q=80',
   languages: ['gb', 'kr', 'jp', 'cn'],
   location: 'Philadelphia, Pennsylvania, USA',
   bio: 'Egestas pretium aenean pharetra nisi lacus sed viverra tellus in hac habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras faucibus et porttitor ac feugiat sed lectus vestibulum mattis ullamcorper velit sed ullamcorper.',
@@ -44,7 +47,7 @@ const user = {
   isTopLinguist: true,
 };
 
-const { name, bio, location, languages, isTranslator } = user;
+const { name, bio, location, languages, profileImage, isTranslator } = user;
 
 const combinedReviews: ReviewType[] = reviews.fromClients.concat(reviews.fromTranslators);
 
@@ -74,7 +77,7 @@ const TranslatorProfile = () => {
       }}
       scrollEventThrottle={400}
     >
-      <ProfileImage imageBlur={imageBlur} />
+      <ProfileImage imageBlur={imageBlur} name={name} profileImage={profileImage} />
 
       <Box style={translatorProfileStyles.profileContent} shadow={2}>
         <Flex direction="row" justifyContent="space-between">
