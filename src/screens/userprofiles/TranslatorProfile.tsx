@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { Box, Flex, Heading, ScrollView, Text } from 'native-base';
+import { Box, Flex, Heading, ScrollView, Text, View } from 'native-base';
 import { Button } from '@common';
+import { fixedRatingAverage, isLongName } from '@utils';
+import { EN } from '@assets/strings';
 import {
   Languages,
   ProfileImage,
@@ -11,7 +13,6 @@ import {
 } from '@components/userprofiles';
 import reviews from '@assets/dummyData/reviews';
 import { ReviewType } from '@components/userprofiles/reviews/Reviews';
-import { fixedRatingAverage } from '@utils';
 import { translatorProfileStyles } from './styles';
 
 // TODO: Figure out user data structure
@@ -35,7 +36,7 @@ import { translatorProfileStyles } from './styles';
 const user = {
   userId: 'c5ca67d5-a754-465d-add9-7508cfe0d821',
   emailAddress: 'john@getlinguist.app',
-  name: 'John Smith',
+  name: 'Macauley Chan',
   profileImage:
     'https://images.unsplash.com/photo-1544168190-79c17527004f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=776&q=80',
   languages: ['gb', 'kr', 'jp', 'cn'],
@@ -53,7 +54,7 @@ const combinedReviews: ReviewType[] = reviews.fromClients.concat(reviews.fromTra
 const numberOfReviews = (array: ReviewType[]) => array.length;
 
 const isTopLinguist =
-  numberOfReviews(combinedReviews) >= 10 && fixedRatingAverage(combinedReviews) >= 4.5;
+  numberOfReviews(combinedReviews) >= 10 && Number(fixedRatingAverage(combinedReviews)) >= 4.5;
 
 const TranslatorProfile = () => {
   const [imageBlur, setImageBlur] = useState(false);
@@ -80,9 +81,15 @@ const TranslatorProfile = () => {
 
       <Box style={translatorProfileStyles.profileContent} shadow={2}>
         <Flex direction="row" justifyContent="space-between">
-          <Heading size="2xl">{name}</Heading>
+          <Heading size="xl">{name}</Heading>
 
-          <Button onPress={() => console.log('Pressed!')} text="Hire" width={100} />
+          {!isLongName(name) && (
+            <Button
+              onPress={() => console.log('Pressed!')}
+              text={EN.TRANSLATOR_PROFILE.HIRE}
+              width={100}
+            />
+          )}
         </Flex>
 
         <UserLocation location={location} />
@@ -92,6 +99,12 @@ const TranslatorProfile = () => {
 
           <TopLinguistBadge isTopLinguist={isTopLinguist} />
         </Flex>
+
+        {isLongName(name) && (
+          <View style={translatorProfileStyles.hireButtonExpanded}>
+            <Button onPress={() => console.log('Pressed!')} text={EN.TRANSLATOR_PROFILE.HIRE} />
+          </View>
+        )}
 
         <Text>{bio}</Text>
 
