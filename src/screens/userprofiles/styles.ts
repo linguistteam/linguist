@@ -8,4 +8,7 @@ export const translatorProfileStyles = StyleSheet.create({
     backgroundColor: '#ffffff',
     padding: 20,
   },
+  hireButtonExpanded: {
+    marginBottom: 10,
+  },
 });
