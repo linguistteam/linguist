@@ -31,6 +31,7 @@ import { translatorProfileStyles } from './styles';
 // TODO: Values here should be editable by user and passed in from DB
 // TODO: When user location text length is longer than certain amount of chars, truncate the text
 // TODO: Lanugage data coming from DB needs to match ISO 3166-1 alpha-2: https://www.iban.com/country-codes
+// TODO: ENG-52 add user profile image to data
 const user = {
   userId: 'c5ca67d5-a754-465d-add9-7508cfe0d821',
   emailAddress: 'john@getlinguist.app',
