@@ -42,7 +42,7 @@ const user = {
   languages: ['gb', 'kr', 'jp', 'cn'],
   location: 'Philadelphia, Pennsylvania, USA',
   bio: 'Egestas pretium aenean pharetra nisi lacus sed viverra tellus in hac habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras faucibus et porttitor ac feugiat sed lectus vestibulum mattis ullamcorper velit sed ullamcorper.',
-  currency: 'usd',
+  currency: 'yen',
   isTranslator: true,
   isTopLinguist: true,
 };
