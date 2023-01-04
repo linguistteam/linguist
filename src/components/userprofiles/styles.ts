@@ -28,7 +28,7 @@ export const languagesStyles = StyleSheet.create({
 export const profileImageStyles = StyleSheet.create({
   profileImage: {
     alignSelf: 'center',
-    marginVertical: 20,
+    marginVertical: 15,
   },
 });
 
