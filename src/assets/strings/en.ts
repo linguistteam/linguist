@@ -1,4 +1,10 @@
 export const EN = {
+  CLIENT_PROFILE: {
+    MESSAGE: 'Message',
+  },
+  LANGUAGES: {
+    HEADING: 'Lanugages',
+  },
   REVIEWS: {
     FROM_CLIENTS: 'From clients',
     FROM_TRANSLATORS: 'From translators',
@@ -10,8 +16,5 @@ export const EN = {
   },
   TRANSLATOR_PROFILE: {
     HIRE: 'Hire',
-  },
-  LANGUAGES: {
-    HEADING: 'Lanugages',
   },
 };
