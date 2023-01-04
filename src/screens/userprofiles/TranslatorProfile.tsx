@@ -1,5 +1,6 @@
 import { Box, Flex, Heading, ScrollView, Text, View } from 'native-base';
-// import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from '@common';
 import { fixedRatingAverage } from '@utils';
 import { EN } from '@assets/strings';
@@ -12,7 +13,7 @@ import {
   UserRating,
 } from '@components/userprofiles';
 import reviews from '@assets/dummyData/reviews';
-// import { StackNavigatorList } from '@screens/StackNavigator';
+import { StackNavigatorList } from '@screens/StackNavigator';
 import { ReviewType } from '@components/userprofiles/reviews/Reviews';
 import { translatorProfileStyles } from './styles';
 
@@ -31,10 +32,10 @@ import { translatorProfileStyles } from './styles';
 //   isTopLinguist: boolean;
 // }
 
-// type TranslatorProfileScreenProp = NativeStackNavigationProp<
-//   StackNavigatorList,
-//   'TranslatorProfile'
-// >;
+type TranslatorProfileScreenProp = NativeStackNavigationProp<
+  StackNavigatorList,
+  'TranslatorProfile'
+>;
 
 // TODO: Values here should be editable by user and passed in from DB
 // TODO: When user location text length is longer than certain amount of chars, truncate the text
@@ -62,37 +63,39 @@ const numberOfReviews = (array: ReviewType[]) => array.length;
 const isTopLinguist =
   numberOfReviews(combinedReviews) >= 10 && Number(fixedRatingAverage(combinedReviews)) >= 4.5;
 
-const TranslatorProfile = ({ navigation }: any) => {
+const TranslatorProfile = ({ navigation }: TranslatorProfileScreenProp) => {
   return (
-    <ScrollView>
-      <ProfileImage name={name} profileImage={profileImage} />
+    <SafeAreaView>
+      <ScrollView>
+        <ProfileImage name={name} profileImage={profileImage} />
 
-      <Box style={translatorProfileStyles.profileContent}>
-        <Flex direction="column" alignItems="center">
-          <Heading size="xl">{name}</Heading>
+        <Box style={translatorProfileStyles.profileContent}>
+          <Flex direction="column" alignItems="center">
+            <Heading size="xl">{name}</Heading>
 
-          <UserLocation location={location} />
-        </Flex>
+            <UserLocation location={location} />
+          </Flex>
 
-        <Flex direction="row" justifyContent={isTopLinguist ? 'space-between' : 'center'}>
-          <UserRating reviews={reviews} />
+          <Flex direction="row" justifyContent={isTopLinguist ? 'space-between' : 'center'}>
+            <UserRating reviews={reviews} />
 
-          <TopLinguistBadge isTopLinguist={isTopLinguist} />
-        </Flex>
+            <TopLinguistBadge isTopLinguist={isTopLinguist} />
+          </Flex>
 
-        <View style={translatorProfileStyles.hireButton}>
-          <Button onPress={() => console.log('Pressed!')} text={EN.TRANSLATOR_PROFILE.HIRE} />
-        </View>
+          <View style={translatorProfileStyles.hireButton}>
+            <Button onPress={() => console.log('Pressed!')} text={EN.TRANSLATOR_PROFILE.HIRE} />
+          </View>
 
-        <Text>{bio}</Text>
+          <Text>{bio}</Text>
 
-        <Languages languages={languages} />
+          <Languages languages={languages} />
 
-        <Text onPress={() => navigation.navigate('ClientProfile')}>Client</Text>
+          <Text onPress={() => navigation.navigate('ClientProfile')}>Client</Text>
 
-        <Reviews isTranslator={isTranslator} reviews={reviews} />
-      </Box>
-    </ScrollView>
+          <Reviews isTranslator={isTranslator} reviews={reviews} />
+        </Box>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
