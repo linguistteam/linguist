@@ -1,18 +1,15 @@
 import { Box, Flex, Heading, ScrollView, Text, View } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from '@common';
-import { fixedRatingAverage } from '@utils';
 import { EN } from '@assets/strings';
 import {
   Languages,
   ProfileImage,
   Reviews,
-  TopLinguistBadge,
   UserLocation,
   UserRating,
 } from '@components/userprofiles';
 import reviews from '@assets/dummyData/reviews';
-import { ReviewType } from '@components/userprofiles/reviews/Reviews';
 import { translatorProfileStyles } from './styles';
 
 // TODO: Figure out user data structure
@@ -34,27 +31,20 @@ import { translatorProfileStyles } from './styles';
 // TODO: When user location text length is longer than certain amount of chars, truncate the text
 // TODO: Lanugage data coming from DB needs to match ISO 3166-1 alpha-2: https://www.iban.com/country-codes
 const user = {
-  userId: 'c5ca67d5-a754-465d-add9-7508cfe0d821',
-  emailAddress: 'john@getlinguist.app',
-  name: 'Macauley Chan',
+  userId: 'c5ca67d5-a754-465d-add9-7508cfe0d822',
+  emailAddress: 'riley@gmail.com',
+  name: 'Riley Hardy',
   profileImage:
-    'https://images.unsplash.com/photo-1544168190-79c17527004f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=776&q=80',
-  languages: ['gb', 'kr', 'jp', 'cn'],
-  location: 'Philadelphia, Pennsylvania, USA',
-  bio: 'Egestas pretium aenean pharetra nisi lacus sed viverra tellus in hac habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras faucibus et porttitor ac feugiat sed lectus vestibulum mattis ullamcorper velit sed ullamcorper.',
+    'https://images.unsplash.com/photo-1506691318991-c91e7df669b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=746&q=80',
+  languages: ['en'],
+  location: 'New York, New York, USA',
+  bio: 'Curabitur ultricies at dui a rutrum. Donec sed velit enim. Morbi id augue feugiat, laoreet ex sed, imperdiet nisi. Vestibulum a neque non enim sagittis auctor eget vitae turpis. Vivamus lorem enim, consectetur quis tellus vel, pretium mattis massa. Aliquam erat volutpat. Etiam ut eleifend quam. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
   currency: 'usd',
-  isTranslator: true,
-  isTopLinguist: true,
+  isTranslator: false,
+  isTopLinguist: false,
 };
 
 const { name, bio, location, languages, profileImage, isTranslator } = user;
-
-const combinedReviews: ReviewType[] = reviews.fromClients.concat(reviews.fromTranslators);
-
-const numberOfReviews = (array: ReviewType[]) => array.length;
-
-const isTopLinguist =
-  numberOfReviews(combinedReviews) >= 10 && Number(fixedRatingAverage(combinedReviews)) >= 4.5;
 
 const ClientProfile = () => {
   return (
@@ -69,19 +59,15 @@ const ClientProfile = () => {
             <UserLocation location={location} />
           </Flex>
 
-          <Flex direction="row" justifyContent={isTopLinguist ? 'space-between' : 'center'}>
+          <Flex direction="row" justifyContent={'center'}>
             <UserRating reviews={reviews} />
-
-            <TopLinguistBadge isTopLinguist={isTopLinguist} />
           </Flex>
 
           <View style={translatorProfileStyles.hireButton}>
-            <Button onPress={() => console.log('Pressed!')} text={EN.TRANSLATOR_PROFILE.HIRE} />
+            <Button onPress={() => console.log('Pressed!')} text={EN.CLIENT_PROFILE.MESSAGE} />
           </View>
 
           <Text>{bio}</Text>
-
-          <Languages languages={languages} />
 
           <Reviews isTranslator={isTranslator} reviews={reviews} />
         </Box>
