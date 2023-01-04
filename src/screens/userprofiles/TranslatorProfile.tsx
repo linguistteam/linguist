@@ -1,4 +1,5 @@
 import { Box, Flex, Heading, ScrollView, Text, View } from 'native-base';
+// import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Button } from '@common';
 import { fixedRatingAverage } from '@utils';
 import { EN } from '@assets/strings';
@@ -11,6 +12,7 @@ import {
   UserRating,
 } from '@components/userprofiles';
 import reviews from '@assets/dummyData/reviews';
+// import { StackNavigatorList } from '@screens/StackNavigator';
 import { ReviewType } from '@components/userprofiles/reviews/Reviews';
 import { translatorProfileStyles } from './styles';
 
@@ -28,6 +30,11 @@ import { translatorProfileStyles } from './styles';
 //   isTranslator: boolean;
 //   isTopLinguist: boolean;
 // }
+
+// type TranslatorProfileScreenProp = NativeStackNavigationProp<
+//   StackNavigatorList,
+//   'TranslatorProfile'
+// >;
 
 // TODO: Values here should be editable by user and passed in from DB
 // TODO: When user location text length is longer than certain amount of chars, truncate the text
@@ -55,7 +62,7 @@ const numberOfReviews = (array: ReviewType[]) => array.length;
 const isTopLinguist =
   numberOfReviews(combinedReviews) >= 10 && Number(fixedRatingAverage(combinedReviews)) >= 4.5;
 
-const TranslatorProfile = () => {
+const TranslatorProfile = ({ navigation }: any) => {
   return (
     <ScrollView>
       <ProfileImage name={name} profileImage={profileImage} />
@@ -80,6 +87,8 @@ const TranslatorProfile = () => {
         <Text>{bio}</Text>
 
         <Languages languages={languages} />
+
+        <Text onPress={() => navigation.navigate('ClientProfile')}>Client</Text>
 
         <Reviews isTranslator={isTranslator} reviews={reviews} />
       </Box>
