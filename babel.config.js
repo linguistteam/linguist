@@ -11,6 +11,7 @@ module.exports = function (api) {
             "@assets": "./src/assets",
             "@common": "./src/components/common",
             "@components": "./src/components",
+            "@constants": "./src/constants",
             "@screens": './src/screens',
             "@strings": "./src/assets/strings",
             "@utils": './src/utils'
