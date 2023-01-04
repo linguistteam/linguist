@@ -73,7 +73,7 @@ const TranslatorProfile = () => {
           <TopLinguistBadge isTopLinguist={isTopLinguist} />
         </Flex>
 
-        <View style={translatorProfileStyles.hireButtonExpanded}>
+        <View style={translatorProfileStyles.hireButton}>
           <Button onPress={() => console.log('Pressed!')} text={EN.TRANSLATOR_PROFILE.HIRE} />
         </View>
 
