@@ -1,6 +1,6 @@
 import { Box, Flex, Heading, ScrollView, Text, View } from 'native-base';
 import { Button } from '@common';
-import { fixedRatingAverage, isLongName } from '@utils';
+import { fixedRatingAverage } from '@utils';
 import { EN } from '@assets/strings';
 import {
   Languages,
@@ -60,20 +60,12 @@ const TranslatorProfile = () => {
     <ScrollView>
       <ProfileImage profileImage={profileImage} />
 
-      <Box style={translatorProfileStyles.profileContent} shadow={2}>
-        <Flex direction="row" justifyContent="space-between">
+      <Box style={translatorProfileStyles.profileContent}>
+        <Flex direction="column" alignItems="center">
           <Heading size="xl">{name}</Heading>
 
-          {!isLongName(name) && (
-            <Button
-              onPress={() => console.log('Pressed!')}
-              text={EN.TRANSLATOR_PROFILE.HIRE}
-              width={100}
-            />
-          )}
+          <UserLocation location={location} />
         </Flex>
-
-        <UserLocation location={location} />
 
         <Flex direction="row" justifyContent="space-between">
           <UserRating reviews={reviews} />
@@ -81,11 +73,9 @@ const TranslatorProfile = () => {
           <TopLinguistBadge isTopLinguist={isTopLinguist} />
         </Flex>
 
-        {isLongName(name) && (
-          <View style={translatorProfileStyles.hireButtonExpanded}>
-            <Button onPress={() => console.log('Pressed!')} text={EN.TRANSLATOR_PROFILE.HIRE} />
-          </View>
-        )}
+        <View style={translatorProfileStyles.hireButtonExpanded}>
+          <Button onPress={() => console.log('Pressed!')} text={EN.TRANSLATOR_PROFILE.HIRE} />
+        </View>
 
         <Text>{bio}</Text>
 
