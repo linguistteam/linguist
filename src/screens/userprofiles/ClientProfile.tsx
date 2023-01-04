@@ -2,13 +2,7 @@ import { Box, Flex, Heading, ScrollView, Text, View } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from '@common';
 import { EN } from '@assets/strings';
-import {
-  Languages,
-  ProfileImage,
-  Reviews,
-  UserLocation,
-  UserRating,
-} from '@components/userprofiles';
+import { ProfileImage, Reviews, UserLocation, UserRating } from '@components/userprofiles';
 import reviews from '@assets/dummyData/reviews';
 import { translatorProfileStyles } from './styles';
 
@@ -44,7 +38,7 @@ const user = {
   isTopLinguist: false,
 };
 
-const { name, bio, location, languages, profileImage, isTranslator } = user;
+const { name, bio, location, profileImage, isTranslator } = user;
 
 const ClientProfile = () => {
   return (
@@ -69,6 +63,7 @@ const ClientProfile = () => {
 
           <Text>{bio}</Text>
 
+          {/* TODO: Currently, client reviews are showing instead of translator reviews */}
           <Reviews isTranslator={isTranslator} reviews={reviews} />
         </Box>
       </ScrollView>
