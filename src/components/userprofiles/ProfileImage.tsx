@@ -1,4 +1,5 @@
 import { Avatar, Skeleton, View } from 'native-base';
+import Colors from '@assets/colors';
 import { extractInitials } from '@utils';
 import { profileImageStyles } from './styles';
 
@@ -24,7 +25,12 @@ const ProfileImage = ({ name, profileImage }: ProfileImageProps) => {
           alignSelf="center"
         />
       ) : (
-        <Avatar source={{ uri: profileImage }} size="2xl" style={profileImageStyles.profileImage}>
+        <Avatar
+          bg={Colors.grey}
+          source={{ uri: profileImage }}
+          size="2xl"
+          style={profileImageStyles.profileImage}
+        >
           {extractInitials(name)}
           <Avatar.Badge bg="green.500" />
         </Avatar>
