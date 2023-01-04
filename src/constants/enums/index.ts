@@ -1,1 +1,4 @@
-export { default as SCREENS } from './screens';
+export const USER_TYPES = {
+    TRANSLATOR: 'translator',
+    CLIENT: 'client',
+};
