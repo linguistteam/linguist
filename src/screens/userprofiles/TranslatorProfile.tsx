@@ -1,5 +1,4 @@
 import { Box, Flex, Heading, ScrollView, Text, View } from 'native-base';
-import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from '@common';
 import { fixedRatingAverage } from '@utils';
@@ -58,8 +57,6 @@ const isTopLinguist =
   numberOfReviews(combinedReviews) >= 10 && Number(fixedRatingAverage(combinedReviews)) >= 4.5;
 
 const TranslatorProfile = () => {
-  const navigation = useNavigation();
-
   return (
     <SafeAreaView>
       <ScrollView>
@@ -85,8 +82,6 @@ const TranslatorProfile = () => {
           <Text>{bio}</Text>
 
           <Languages languages={languages} />
-
-          <Text onPress={() => navigation.navigate('ClientProfile')}>Client</Text>
 
           <Reviews isTranslator={isTranslator} reviews={reviews} />
         </Box>
