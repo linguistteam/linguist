@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Box, Flex, Heading, ScrollView, Text, View } from 'native-base';
 import { Button } from '@common';
 import { fixedRatingAverage, isLongName } from '@utils';
@@ -57,27 +56,9 @@ const isTopLinguist =
   numberOfReviews(combinedReviews) >= 10 && Number(fixedRatingAverage(combinedReviews)) >= 4.5;
 
 const TranslatorProfile = () => {
-  const [imageBlur, setImageBlur] = useState(false);
-
-  // TODO: Fix blur on Android
-  const scrolledPastProfileImage = (contentOffset: { x: number; y: number }) => {
-    const reachedMiddleOfImage = 100;
-
-    return contentOffset.y >= reachedMiddleOfImage;
-  };
-
   return (
-    <ScrollView
-      onScroll={({ nativeEvent }) => {
-        if (scrolledPastProfileImage(nativeEvent.contentOffset)) {
-          setImageBlur(true);
-        } else {
-          setImageBlur(false);
-        }
-      }}
-      scrollEventThrottle={400}
-    >
-      <ProfileImage imageBlur={imageBlur} name={name} profileImage={profileImage} />
+    <ScrollView>
+      <ProfileImage profileImage={profileImage} />
 
       <Box style={translatorProfileStyles.profileContent} shadow={2}>
         <Flex direction="row" justifyContent="space-between">
