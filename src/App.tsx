@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
-import { NativeBaseProvider, View } from 'native-base';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { NativeBaseProvider } from 'native-base';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { TranslatorProfile } from '@screens/userprofiles';
@@ -9,11 +10,11 @@ export default function App() {
   return (
     <NativeBaseProvider>
       <SafeAreaProvider>
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
           {/* TODO: Change status bar color based on theme */}
           <StatusBar style="dark" />
           <TranslatorProfile />
-        </View>
+        </SafeAreaView>
       </SafeAreaProvider>
     </NativeBaseProvider>
   );

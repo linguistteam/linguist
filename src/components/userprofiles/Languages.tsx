@@ -1,5 +1,6 @@
 import { Flex, Heading, View } from 'native-base';
 import CountryFlag from 'react-native-country-flag';
+import { EN } from '@assets/strings';
 import Colors from '@assets/colors';
 import { languagesStyles } from './styles';
 
@@ -11,7 +12,7 @@ const Languages = ({ languages }: LanguagesProps) => {
   return (
     <View>
       <Heading bold size="md" style={languagesStyles.heading}>
-        Languages
+        {EN.LANGUAGES.HEADING}
       </Heading>
 
       <Flex direction="row" style={languagesStyles.countryFlagRow}>
