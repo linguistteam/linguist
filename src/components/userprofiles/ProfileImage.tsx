@@ -17,8 +17,8 @@ const ProfileImage = ({ name, profileImage }: ProfileImageProps) => {
       {imageIsLoading ? (
         <Skeleton
           borderWidth={1}
-          borderColor="coolGray.200"
-          endColor="warmGray.50"
+          borderColor={Colors.grey}
+          endColor={Colors.transparentGrey}
           size="32"
           rounded="full"
           marginY={15}
