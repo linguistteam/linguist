@@ -1,4 +1,4 @@
 export const USER_TYPES = {
-    TRANSLATOR: 'translator',
-    CLIENT: 'client',
+  TRANSLATOR: 'translator',
+  CLIENT: 'client',
 };
