@@ -67,7 +67,7 @@ const TranslatorProfile = () => {
           <UserLocation location={location} />
         </Flex>
 
-        <Flex direction="row" justifyContent="space-between">
+        <Flex direction="row" justifyContent={isTopLinguist ? 'space-between' : 'center'}>
           <UserRating reviews={reviews} />
 
           <TopLinguistBadge isTopLinguist={isTopLinguist} />
