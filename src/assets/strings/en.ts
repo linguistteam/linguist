@@ -11,4 +11,7 @@ export const EN = {
     TRANSLATOR_PROFILE: {
         HIRE: 'Hire',
     },
+    LANGUAGES: {
+        HEADING: 'Lanugages',
+    },
 };
