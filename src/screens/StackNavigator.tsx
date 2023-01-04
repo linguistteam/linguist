@@ -16,7 +16,6 @@ const Stack = createNativeStackNavigator<StackNavigatorList>();
 
 const StackNavigator = () => (
   <NavigationContainer>
-    {/* // TODO: Add enums for scree names */}
     <Stack.Navigator
       initialRouteName="HOME"
       screenOptions={{
