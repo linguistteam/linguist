@@ -32,7 +32,6 @@ const ProfileImage = ({ name, profileImage }: ProfileImageProps) => {
           style={profileImageStyles.profileImage}
         >
           {extractInitials(name)}
-          <Avatar.Badge bg="green.500" />
         </Avatar>
       )}
     </View>
