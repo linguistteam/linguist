@@ -1,10 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from '@screens/Home';
-import { TranslatorProfile } from '@screens/userprofiles';
-
-// TODO: Update import if separating components
-import ClientProfile from '@screens/userprofiles/ClientProfile';
+import { ClientProfile, TranslatorProfile } from '@screens/userprofiles';
 
 export type StackNavigatorList = {
   HOME: undefined;
