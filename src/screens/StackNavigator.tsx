@@ -1,3 +1,4 @@
+import { View } from 'native-base';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { TranslatorProfile } from '@screens/userprofiles';
@@ -15,7 +16,13 @@ const Stack = createNativeStackNavigator<StackNavigatorList>();
 const StackNavigator = () => (
   <NavigationContainer>
     {/* // TODO: Add enums for scree names */}
-    <Stack.Navigator initialRouteName="TranslatorProfile">
+    <Stack.Navigator
+      initialRouteName="TranslatorProfile"
+      screenOptions={{
+        headerShown: false,
+        contentStyle: { backgroundColor: '#fff' },
+      }}
+    >
       <Stack.Screen name="TranslatorProfile" component={TranslatorProfile} />
       <Stack.Screen name="ClientProfile" component={ClientProfile} />
     </Stack.Navigator>
