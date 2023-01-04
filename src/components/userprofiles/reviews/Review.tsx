@@ -31,7 +31,7 @@ const Review = ({ isTopLinguist, name, profileImage, rating, review, reviewDate 
     <View style={reviewStyles.reviewContainer}>
       <Flex direction="row" justifyContent="space-between">
         <View style={reviewStyles.avatarContainer}>
-          <Avatar bg={Colors.blueMagenta} source={profileImage ? { uri: profileImage } : undefined}>
+          <Avatar bg={Colors.grey} source={profileImage ? { uri: profileImage } : undefined}>
             {extractInitials(name)}
           </Avatar>
         </View>
