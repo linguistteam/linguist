@@ -7,9 +7,9 @@ import { TranslatorProfile } from '@screens/userprofiles';
 import ClientProfile from '@screens/userprofiles/ClientProfile';
 
 export type StackNavigatorList = {
-  Home: undefined;
-  ClientProfile: undefined;
-  TranslatorProfile: undefined;
+  HOME: undefined;
+  CLIENT_PROFILE: undefined;
+  TRANSLATOR_PROFILE: undefined;
 };
 
 const Stack = createNativeStackNavigator<StackNavigatorList>();
@@ -18,15 +18,15 @@ const StackNavigator = () => (
   <NavigationContainer>
     {/* // TODO: Add enums for scree names */}
     <Stack.Navigator
-      initialRouteName="Home"
+      initialRouteName="HOME"
       screenOptions={{
         headerShown: false,
         contentStyle: { backgroundColor: '#fff' },
       }}
     >
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="ClientProfile" component={ClientProfile} />
-      <Stack.Screen name="TranslatorProfile" component={TranslatorProfile} />
+      <Stack.Screen name="HOME" component={Home} />
+      <Stack.Screen name="CLIENT_PROFILE" component={ClientProfile} />
+      <Stack.Screen name="TRANSLATOR_PROFILE" component={TranslatorProfile} />
     </Stack.Navigator>
   </NavigationContainer>
 );
