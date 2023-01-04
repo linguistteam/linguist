@@ -58,7 +58,7 @@ const isTopLinguist =
 const TranslatorProfile = () => {
   return (
     <ScrollView>
-      <ProfileImage profileImage={profileImage} />
+      <ProfileImage name={name} profileImage={profileImage} />
 
       <Box style={translatorProfileStyles.profileContent}>
         <Flex direction="column" alignItems="center">
