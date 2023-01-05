@@ -7,7 +7,7 @@ import { clientProfileReviews } from '@assets/dummyData/reviews';
 import { translatorProfileStyles } from './styles';
 
 // TODO: Figure out user data structure
-// interface TranslatorProfileProps {
+// interface ClientProfileProps {
 //   userId: string;
 //   emailAddress: string;
 //   firstName: string;
