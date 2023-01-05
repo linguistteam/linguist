@@ -3,7 +3,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from '@common';
 import { EN } from '@assets/strings';
 import { ProfileImage, Reviews, UserLocation, UserRating } from '@components/userprofiles';
-import reviews from '@assets/dummyData/reviews';
+import { clientProfileReviews } from '@assets/dummyData/reviews';
 import { translatorProfileStyles } from './styles';
 
 // TODO: Figure out user data structure
@@ -54,7 +54,7 @@ const ClientProfile = () => {
           </Flex>
 
           <Flex direction="row" justifyContent={'center'}>
-            <UserRating reviews={reviews} />
+            <UserRating reviews={clientProfileReviews} />
           </Flex>
 
           <View style={translatorProfileStyles.hireButton}>
@@ -64,7 +64,7 @@ const ClientProfile = () => {
           <Text>{bio}</Text>
 
           {/* TODO: Currently, client reviews are showing instead of translator reviews */}
-          <Reviews isTranslator={isTranslator} reviews={reviews} />
+          <Reviews isTranslator={isTranslator} reviews={clientProfileReviews} />
         </Box>
       </ScrollView>
     </SafeAreaView>
