@@ -11,7 +11,7 @@ import {
   UserLocation,
   UserRating,
 } from '@components/userprofiles';
-import reviews from '@assets/dummyData/reviews';
+import { translatorProfileReviews } from '@assets/dummyData/reviews';
 import { ReviewType } from '@components/userprofiles/reviews/Reviews';
 import { translatorProfileStyles } from './styles';
 
@@ -49,7 +49,9 @@ const user = {
 
 const { name, bio, location, languages, profileImage, isTranslator } = user;
 
-const combinedReviews: ReviewType[] = reviews.fromClients.concat(reviews.fromTranslators);
+const combinedReviews: ReviewType[] = translatorProfileReviews.fromClients.concat(
+  translatorProfileReviews.fromTranslators,
+);
 
 const numberOfReviews = (array: ReviewType[]) => array.length;
 
@@ -70,7 +72,7 @@ const TranslatorProfile = () => {
           </Flex>
 
           <Flex direction="row" justifyContent={isTopLinguist ? 'space-between' : 'center'}>
-            <UserRating reviews={reviews} />
+            <UserRating reviews={translatorProfileReviews} />
 
             <TopLinguistBadge isTopLinguist={isTopLinguist} />
           </Flex>
@@ -83,7 +85,7 @@ const TranslatorProfile = () => {
 
           <Languages languages={languages} />
 
-          <Reviews isTranslator={isTranslator} reviews={reviews} />
+          <Reviews isTranslator={isTranslator} reviews={translatorProfileReviews} />
         </Box>
       </ScrollView>
     </SafeAreaView>
