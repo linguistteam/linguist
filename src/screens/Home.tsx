@@ -9,6 +9,7 @@ const Home = () => {
 
   return (
     <SafeAreaView>
+      <Button onPress={() => navigation.navigate('SIGN_UP')} text="Sign Up" />
       <Button onPress={() => navigation.navigate('TRANSLATOR_PROFILE')} text="Translator Profile" />
       <Button onPress={() => navigation.navigate('CLIENT_PROFILE')} text="Client Profile" />
     </SafeAreaView>
