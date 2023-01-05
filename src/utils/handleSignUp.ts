@@ -1,6 +1,7 @@
 import { AuthError, createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebaseConfig';
 
+// TODO: Cleanup logs/Polish
 /* Handle signing user up */
 const handleSignUp = (email: string, password: string) => {
   createUserWithEmailAndPassword(auth, email, password)
