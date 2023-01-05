@@ -1,27 +1,17 @@
-import { StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { NativeBaseProvider } from 'native-base';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { NativeBaseProvider } from 'native-base';
 import { StatusBar } from 'expo-status-bar';
-import { TranslatorProfile } from '@screens/userprofiles';
+import StackNavigator from '@screens/StackNavigator';
 
 // TODO: Set up @react-navigation here. Docs: https://reactnative.dev/docs/navigation
 export default function App() {
   return (
     <NativeBaseProvider>
       <SafeAreaProvider>
-        <SafeAreaView style={styles.container}>
-          {/* TODO: Change status bar color based on theme */}
-          <StatusBar style="dark" />
-          <TranslatorProfile />
-        </SafeAreaView>
+        {/* TODO: Change status bar color based on theme */}
+        <StatusBar style="dark" />
+        <StackNavigator />
       </SafeAreaProvider>
     </NativeBaseProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#fff',
-  },
-});

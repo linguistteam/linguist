@@ -13,10 +13,12 @@ interface SwitcherProps {
 }
 
 const Switcher = ({ isTranslator, reviews }: SwitcherProps) => {
-  const [activeHeading, setActiveHeading] = useState({
-    clientHeading: true,
-    translatorHeading: false,
-  });
+  const translatorHeadingInitialState = { clientHeading: true, translatorHeading: false };
+  const clientHeadingInitialState = { clientHeading: false, translatorHeading: true };
+
+  const [activeHeading, setActiveHeading] = useState(
+    isTranslator ? translatorHeadingInitialState : clientHeadingInitialState,
+  );
   const [reviewsLoading, setReviewsLoading] = useState(false);
   const [currentReviewsSection, setCurrentReviewsSection] = useState(1);
 
@@ -48,8 +50,6 @@ const Switcher = ({ isTranslator, reviews }: SwitcherProps) => {
 
   return (
     <View>
-      {/* TODO: If profile is client, should only show translator reviews since
-        they are not a translator; HIDE HEADINGS/SWITCHER FUNCTIONALITY */}
       {isTranslator && (
         <Flex direction="row" justifyContent="space-between">
           <Pressable
