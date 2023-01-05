@@ -63,7 +63,6 @@ const ClientProfile = () => {
 
           <Text>{bio}</Text>
 
-          {/* TODO: Currently, client reviews are showing instead of translator reviews */}
           <Reviews isTranslator={isTranslator} reviews={clientProfileReviews} />
         </Box>
       </ScrollView>
