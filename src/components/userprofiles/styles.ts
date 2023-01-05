@@ -27,9 +27,8 @@ export const languagesStyles = StyleSheet.create({
 
 export const profileImageStyles = StyleSheet.create({
   profileImage: {
-    width: 'auto',
-    height: 400,
-    zIndex: 0,
+    alignSelf: 'center',
+    marginVertical: 15,
   },
 });
 

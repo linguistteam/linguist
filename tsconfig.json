@@ -26,6 +26,9 @@
       "@common": [
         "src/components/common/index"
       ],
+      "@constants/*": [
+        "src/constants/*"
+      ],
       "@components/*": [
         "src/components/*"
       ],
