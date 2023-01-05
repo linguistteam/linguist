@@ -13,7 +13,7 @@ import {
 } from '@components/userprofiles';
 import { translatorProfileReviews } from '@assets/dummyData/reviews';
 import { ReviewType } from '@components/userprofiles/reviews/Reviews';
-import { translatorProfileStyles } from './styles';
+import { profileStyles } from './styles';
 
 // TODO: Figure out user data structure
 // interface TranslatorProfileProps {
@@ -64,7 +64,7 @@ const TranslatorProfile = () => {
       <ScrollView>
         <ProfileImage name={name} profileImage={profileImage} />
 
-        <Box style={translatorProfileStyles.profileContent}>
+        <Box style={profileStyles.profileContent}>
           <Flex direction="column" alignItems="center">
             <Heading size="xl">{name}</Heading>
 
@@ -77,7 +77,7 @@ const TranslatorProfile = () => {
             <TopLinguistBadge isTopLinguist={isTopLinguist} />
           </Flex>
 
-          <View style={translatorProfileStyles.hireButton}>
+          <View style={profileStyles.hireButton}>
             <Button onPress={() => console.log('Pressed!')} text={EN.TRANSLATOR_PROFILE.HIRE} />
           </View>
 

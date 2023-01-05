@@ -4,7 +4,7 @@ import { Button } from '@common';
 import { EN } from '@assets/strings';
 import { ProfileImage, Reviews, UserLocation, UserRating } from '@components/userprofiles';
 import { clientProfileReviews } from '@assets/dummyData/reviews';
-import { translatorProfileStyles } from './styles';
+import { profileStyles } from './styles';
 
 // TODO: Figure out user data structure
 // interface ClientProfileProps {
@@ -46,7 +46,7 @@ const ClientProfile = () => {
       <ScrollView>
         <ProfileImage name={name} profileImage={profileImage} />
 
-        <Box style={translatorProfileStyles.profileContent}>
+        <Box style={profileStyles.profileContent}>
           <Flex direction="column" alignItems="center">
             <Heading size="xl">{name}</Heading>
 
@@ -57,7 +57,7 @@ const ClientProfile = () => {
             <UserRating reviews={clientProfileReviews} />
           </Flex>
 
-          <View style={translatorProfileStyles.hireButton}>
+          <View style={profileStyles.hireButton}>
             <Button onPress={() => console.log('Pressed!')} text={EN.CLIENT_PROFILE.MESSAGE} />
           </View>
 

@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export const translatorProfileStyles = StyleSheet.create({
+export const profileStyles = StyleSheet.create({
   profileContent: {
     marginTop: -15,
     backgroundColor: '#ffffff',
