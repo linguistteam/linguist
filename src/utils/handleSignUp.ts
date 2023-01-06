@@ -3,6 +3,7 @@ import { auth } from '../../firebaseConfig';
 
 // TODO: Cleanup logs/Polish
 /* Handle signing user up */
+/* Learn more about Firebase Auth: https://firebase.google.com/docs/auth/web/start */
 const handleSignUp = (email: string, password: string) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
