@@ -12,7 +12,7 @@ const useCheckLoggedInState = () => {
   auth.onAuthStateChanged((user) => {
     if (user) {
       console.log('user logged in');
-      navigation.navigate('HOME');
+      navigation.replace('HOME');
     } else {
       console.log('user is logged out');
     }
