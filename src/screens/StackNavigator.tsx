@@ -18,7 +18,7 @@ const Stack = createNativeStackNavigator<StackNavigatorList>();
 const StackNavigator = () => (
   <NavigationContainer>
     <Stack.Navigator
-      initialRouteName="HOME"
+      initialRouteName="SIGN_UP"
       screenOptions={{
         headerShown: false,
         contentStyle: { backgroundColor: '#fff' },
