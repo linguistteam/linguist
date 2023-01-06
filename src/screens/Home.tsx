@@ -34,7 +34,6 @@ const Home = () => {
       <Heading size="md">Logged in as: {auth.currentUser?.email}</Heading>
 
       <Stack space={4} w="75%" maxW="300px" mx="auto" alignItems="center">
-        <Button onPress={() => navigation.navigate('SIGN_UP')} text="Sign Up" />
         <Button
           onPress={() => navigation.navigate('TRANSLATOR_PROFILE')}
           text="Translator Profile"
