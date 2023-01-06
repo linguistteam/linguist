@@ -5,4 +5,3 @@ export { default as handleSignUp } from './handleSignUp';
 export { default as isLongName } from './isLongName';
 export { default as truncateText } from './truncateText';
 export { default as useCheckLoggedInState } from './useCheckLoggedInState';
-export { default as useLogout } from './useLogout';
