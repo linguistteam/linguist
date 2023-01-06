@@ -15,7 +15,7 @@ import { initializeAuth, getReactNativePersistence } from 'firebase/auth/react-n
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
+const firebaseDevConfig = {
   apiKey: 'AIzaSyBJuyRjBX3lhdjpNy-wctTyAECkJOpemZE',
   authDomain: 'linguist-a3b98.firebaseapp.com',
   projectId: 'linguist-a3b98',
@@ -26,7 +26,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseDevConfig);
 
 // Initialize Firebase Authentication and get a reference to the service
 export const auth = initializeAuth(app, {
