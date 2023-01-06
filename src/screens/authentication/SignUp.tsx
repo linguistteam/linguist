@@ -1,29 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Heading, Input, Stack } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from '@common';
-import { handleLogin, handleSignUp } from '@utils';
-
-import { auth } from '../../../firebaseConfig';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { StackNavigatorList } from '@screens/StackNavigator';
+import { handleLogin, handleSignUp, useCheckLoggedInState } from '@utils';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList>>();
 
-  useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        navigation.navigate('TRANSLATOR_PROFILE');
-      } else {
-        console.log('user is logged out');
-      }
-    });
-  }, []);
-
+  useCheckLoggedInState();
   // TODO: Add all text to strings file
   return (
     <SafeAreaView>
