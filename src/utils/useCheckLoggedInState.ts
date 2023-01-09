@@ -5,7 +5,6 @@ import { auth } from '../../firebaseConfig';
 
 /* Handle checking if user is logged in */
 /* Learn more about Firebase Auth: https://firebase.google.com/docs/auth/web/start */
-// TODO: Add proper type
 const useCheckLoggedInState = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList>>();
 
