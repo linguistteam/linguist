@@ -19,13 +19,16 @@ const SignUp = () => {
           placeholder="Email"
           value={email}
           onChangeText={(text) => setEmail(text)}
+          type="text"
         />
+        {/* TODO: Hide/show password */}
         <Input
           variant="outline"
           placeholder="Password"
           value={password}
           onChangeText={(text) => setPassword(text)}
           secureTextEntry
+          type="password"
         />
         <Button onPress={() => handleLogin(email, password)} text="Log In" width="100%" />
         <Button onPress={() => handleSignUp(email, password)} text="Sign Up" width="100%" />
