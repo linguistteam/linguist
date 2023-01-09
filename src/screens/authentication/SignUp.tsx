@@ -8,6 +8,7 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  // TODO: Add loading spinner for when user is logging in
   useCheckLoggedInState();
   // TODO: Add all text to strings file
   return (
