@@ -21,11 +21,7 @@ const Home = () => {
         console.log('user is logging out...');
       })
       .catch((error: AuthError) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-
-        console.log('logout errorCode', errorCode);
-        console.log('logout errorMessage', errorMessage);
+        console.error('The following error has occurred: ', error.message);
       });
   };
 
