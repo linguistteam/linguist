@@ -7,8 +7,14 @@ import { Button } from '@common';
 import { StackNavigatorList } from './StackNavigator';
 import { auth } from '../../firebaseConfig';
 
+// TODO: Create alias
+import useUserStore from '../stores/user';
+
 const Home = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList>>();
+  const user = useUserStore((state) => state.user);
+
+  console.log('user zustand', user);
 
   // TODO: Cleanup logs/Polish
   /* Handle logging out user */

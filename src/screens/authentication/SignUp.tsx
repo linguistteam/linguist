@@ -4,9 +4,13 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from '@common';
 import { handleLogin, handleSignUp, useCheckLoggedInState } from '@utils';
 
+// TODO: Add alias
+import useUserStore from '../../stores/user';
+
 const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const setUser = useUserStore((state) => state.setUser);
 
   // TODO: Add loading spinner for when user is logging in
   useCheckLoggedInState();
@@ -31,7 +35,7 @@ const SignUp = () => {
           secureTextEntry
           type="password"
         />
-        <Button onPress={() => handleLogin(email, password)} text="Log In" width="100%" />
+        <Button onPress={() => handleLogin(email, password, setUser)} text="Log In" width="100%" />
         <Button onPress={() => handleSignUp(email, password)} text="Sign Up" width="100%" />
       </Stack>
     </SafeAreaView>
