@@ -8,15 +8,12 @@ const handleLogin = (email: string, password: string) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
+      // TODO: Send relevant user data to Redux state
       const user = userCredential.user;
-      console.log('logged in user', user);
+      console.log('user', user);
     })
     .catch((error: AuthError) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-
-      console.log('log in errorCode', errorCode);
-      console.log('log in errorMessage', errorMessage);
+      console.error('The following error has occurred: ', error.message);
     });
 };
 
