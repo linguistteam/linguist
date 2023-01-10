@@ -5,7 +5,7 @@ import { Button } from '@common';
 import { handleLogin, handleSignUp, useCheckLoggedInState } from '@utils';
 
 // TODO: Add alias
-import useUserStore from '../../stores/user';
+import { useUserStore } from '../../stores/user';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
@@ -35,7 +35,11 @@ const SignUp = () => {
           secureTextEntry
           type="password"
         />
-        <Button onPress={() => handleLogin(email, password, setUser)} text="Log In" width="100%" />
+        <Button
+          onPress={() => handleLogin({ email, password, setUser })}
+          text="Log In"
+          width="100%"
+        />
         <Button onPress={() => handleSignUp(email, password)} text="Sign Up" width="100%" />
       </Stack>
     </SafeAreaView>

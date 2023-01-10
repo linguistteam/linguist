@@ -6,29 +6,28 @@ interface User {
   email: string;
 }
 
-interface UserState {
+export interface UserState {
   user: User;
+  setUser: (email: string) => void;
 }
 
-const initialState: UserState = {
+const initialState = {
   user: { email: '' },
 };
 
-const useUserStore = create<UserState>()(
+export const useUserStore = create<UserState>()(
   persist(
     (set) => ({
       ...initialState,
-      setUser: (email: string) => set(() => ({ user: { email } })),
+      setUser: (email) => set(() => ({ user: { email } })),
 
       reset: () => {
         set(initialState);
       },
     }),
     {
-      name: 'user',
+      name: 'user-storage',
       storage: createJSONStorage(() => AsyncStorage),
     },
   ),
 );
-
-export default useUserStore;

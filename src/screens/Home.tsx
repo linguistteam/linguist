@@ -8,7 +8,7 @@ import { StackNavigatorList } from './StackNavigator';
 import { auth } from '../../firebaseConfig';
 
 // TODO: Create alias
-import useUserStore from '../stores/user';
+import { useUserStore } from '../stores/user';
 
 const Home = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList>>();

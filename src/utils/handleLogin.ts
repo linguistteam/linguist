@@ -6,15 +6,21 @@ import { auth } from '../../firebaseConfig';
 /* Handle logging user in */
 /* Learn more about Firebase Auth: https://firebase.google.com/docs/auth/web/start */
 
+interface HandleLoginProps {
+  email: string;
+  password: string;
+  setUser: (email: string) => void;
+}
+
 // TODO: Add proper type for setUser
-const handleLogin = (email: string, password: string, setUser: any) => {
+const handleLogin = ({ email, password, setUser }: HandleLoginProps) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
       // TODO: Send relevant user data to Redux state
       const user = userCredential.user;
       console.log('user', user);
-      setUser(user.email);
+      setUser(user.email ?? '');
     })
     .catch((error: AuthError) => {
       console.error('The following error has occurred: ', error.message);
