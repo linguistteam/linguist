@@ -33,7 +33,7 @@ const Home = () => {
 
   return (
     <SafeAreaView>
-      <Heading size="md">Logged in as: {auth.currentUser?.email}</Heading>
+      <Heading size="md">Logged in as: {user.email}</Heading>
 
       <Stack space={4} w="75%" maxW="300px" mx="auto" alignItems="center">
         <Button
