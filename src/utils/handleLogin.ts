@@ -13,7 +13,6 @@ interface HandleLoginProps {
   setUser: ({ email, uid }: User) => void;
 }
 
-// TODO: Add proper type for setUser
 const handleLogin = ({ email, password, setUser }: HandleLoginProps) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
