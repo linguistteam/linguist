@@ -9,9 +9,6 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const setUser = useUserStore((state) => state.setUser);
-  const user = useUserStore((state) => state.user);
-
-  console.log('user sign up', user);
 
   // TODO: Add loading spinner for when user is logging in
   useCheckLoggedInState();
