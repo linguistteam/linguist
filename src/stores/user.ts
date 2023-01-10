@@ -10,6 +10,7 @@ export interface User {
 export interface UserState {
   user: User;
   setUser: ({ email, uid }: User) => void;
+  reset: () => void;
 }
 
 const initialState = {
