@@ -1,5 +1,6 @@
 import create from 'zustand';
-import { persist } from 'zustand/middleware';
+import { createJSONStorage, persist } from 'zustand/middleware';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface User {
   email: string;
@@ -13,25 +14,21 @@ const initialState: UserState = {
   user: { email: '' },
 };
 
-const useUserStore = create<UserState>()((set) => ({
-  ...initialState,
-  setUser: (email: string) => set(() => ({ user: { email: email } })),
+const useUserStore = create<UserState>()(
+  persist(
+    (set) => ({
+      ...initialState,
+      setUser: (email: string) => set(() => ({ user: { email } })),
 
-  reset: () => {
-    set(initialState);
-  },
-}));
-
-// interface BearState {
-//   bears: number;
-//   increase: (by: number) => void;
-// }
-
-// const useBearStore = create<BearState>()(
-//   persist((set) => ({
-//     bears: 0,
-//     increase: (by) => set((state) => ({ bears: state.bears + by })),
-//   })),
-// );
+      reset: () => {
+        set(initialState);
+      },
+    }),
+    {
+      name: 'user',
+      storage: createJSONStorage(() => AsyncStorage),
+    },
+  ),
+);
 
 export default useUserStore;
