@@ -40,7 +40,11 @@ const SignUp = () => {
           text="Log In"
           width="100%"
         />
-        <Button onPress={() => handleSignUp(email, password)} text="Sign Up" width="100%" />
+        <Button
+          onPress={() => handleSignUp({ email, password, setUser })}
+          text="Sign Up"
+          width="100%"
+        />
       </Stack>
     </SafeAreaView>
   );
