@@ -35,6 +35,9 @@
       "@screens/*": [
         "src/screens/*"
       ],
+      "@store": [
+        "src/store"
+      ],
       "@strings": [
         "src/assets/strings/index"
       ],
