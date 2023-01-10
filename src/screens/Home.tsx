@@ -6,13 +6,12 @@ import { AuthError } from 'firebase/auth';
 import { Button } from '@common';
 import { StackNavigatorList } from './StackNavigator';
 import { auth } from '../../firebaseConfig';
-
-// TODO: Create alias
-import { useUserStore } from '../stores/user';
+import { useUserStore } from '@stores/user';
 
 const Home = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList>>();
   const user = useUserStore((state) => state.user);
+  const resetUser = useUserStore((state) => state.reset);
 
   // TODO: Cleanup logs/Polish
   /* Handle logging out user */
@@ -22,6 +21,7 @@ const Home = () => {
       .signOut()
       .then(() => {
         navigation.navigate('SIGN_UP');
+        resetUser();
         console.log('user is logging out...');
       })
       .catch((error: AuthError) => {

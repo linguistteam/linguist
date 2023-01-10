@@ -1,6 +1,6 @@
 import { AuthError, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebaseConfig';
-import { User } from 'src/stores/user';
+import { User } from '@stores/user';
 
 // TODO: Cleanup logs/Polish
 // TODO: Add validation (i.e. don't allow empty form, invalid email, etc)

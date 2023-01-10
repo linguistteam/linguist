@@ -1,6 +1,6 @@
 import { AuthError, createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebaseConfig';
-import { User } from 'src/stores/user';
+import { User } from '@stores/user';
 
 interface HandleSignUpProps {
   email: string;

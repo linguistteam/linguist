@@ -3,14 +3,15 @@ import { Heading, Input, Stack } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from '@common';
 import { handleLogin, handleSignUp, useCheckLoggedInState } from '@utils';
-
-// TODO: Add alias
-import { useUserStore } from '../../stores/user';
+import { useUserStore } from '@stores/user';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const setUser = useUserStore((state) => state.setUser);
+  const user = useUserStore((state) => state.user);
+
+  console.log('user sign up', user);
 
   // TODO: Add loading spinner for when user is logging in
   useCheckLoggedInState();
