@@ -24,7 +24,7 @@
         "src/assets/*"
       ],
       "@common": [
-        "src/components/common/index"
+        "src/components/common"
       ],
       "@constants/*": [
         "src/constants/*"
@@ -35,8 +35,8 @@
       "@screens/*": [
         "src/screens/*"
       ],
-      "@store": [
-        "src/store"
+      "@stores/*": [
+        "src/stores/*"
       ],
       "@strings": [
         "src/assets/strings/index"
