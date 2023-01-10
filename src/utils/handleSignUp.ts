@@ -1,17 +1,28 @@
 import { AuthError, createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebaseConfig';
+import { User } from '@stores/user';
+
+interface HandleSignUpProps {
+  email: string;
+  password: string;
+  setUser: ({ email, uid }: User) => void;
+}
 
 // TODO: Cleanup logs/Polish
 // TODO: Add validation (i.e. don't allow empty form, invalid email, etc)
 /* Handle signing user up */
 /* Learn more about Firebase Auth: https://firebase.google.com/docs/auth/web/start */
-const handleSignUp = (email: string, password: string) => {
+const handleSignUp = ({ email, password, setUser }: HandleSignUpProps) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
-      // TODO: Send relevant user data to Redux state
+      // TODO: If !email, throw some error and don't log user in
       const user = userCredential.user;
-      console.log('user', user);
+      const { email, uid } = user;
+      const userEmail = email ?? '';
+
+      console.log({ email, uid });
+      setUser({ email: userEmail, uid });
     })
     .catch((error: AuthError) => {
       console.error('The following error has occurred: ', error.message);

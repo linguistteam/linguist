@@ -6,9 +6,12 @@ import { AuthError } from 'firebase/auth';
 import { Button } from '@common';
 import { StackNavigatorList } from './StackNavigator';
 import { auth } from '../../firebaseConfig';
+import { useUserStore } from '@stores/user';
 
 const Home = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList>>();
+  const user = useUserStore((state) => state.user);
+  const resetUser = useUserStore((state) => state.reset);
 
   // TODO: Cleanup logs/Polish
   /* Handle logging out user */
@@ -18,6 +21,7 @@ const Home = () => {
       .signOut()
       .then(() => {
         navigation.navigate('SIGN_UP');
+        resetUser();
         console.log('user is logging out...');
       })
       .catch((error: AuthError) => {
@@ -27,7 +31,7 @@ const Home = () => {
 
   return (
     <SafeAreaView>
-      <Heading size="md">Logged in as: {auth.currentUser?.email}</Heading>
+      <Heading size="md">Logged in as: {user.email}</Heading>
 
       <Stack space={4} w="75%" maxW="300px" mx="auto" alignItems="center">
         <Button
