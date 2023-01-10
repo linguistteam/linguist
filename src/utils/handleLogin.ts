@@ -18,7 +18,6 @@ const handleLogin = ({ email, password, setUser }: HandleLoginProps) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
-      // TODO: Send relevant user data to Redux state
       // TODO: If !email, throw some error and don't log user in
       const user = userCredential.user;
       const { email, uid } = user;
