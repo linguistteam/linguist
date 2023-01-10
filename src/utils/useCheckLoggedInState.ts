@@ -12,7 +12,8 @@ const useCheckLoggedInState = () => {
   const user = useUserStore((state) => state.user);
 
   auth.onAuthStateChanged(() => {
-    if (user) {
+    // TODO: Figure out accurate check of if user is logged in
+    if (user.email) {
       console.log('user logged in');
       navigation.replace('HOME');
     } else {
