@@ -14,8 +14,6 @@ const Home = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList>>();
   const user = useUserStore((state) => state.user);
 
-  console.log('user zustand', user);
-
   // TODO: Cleanup logs/Polish
   /* Handle logging out user */
   /* Learn more about Firebase Auth: https://firebase.google.com/docs/auth/web/password-auth */
