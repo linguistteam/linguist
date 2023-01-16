@@ -4,6 +4,7 @@ export const EN = {
   },
   COMMON: {
     HELLO: 'Hello',
+    CONTINUE_WITH_EMAIL: 'Continue with Email',
   },
   LANGUAGES: {
     HEADING: 'Lanugages',
