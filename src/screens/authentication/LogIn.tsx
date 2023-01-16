@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Heading, Input, Stack } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from '@common';
-import { handleLogin, handleSignUp, useCheckLoggedInState } from '@utils';
+import { handleLogin, useCheckLoggedInState } from '@utils';
 import { useUserStore } from '@stores/user';
 
 const SignUp = () => {
@@ -36,11 +36,6 @@ const SignUp = () => {
         <Button
           onPress={() => handleLogin({ email, password, setUser })}
           text="Log In"
-          width="100%"
-        />
-        <Button
-          onPress={() => handleSignUp({ email, password, setUser })}
-          text="Sign Up"
           width="100%"
         />
       </Stack>
