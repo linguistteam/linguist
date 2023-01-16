@@ -1,13 +1,17 @@
 import { useState } from 'react';
-import { Heading, Input, View } from 'native-base';
+import { Heading, Input, Text, View } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Button } from '@common';
 import { handleLogin, useCheckLoggedInState } from '@utils';
 import { useUserStore } from '@stores/user';
 import { EN } from '@assets/strings';
 import Colors from '@assets/colors';
+import { StackNavigatorList } from '@screens/StackNavigator';
 
 const LogIn = () => {
+  const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList>>();
   const [showEmailForm, setShowEmailForm] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -46,6 +50,13 @@ const LogIn = () => {
             secureTextEntry
             type="password"
           />
+
+          <Text
+            color={Colors.blueMagenta}
+            onPress={() => console.log('Handle user forgot password')}
+          >
+            {EN.LOG_IN.FORGOT_PASSWORD}
+          </Text>
         </View>
       )}
       <Button
@@ -57,6 +68,10 @@ const LogIn = () => {
         text={EN.COMMON.CONTINUE_WITH_EMAIL}
         width="100%"
       />
+
+      <Text color={Colors.blueMagenta} onPress={() => navigation.navigate('SIGN_UP')}>
+        {EN.LOG_IN.CREATE_ACCOUNT}
+      </Text>
     </SafeAreaView>
   );
 };
