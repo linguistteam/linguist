@@ -19,7 +19,7 @@ const LogIn = () => {
 
   // TODO: Add loading spinner for when user is logging in
   useCheckLoggedInState();
-  // TODO: Add all text to strings file
+
   return (
     <SafeAreaView>
       <Heading size="xl">{EN.COMMON.HELLO}</Heading>
