@@ -20,7 +20,7 @@ const Home = () => {
     auth
       .signOut()
       .then(() => {
-        navigation.navigate('SIGN_UP');
+        navigation.navigate('LOG_IN');
         resetUser();
         console.log('user is logging out...');
       })
