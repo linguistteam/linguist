@@ -19,6 +19,14 @@ const LogIn = () => {
     <SafeAreaView>
       <Heading size="xl">{EN.COMMON.HELLO}</Heading>
       <Heading size="lg">{EN.LOG_IN.SUBHEADING}</Heading>
+
+      <Button
+        bgColor={Colors.blueMagenta}
+        onPress={() => handleLogin({ email, password, setUser })}
+        pressedBgColor={Colors.lightenedBlueMagenta}
+        text={EN.COMMON.CONTINUE_WITH_GOOGLE}
+        width="100%"
+      />
       <Input
         variant="outline"
         placeholder="Email"
