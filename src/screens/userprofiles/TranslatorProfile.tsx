@@ -63,9 +63,9 @@ const TranslatorProfile = () => {
   return (
     <SafeAreaView>
       <ScrollView>
-        <ProfileImage name={name} profileImage={profileImage} />
-
         <Box style={profileStyles.profileContent}>
+          <ProfileImage name={name} profileImage={profileImage} />
+
           <Flex direction="column" alignItems="center">
             <Heading size="xl">{name}</Heading>
 
