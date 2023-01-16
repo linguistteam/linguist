@@ -19,7 +19,6 @@ const Button = ({ bgColor, onPress, pressedBgColor, text, width }: ButtonProps) 
     <NativeBaseButton
       onPress={onPress}
       bgColor={isPressed ? pressedBgColor : bgColor}
-      // bgColor={isPressed ? Colors.lightenedBlueMagenta : Colors.blueMagenta}
       borderRadius={20}
       height={45}
       width={width}
