@@ -1,6 +1,7 @@
 import { Box, Flex, Heading, ScrollView, Text, View } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from '@common';
+import Colors from '@assets/colors';
 import { EN } from '@assets/strings';
 import { ProfileImage, Reviews, UserLocation, UserRating } from '@components/userprofiles';
 import { clientProfileReviews } from '@assets/dummyData/reviews';
@@ -58,7 +59,12 @@ const ClientProfile = () => {
           </Flex>
 
           <View style={profileStyles.hireButton}>
-            <Button onPress={() => console.log('Pressed!')} text={EN.CLIENT_PROFILE.MESSAGE} />
+            <Button
+              bgColor={Colors.blueMagenta}
+              pressedBgColor={Colors.lightenedBlueMagenta}
+              onPress={() => console.log('Pressed!')}
+              text={EN.CLIENT_PROFILE.MESSAGE}
+            />
           </View>
 
           <Text>{bio}</Text>
