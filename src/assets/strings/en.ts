@@ -12,6 +12,8 @@ export const EN = {
   },
   LOG_IN: {
     SUBHEADING: 'Welcome back to Linguist',
+    FORGOT_PASSWORD: 'Forgot password?',
+    CREATE_ACCOUNT: 'Create account',
   },
   REVIEWS: {
     FROM_CLIENTS: 'From clients',
