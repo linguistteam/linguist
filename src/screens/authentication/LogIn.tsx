@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Heading, Input } from 'native-base';
+import { Heading, Input, View } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from '@common';
 import { handleLogin, useCheckLoggedInState } from '@utils';
@@ -8,6 +8,7 @@ import { EN } from '@assets/strings';
 import Colors from '@assets/colors';
 
 const LogIn = () => {
+  const [showEmailForm, setShowEmailForm] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const setUser = useUserStore((state) => state.setUser);
@@ -22,30 +23,36 @@ const LogIn = () => {
 
       <Button
         bgColor={Colors.blueMagenta}
-        onPress={() => handleLogin({ email, password, setUser })}
+        onPress={() => console.log('Handle Google login')}
         pressedBgColor={Colors.lightenedBlueMagenta}
         text={EN.COMMON.CONTINUE_WITH_GOOGLE}
         width="100%"
       />
-      <Input
-        variant="outline"
-        placeholder="Email"
-        value={email}
-        onChangeText={(text) => setEmail(text)}
-        type="text"
-      />
       {/* TODO: Hide/show password */}
-      <Input
-        variant="outline"
-        placeholder="Password"
-        value={password}
-        onChangeText={(text) => setPassword(text)}
-        secureTextEntry
-        type="password"
-      />
+      {showEmailForm && (
+        <View>
+          <Input
+            variant="outline"
+            placeholder="Email"
+            value={email}
+            onChangeText={(text) => setEmail(text)}
+            type="text"
+          />
+          <Input
+            variant="outline"
+            placeholder="Password"
+            value={password}
+            onChangeText={(text) => setPassword(text)}
+            secureTextEntry
+            type="password"
+          />
+        </View>
+      )}
       <Button
         bgColor={Colors.grey}
-        onPress={() => handleLogin({ email, password, setUser })}
+        onPress={() =>
+          showEmailForm ? handleLogin({ email, password, setUser }) : setShowEmailForm(true)
+        }
         pressedBgColor={Colors.lightenedGrey}
         text={EN.COMMON.CONTINUE_WITH_EMAIL}
         width="100%"
