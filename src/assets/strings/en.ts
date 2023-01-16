@@ -2,8 +2,14 @@ export const EN = {
   CLIENT_PROFILE: {
     MESSAGE: 'Message',
   },
+  COMMON: {
+    HELLO: 'Hello',
+  },
   LANGUAGES: {
     HEADING: 'Lanugages',
+  },
+  LOG_IN: {
+    SUBHEADING: 'Welcome back to Linguist',
   },
   REVIEWS: {
     FROM_CLIENTS: 'From clients',
@@ -13,6 +19,9 @@ export const EN = {
     NO_REVIEWS_YET: 'No reviews yet.',
     REVIEWS: 'Reviews',
     SEE_MORE_REVIEWS: 'See more reviews',
+  },
+  SIGN_UP: {
+    SUBHEADING: 'Start your Linguist journey',
   },
   TRANSLATOR_PROFILE: {
     HIRE: 'Hire',
