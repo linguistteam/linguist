@@ -22,8 +22,12 @@ const LogIn = () => {
 
   return (
     <SafeAreaView>
-      <Heading size="xl">{EN.COMMON.HELLO}</Heading>
-      <Heading size="lg">{EN.LOG_IN.SUBHEADING}</Heading>
+      <Heading size="xl" textAlign="center">
+        {EN.COMMON.HELLO}
+      </Heading>
+      <Heading size="lg" textAlign="center">
+        {EN.LOG_IN.SUBHEADING}
+      </Heading>
 
       <Button
         bgColor={Colors.blueMagenta}
@@ -69,7 +73,11 @@ const LogIn = () => {
         width="100%"
       />
 
-      <Text color={Colors.blueMagenta} onPress={() => navigation.navigate('SIGN_UP')}>
+      <Text
+        color={Colors.blueMagenta}
+        onPress={() => navigation.navigate('SIGN_UP')}
+        textAlign="center"
+      >
         {EN.LOG_IN.CREATE_ACCOUNT}
       </Text>
     </SafeAreaView>
