@@ -14,7 +14,7 @@ const theme = extendTheme({
             fontWeight: '700',
           },
           _pressed: {
-            bg: Colors.lightenedBlueMagenta,
+            bg: Colors.blueMagentaLightened20,
           },
         },
         grey: {
@@ -28,6 +28,17 @@ const theme = extendTheme({
           _pressed: {
             bg: Colors.lightenedGrey,
           },
+        },
+      },
+    },
+    Input: {
+      baseStyle: {
+        borderColor: Colors.grey,
+        placeholderTextColor: Colors.grey,
+
+        _focus: {
+          backgroundColor: Colors.blueMagentaLightened80,
+          borderColor: Colors.blueMagenta,
         },
       },
     },
