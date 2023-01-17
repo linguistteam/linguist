@@ -6,6 +6,8 @@ export const EN = {
     HELLO: 'Hello',
     CONTINUE_WITH_EMAIL: 'Continue with Email',
     CONTINUE_WITH_GOOGLE: 'Continue with Google',
+    EMAIL_ADDRESS: 'Email address',
+    PASSWORD: 'Password',
   },
   LANGUAGES: {
     HEADING: 'Lanugages',
