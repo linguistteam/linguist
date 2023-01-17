@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Heading, Input, Text, View } from 'native-base';
+import { Button, Heading, Input, Pressable, Text, View } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -13,6 +13,7 @@ import { StackNavigatorList } from '@screens/StackNavigator';
 const LogIn = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList>>();
   const [showEmailForm, setShowEmailForm] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const setUser = useUserStore((state) => state.setUser);
@@ -56,8 +57,12 @@ const LogIn = () => {
             placeholder={EN.COMMON.PASSWORD}
             value={password}
             onChangeText={(text) => setPassword(text)}
-            secureTextEntry
-            type="password"
+            InputRightElement={
+              <Pressable onPress={() => setShowPassword(!showPassword)} marginRight={2}>
+                <Icon name={showPassword ? 'eye-slash' : 'eye'} size={20} color={Colors.grey} />
+              </Pressable>
+            }
+            type={showPassword ? 'text' : 'password'}
             marginBottom={1}
           />
 
