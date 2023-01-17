@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import IoniconsIcon from 'react-native-vector-icons/Ionicons';
 import { handleLogin, useCheckLoggedInState } from '@utils';
 import { useUserStore } from '@stores/user';
 import { EN } from '@assets/strings';
@@ -60,8 +60,8 @@ const LogIn = () => {
             onChangeText={(text) => setPassword(text)}
             InputRightElement={
               <Pressable onPress={() => setShowPassword(!showPassword)} marginRight={2}>
-                <MaterialIcon
-                  name={showPassword ? 'visibility-off' : 'visibility'}
+                <IoniconsIcon
+                  name={showPassword ? 'eye-off-outline' : 'eye-outline'}
                   size={20}
                   color={Colors.grey}
                 />
