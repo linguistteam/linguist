@@ -3,7 +3,8 @@ import { Button, Heading, Input, Pressable, Text, View } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { handleLogin, useCheckLoggedInState } from '@utils';
 import { useUserStore } from '@stores/user';
 import { EN } from '@assets/strings';
@@ -35,7 +36,7 @@ const LogIn = () => {
       <View marginBottom={4}>
         <Button
           variant="magenta"
-          leftIcon={<Icon name="google" color={Colors.white} size={15} />}
+          leftIcon={<FontAwesomeIcon name="google" color={Colors.white} size={15} />}
           onPress={() => console.log('Handle Google login')}
         >
           {EN.COMMON.CONTINUE_WITH_GOOGLE}
@@ -59,7 +60,11 @@ const LogIn = () => {
             onChangeText={(text) => setPassword(text)}
             InputRightElement={
               <Pressable onPress={() => setShowPassword(!showPassword)} marginRight={2}>
-                <Icon name={showPassword ? 'eye-slash' : 'eye'} size={20} color={Colors.grey} />
+                <MaterialIcon
+                  name={showPassword ? 'visibility-off' : 'visibility'}
+                  size={20}
+                  color={Colors.grey}
+                />
               </Pressable>
             }
             type={showPassword ? 'text' : 'password'}
