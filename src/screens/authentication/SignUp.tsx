@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { Heading, Input, Stack } from 'native-base';
+import { Button, Heading, Input, Stack } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Button } from '@common';
 import { handleSignUp, useCheckLoggedInState } from '@utils';
 import { useUserStore } from '@stores/user';
 import { EN } from '@assets/strings';
@@ -34,11 +33,9 @@ const SignUp = () => {
           secureTextEntry
           type="password"
         />
-        <Button
-          onPress={() => handleSignUp({ email, password, setUser })}
-          text="Sign Up"
-          width="100%"
-        />
+        <Button variant="magenta" onPress={() => handleSignUp({ email, password, setUser })}>
+          Sign Up
+        </Button>
       </Stack>
     </SafeAreaView>
   );
