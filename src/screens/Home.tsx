@@ -1,9 +1,8 @@
-import { Heading, Stack } from 'native-base';
+import { Button, Heading, Stack } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { AuthError } from 'firebase/auth';
-import { Button } from '@common';
 import { StackNavigatorList } from './StackNavigator';
 import { auth } from '../../firebaseConfig';
 import { useUserStore } from '@stores/user';
@@ -34,12 +33,11 @@ const Home = () => {
       <Heading size="md">Logged in as: {user.email}</Heading>
 
       <Stack space={4} w="75%" maxW="300px" mx="auto" alignItems="center">
-        <Button
-          onPress={() => navigation.navigate('TRANSLATOR_PROFILE')}
-          text="Translator Profile"
-        />
-        <Button onPress={() => navigation.navigate('CLIENT_PROFILE')} text="Client Profile" />
-        <Button onPress={() => handleLogout()} text="Log Out" />
+        <Button onPress={() => navigation.navigate('TRANSLATOR_PROFILE')}>
+          Translator Profile
+        </Button>
+        <Button onPress={() => navigation.navigate('CLIENT_PROFILE')}>Client Profile</Button>
+        <Button onPress={() => handleLogout()}>Log Out</Button>
       </Stack>
     </SafeAreaView>
   );

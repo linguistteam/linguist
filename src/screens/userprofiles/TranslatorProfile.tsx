@@ -1,6 +1,5 @@
-import { Box, Flex, Heading, ScrollView, Text, View } from 'native-base';
+import { Box, Button, Flex, Heading, ScrollView, Text, View } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Button } from '@common';
 import { fixedRatingAverage } from '@utils';
 import Colors from '@assets/colors';
 import { EN } from '@assets/strings';
@@ -79,12 +78,9 @@ const TranslatorProfile = () => {
           </Flex>
 
           <View style={profileStyles.hireButton}>
-            <Button
-              bgColor={Colors.blueMagenta}
-              pressedBgColor={Colors.lightenedBlueMagenta}
-              onPress={() => console.log('Pressed!')}
-              text={EN.TRANSLATOR_PROFILE.HIRE}
-            />
+            <Button variant="magenta" onPress={() => console.log('Pressed!')}>
+              {EN.TRANSLATOR_PROFILE.HIRE}
+            </Button>
           </View>
 
           <Text>{bio}</Text>
