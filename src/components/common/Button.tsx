@@ -8,7 +8,6 @@ interface ButtonProps {
   onPress: (event: GestureResponderEvent) => void;
   pressedBgColor?: string;
   text: string;
-  // textTransform?: string;
   width?: number | string;
 }
 
