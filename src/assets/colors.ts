@@ -6,7 +6,8 @@ const Colors = {
   lightenedGrey: '#8d9196',
   transparentGrey: 'rgba(113, 118, 123, 0.8)',
   blueMagenta: '#5550F2',
-  lightenedBlueMagenta: '#7773f5',
+  blueMagentaLightened20: '#7773f5',
+  blueMagentaLightened80: '#dddcfc',
   yellow: '#F2C029',
 };
 
