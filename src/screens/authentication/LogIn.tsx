@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Heading, Input, Pressable, Text, View } from 'native-base';
+import { Box, Button, Heading, Input, Pressable, Text, View } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -9,6 +9,7 @@ import { handleLogin, useCheckLoggedInState } from '@utils';
 import { useUserStore } from '@stores/user';
 import { EN } from '@assets/strings';
 import Colors from '@assets/colors';
+import { globalStyles } from '@constants/styles';
 import { StackNavigatorList } from '@screens/StackNavigator';
 
 const LogIn = () => {
@@ -24,81 +25,94 @@ const LogIn = () => {
 
   return (
     <SafeAreaView>
-      <View justifyContent="center" height="100%">
-        <View marginBottom={8}>
-          <Heading size="xl" textAlign="center">
-            {EN.COMMON.HELLO}
-          </Heading>
-          <Heading size="lg" textAlign="center">
-            {EN.LOG_IN.SUBHEADING}
-          </Heading>
-        </View>
+      <Box
+        bg={{
+          linearGradient: {
+            colors: [Colors.yellowLightened80, Colors.blueMagentaLightened80],
+            start: [0, 0],
+            end: [1, 1],
+          },
+        }}
+        width="100%"
+      >
+        <View style={globalStyles.appContainer}>
+          <View justifyContent="center" height="100%">
+            <View marginBottom={8}>
+              <Heading size="xl" textAlign="center">
+                {EN.COMMON.HELLO}
+              </Heading>
+              <Heading size="lg" textAlign="center">
+                {EN.LOG_IN.SUBHEADING}
+              </Heading>
+            </View>
 
-        <View marginBottom={4}>
-          <Button
-            variant="magenta"
-            leftIcon={<FontAwesomeIcon name="google" color={Colors.white} size={15} />}
-            onPress={() => console.log('Handle Google login')}
-          >
-            {EN.COMMON.CONTINUE_WITH_GOOGLE}
-          </Button>
-        </View>
-        {showEmailForm && (
-          <View marginBottom={4}>
-            <Input
-              variant="outline"
-              placeholder={EN.COMMON.EMAIL_ADDRESS}
-              value={email}
-              onChangeText={(text) => setEmail(text)}
-              type="text"
-              marginBottom={3}
-            />
-            <Input
-              variant="outline"
-              placeholder={EN.COMMON.PASSWORD}
-              value={password}
-              onChangeText={(text) => setPassword(text)}
-              InputRightElement={
-                <Pressable onPress={() => setShowPassword(!showPassword)} marginRight={2}>
-                  <IoniconsIcon
-                    name={showPassword ? 'eye-off-outline' : 'eye-outline'}
-                    size={20}
-                    color={Colors.grey}
-                  />
-                </Pressable>
+            <View marginBottom={4}>
+              <Button
+                variant="magenta"
+                leftIcon={<FontAwesomeIcon name="google" color={Colors.white} size={15} />}
+                onPress={() => console.log('Handle Google login')}
+              >
+                {EN.COMMON.CONTINUE_WITH_GOOGLE}
+              </Button>
+            </View>
+            {showEmailForm && (
+              <View marginBottom={4}>
+                <Input
+                  variant="outline"
+                  placeholder={EN.COMMON.EMAIL_ADDRESS}
+                  value={email}
+                  onChangeText={(text) => setEmail(text)}
+                  type="text"
+                  marginBottom={3}
+                />
+                <Input
+                  variant="outline"
+                  placeholder={EN.COMMON.PASSWORD}
+                  value={password}
+                  onChangeText={(text) => setPassword(text)}
+                  InputRightElement={
+                    <Pressable onPress={() => setShowPassword(!showPassword)} marginRight={2}>
+                      <IoniconsIcon
+                        name={showPassword ? 'eye-off-outline' : 'eye-outline'}
+                        size={20}
+                        color={Colors.grey}
+                      />
+                    </Pressable>
+                  }
+                  type={showPassword ? 'text' : 'password'}
+                  marginBottom={1}
+                />
+
+                <Text
+                  color={Colors.blueMagenta}
+                  onPress={() => console.log('Handle user forgot password')}
+                  fontSize="xs"
+                  textAlign="right"
+                >
+                  {EN.LOG_IN.FORGOT_PASSWORD}
+                </Text>
+              </View>
+            )}
+            <Button
+              variant="grey"
+              onPress={() =>
+                showEmailForm ? handleLogin({ email, password, setUser }) : setShowEmailForm(true)
               }
-              type={showPassword ? 'text' : 'password'}
-              marginBottom={1}
-            />
+            >
+              {EN.COMMON.CONTINUE_WITH_EMAIL}
+            </Button>
 
             <Text
               color={Colors.blueMagenta}
-              onPress={() => console.log('Handle user forgot password')}
-              fontSize="xs"
-              textAlign="right"
+              onPress={() => navigation.navigate('SIGN_UP')}
+              textAlign="center"
+              marginTop={3}
             >
-              {EN.LOG_IN.FORGOT_PASSWORD}
+              {EN.LOG_IN.CREATE_ACCOUNT}
             </Text>
           </View>
-        )}
-        <Button
-          variant="grey"
-          onPress={() =>
-            showEmailForm ? handleLogin({ email, password, setUser }) : setShowEmailForm(true)
-          }
-        >
-          {EN.COMMON.CONTINUE_WITH_EMAIL}
-        </Button>
-
-        <Text
-          color={Colors.blueMagenta}
-          onPress={() => navigation.navigate('SIGN_UP')}
-          textAlign="center"
-          marginTop={3}
-        >
-          {EN.LOG_IN.CREATE_ACCOUNT}
-        </Text>
-      </View>
+        </View>
+      </Box>
     </SafeAreaView>
   );
 };
