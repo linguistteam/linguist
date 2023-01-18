@@ -42,7 +42,6 @@ const LogIn = () => {
           {EN.COMMON.CONTINUE_WITH_GOOGLE}
         </Button>
       </View>
-      {/* TODO: Hide/show password */}
       {showEmailForm && (
         <View marginBottom={4}>
           <Input
