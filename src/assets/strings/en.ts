@@ -4,8 +4,6 @@ export const EN = {
   },
   COMMON: {
     HELLO: 'Hello',
-    CONTINUE_WITH_EMAIL: 'Continue with Email',
-    CONTINUE_WITH_GOOGLE: 'Continue with Google',
     EMAIL_ADDRESS: 'Email address',
     PASSWORD: 'Password',
   },
@@ -14,6 +12,8 @@ export const EN = {
   },
   LOG_IN: {
     SUBHEADING: 'Welcome back to Linguist',
+    CONTINUE_WITH_EMAIL: 'Continue with Email',
+    CONTINUE_WITH_GOOGLE: 'Continue with Google',
     FORGOT_PASSWORD: 'Forgot password?',
     CREATE_ACCOUNT: 'Create account',
   },
@@ -29,6 +29,8 @@ export const EN = {
   SIGN_UP: {
     SUBHEADING: 'Start your Linguist journey',
     LOGIN_INSTEAD: 'Login instead',
+    CREATE_ACCOUNT_WITH_EMAIL: 'Create account with Email',
+    CREATE_ACCOUNT_WITH_GOOGLE: 'Create account with Google',
   },
   TRANSLATOR_PROFILE: {
     HIRE: 'Hire',
