@@ -1,5 +1,15 @@
 import { useState } from 'react';
-import { Box, Button, Heading, Input, Pressable, Text, View } from 'native-base';
+import {
+  Box,
+  Button,
+  FormControl,
+  Heading,
+  Input,
+  Pressable,
+  Text,
+  View,
+  WarningOutlineIcon,
+} from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -20,6 +30,13 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const setUser = useUserStore((state) => state.setUser);
+
+  // TODO: Set isInvalid from Firebase Auth
+  // TODO: Form error messages should be added to strings directory and localized
+  const isInvalid = {
+    email: false,
+    password: false,
+  };
 
   // TODO: Add loading spinner for when user is logging in
   useCheckLoggedInState();
@@ -59,31 +76,41 @@ const SignUp = () => {
             </View>
             {showEmailForm && (
               <View marginBottom={4}>
-                <Input
-                  variant="outline"
-                  placeholder={EN.COMMON.EMAIL_ADDRESS}
-                  value={email}
-                  onChangeText={(text) => setEmail(text)}
-                  type="text"
-                  marginBottom={3}
-                />
-                <Input
-                  variant="outline"
-                  placeholder={EN.COMMON.PASSWORD}
-                  value={password}
-                  onChangeText={(text) => setPassword(text)}
-                  InputRightElement={
-                    <Pressable onPress={() => setShowPassword(!showPassword)} marginRight={2}>
-                      <IoniconsIcon
-                        name={showPassword ? 'eye-off-outline' : 'eye-outline'}
-                        size={20}
-                        color={Colors.grey}
-                      />
-                    </Pressable>
-                  }
-                  type={showPassword ? 'text' : 'password'}
-                  marginBottom={1}
-                />
+                <FormControl isInvalid={isInvalid.email} marginBottom={3}>
+                  <Input
+                    variant="outline"
+                    placeholder={EN.COMMON.EMAIL_ADDRESS}
+                    value={email}
+                    onChangeText={(text) => setEmail(text)}
+                    type="text"
+                  />
+                  <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
+                    Invalid email address.
+                  </FormControl.ErrorMessage>
+                </FormControl>
+
+                <FormControl isInvalid={isInvalid.password} marginBottom={1}>
+                  <Input
+                    variant="outline"
+                    placeholder={EN.COMMON.PASSWORD}
+                    value={password}
+                    onChangeText={(text) => setPassword(text)}
+                    InputRightElement={
+                      <Pressable onPress={() => setShowPassword(!showPassword)} marginRight={2}>
+                        <IoniconsIcon
+                          name={showPassword ? 'eye-off-outline' : 'eye-outline'}
+                          size={20}
+                          color={Colors.grey}
+                        />
+                      </Pressable>
+                    }
+                    type={showPassword ? 'text' : 'password'}
+                    marginBottom={1}
+                  />
+                  <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
+                    Incorrect password.
+                  </FormControl.ErrorMessage>
+                </FormControl>
               </View>
             )}
             <Button
