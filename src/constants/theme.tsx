@@ -36,6 +36,9 @@ const theme = extendTheme({
         borderColor: Colors.grey,
         placeholderTextColor: Colors.grey,
 
+        _invalid: {
+          borderColor: 'error.500',
+        },
         _focus: {
           backgroundColor: 'warmGray.200',
           borderColor: Colors.blueMagenta,
