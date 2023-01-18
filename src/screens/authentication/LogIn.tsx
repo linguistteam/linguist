@@ -11,6 +11,7 @@ import { EN } from '@assets/strings';
 import Colors from '@assets/colors';
 import { globalStyles } from '@constants/styles';
 import { StackNavigatorList } from '@screens/StackNavigator';
+import { authenticationStyles } from './styles';
 
 const LogIn = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList>>();
@@ -38,10 +39,10 @@ const LogIn = () => {
         <View style={globalStyles.appContainer}>
           <View justifyContent="center" height="100%">
             <View marginBottom={8}>
-              <Heading size="xl" textAlign="center">
+              <Heading size="xl" textAlign="center" style={authenticationStyles.textShadow}>
                 {EN.COMMON.HELLO}
               </Heading>
-              <Heading size="lg" textAlign="center">
+              <Heading size="lg" textAlign="center" style={authenticationStyles.textShadow}>
                 {EN.LOG_IN.SUBHEADING}
               </Heading>
             </View>
@@ -51,8 +52,9 @@ const LogIn = () => {
                 variant="magenta"
                 leftIcon={<FontAwesomeIcon name="google" color={Colors.white} size={15} />}
                 onPress={() => console.log('Handle Google login')}
+                shadow={0}
               >
-                {EN.COMMON.CONTINUE_WITH_GOOGLE}
+                {EN.LOG_IN.CONTINUE_WITH_GOOGLE}
               </Button>
             </View>
             {showEmailForm && (
@@ -98,8 +100,9 @@ const LogIn = () => {
               onPress={() =>
                 showEmailForm ? handleLogin({ email, password, setUser }) : setShowEmailForm(true)
               }
+              shadow={0}
             >
-              {EN.COMMON.CONTINUE_WITH_EMAIL}
+              {EN.LOG_IN.CONTINUE_WITH_EMAIL}
             </Button>
 
             <Text
