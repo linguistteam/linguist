@@ -25,7 +25,7 @@ const LogIn = () => {
   return (
     <SafeAreaView>
       <View justifyContent="center" height="100%">
-        <View marginBottom={6}>
+        <View marginBottom={8}>
           <Heading size="xl" textAlign="center">
             {EN.COMMON.HELLO}
           </Heading>
