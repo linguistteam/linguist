@@ -99,7 +99,7 @@ const LogIn = () => {
                         <IoniconsIcon
                           name={showPassword ? 'eye-off-outline' : 'eye-outline'}
                           size={20}
-                          color={Colors.grey}
+                          color={isInvalid.password ? Colors.error : Colors.grey}
                         />
                       </Pressable>
                     }
