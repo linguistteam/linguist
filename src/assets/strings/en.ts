@@ -28,6 +28,7 @@ export const EN = {
   },
   SIGN_UP: {
     SUBHEADING: 'Start your Linguist journey',
+    LOGIN_INSTEAD: 'Login instead',
   },
   TRANSLATOR_PROFILE: {
     HIRE: 'Hire',
