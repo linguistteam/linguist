@@ -9,6 +9,7 @@ const Colors = {
   blueMagentaLightened20: '#7773f5',
   blueMagentaLightened80: '#dddcfc',
   yellow: '#F2C029',
+  yellowLightened80: '#fcf2d4',
 };
 
 export default Colors;
