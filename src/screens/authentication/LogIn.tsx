@@ -41,6 +41,20 @@ const LogIn = () => {
   // TODO: Add loading spinner for when user is logging in
   useCheckLoggedInState();
 
+  // useEffect(() => {
+  //   let i = 0;
+  //   const hello = ['Hallo', 'Bonjour', 'こんにちは', 'Hello'];
+
+  //   const interval = setInterval(() => {
+  //     console.log('hello[i++]', hello[i++]);
+  //   }, 1000);
+
+  //   if (i === hello.length) {
+  //     clearInterval(interval);
+  //     console.log('done');
+  //   }
+  // }, []);
+
   return (
     <SafeAreaView>
       <Box
