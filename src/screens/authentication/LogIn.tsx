@@ -20,8 +20,8 @@ import { useUserStore } from '@stores/user';
 import { EN } from '@assets/strings';
 import Colors from '@assets/colors';
 import { globalStyles } from '@constants/styles';
-import { StackNavigatorList } from '@screens/StackNavigator';
 import { authenticationStyles } from './styles';
+import { StackNavigatorList } from '@screens/StackNavigator';
 
 const LogIn = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList>>();
