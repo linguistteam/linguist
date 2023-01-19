@@ -10,7 +10,7 @@ const theme = extendTheme({
           borderRadius: 20,
           height: 45,
           _text: {
-            color: 'singletons.lightText',
+            color: 'lightText',
             fontWeight: '700',
           },
           _pressed: {
@@ -22,7 +22,7 @@ const theme = extendTheme({
           borderRadius: 20,
           height: 45,
           _text: {
-            color: 'singletons.lightText',
+            color: 'lightText',
             fontWeight: '700',
           },
           _pressed: {
