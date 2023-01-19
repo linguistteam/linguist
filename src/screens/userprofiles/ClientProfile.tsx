@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading, ScrollView, Text, View } from 'native-base';
+import { Button, Flex, Heading, ScrollView, Text, View } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { EN } from '@assets/strings';
 import { ProfileImage, Reviews, UserLocation, UserRating } from '@components/userprofiles';
@@ -44,29 +44,27 @@ const ClientProfile = () => {
   return (
     <SafeAreaView style={globalStyles.appContainer}>
       <ScrollView>
-        <Box>
-          <ProfileImage name={name} profileImage={profileImage} />
+        <ProfileImage name={name} profileImage={profileImage} />
 
-          <Flex direction="column" alignItems="center">
-            <Heading size="xl">{name}</Heading>
+        <Flex direction="column" alignItems="center">
+          <Heading size="xl">{name}</Heading>
 
-            <UserLocation location={location} />
-          </Flex>
+          <UserLocation location={location} />
+        </Flex>
 
-          <Flex direction="row" justifyContent={'center'}>
-            <UserRating reviews={clientProfileReviews} />
-          </Flex>
+        <Flex direction="row" justifyContent={'center'}>
+          <UserRating reviews={clientProfileReviews} />
+        </Flex>
 
-          <View style={profileStyles.hireButton}>
-            <Button variant="magenta" onPress={() => console.log('Pressed!')}>
-              {EN.CLIENT_PROFILE.MESSAGE}
-            </Button>
-          </View>
+        <View style={profileStyles.hireButton}>
+          <Button variant="magenta" onPress={() => console.log('Pressed!')}>
+            {EN.CLIENT_PROFILE.MESSAGE}
+          </Button>
+        </View>
 
-          <Text>{bio}</Text>
+        <Text>{bio}</Text>
 
-          <Reviews isTranslator={isTranslator} reviews={clientProfileReviews} />
-        </Box>
+        <Reviews isTranslator={isTranslator} reviews={clientProfileReviews} />
       </ScrollView>
     </SafeAreaView>
   );

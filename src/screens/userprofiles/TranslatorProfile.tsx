@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading, ScrollView, Text, View } from 'native-base';
+import { Button, Flex, Heading, ScrollView, Text, View } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { fixedRatingAverage } from '@utils';
 import { EN } from '@assets/strings';
@@ -62,33 +62,31 @@ const TranslatorProfile = () => {
   return (
     <SafeAreaView style={globalStyles.appContainer}>
       <ScrollView>
-        <Box>
-          <ProfileImage name={name} profileImage={profileImage} />
+        <ProfileImage name={name} profileImage={profileImage} />
 
-          <Flex direction="column" alignItems="center">
-            <Heading size="xl">{name}</Heading>
+        <Flex direction="column" alignItems="center">
+          <Heading size="xl">{name}</Heading>
 
-            <UserLocation location={location} />
-          </Flex>
+          <UserLocation location={location} />
+        </Flex>
 
-          <Flex direction="row" justifyContent={isTopLinguist ? 'space-between' : 'center'}>
-            <UserRating reviews={translatorProfileReviews} />
+        <Flex direction="row" justifyContent={isTopLinguist ? 'space-between' : 'center'}>
+          <UserRating reviews={translatorProfileReviews} />
 
-            <TopLinguistBadge isTopLinguist={isTopLinguist} />
-          </Flex>
+          <TopLinguistBadge isTopLinguist={isTopLinguist} />
+        </Flex>
 
-          <View style={profileStyles.hireButton}>
-            <Button variant="magenta" onPress={() => console.log('Pressed!')}>
-              {EN.TRANSLATOR_PROFILE.HIRE}
-            </Button>
-          </View>
+        <View style={profileStyles.hireButton}>
+          <Button variant="magenta" onPress={() => console.log('Pressed!')}>
+            {EN.TRANSLATOR_PROFILE.HIRE}
+          </Button>
+        </View>
 
-          <Text>{bio}</Text>
+        <Text>{bio}</Text>
 
-          <Languages languages={languages} />
+        <Languages languages={languages} />
 
-          <Reviews isTranslator={isTranslator} reviews={translatorProfileReviews} />
-        </Box>
+        <Reviews isTranslator={isTranslator} reviews={translatorProfileReviews} />
       </ScrollView>
     </SafeAreaView>
   );
