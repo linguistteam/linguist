@@ -15,7 +15,7 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import IoniconsIcon from 'react-native-vector-icons/Ionicons';
-import { handleSignUp, useCheckLoggedInState } from '@utils';
+import { handleLogin, useCheckLoggedInState } from '@utils';
 import { useUserStore } from '@stores/user';
 import { StackNavigatorList } from '@screens/StackNavigator';
 import { EN } from '@assets/strings';
@@ -24,7 +24,7 @@ import { globalStyles } from '@constants/styles';
 import { authenticationStyles } from './styles';
 import { FormErrors } from './types';
 
-const SignUp = () => {
+const LogIn = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList>>();
   const [showEmailForm, setShowEmailForm] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -53,7 +53,6 @@ const SignUp = () => {
             end: [1, 1],
           },
         }}
-        width="100%"
       >
         <View style={globalStyles.appContainer}>
           <View justifyContent="center" height="100%">
@@ -62,7 +61,7 @@ const SignUp = () => {
                 {EN.COMMON.HELLO}
               </Heading>
               <Heading size="lg" textAlign="center" style={authenticationStyles.textShadow}>
-                {EN.SIGN_UP.SUBHEADING}
+                {EN.LOG_IN.SUBHEADING}
               </Heading>
             </View>
 
@@ -73,7 +72,7 @@ const SignUp = () => {
                 onPress={() => console.log('Handle Google login')}
                 shadow={0}
               >
-                {EN.SIGN_UP.CREATE_ACCOUNT_WITH_GOOGLE}
+                {EN.LOG_IN.CONTINUE_WITH_GOOGLE}
               </Button>
             </View>
             {showEmailForm && (
@@ -113,31 +112,39 @@ const SignUp = () => {
                       </Pressable>
                     }
                     type={showPassword ? 'text' : 'password'}
-                    marginBottom={1}
                   />
                   <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
                     Incorrect password.
                   </FormControl.ErrorMessage>
                 </FormControl>
+
+                <Text
+                  color={Colors.blueMagenta}
+                  onPress={() => console.log('Handle user forgot password')}
+                  fontSize="xs"
+                  textAlign="right"
+                >
+                  {EN.LOG_IN.FORGOT_PASSWORD}
+                </Text>
               </View>
             )}
             <Button
               variant="grey"
               onPress={() =>
-                showEmailForm ? handleSignUp({ email, password, setUser }) : setShowEmailForm(true)
+                showEmailForm ? handleLogin({ email, password, setUser }) : setShowEmailForm(true)
               }
               shadow={0}
             >
-              {EN.SIGN_UP.CREATE_ACCOUNT_WITH_EMAIL}
+              {EN.LOG_IN.CONTINUE_WITH_EMAIL}
             </Button>
 
             <Text
               color={Colors.blueMagenta}
-              onPress={() => navigation.navigate('LOG_IN')}
+              onPress={() => navigation.navigate('SIGN_UP')}
               textAlign="center"
               marginTop={3}
             >
-              {EN.SIGN_UP.LOGIN_INSTEAD}
+              {EN.LOG_IN.CREATE_ACCOUNT}
             </Text>
           </View>
         </View>
@@ -146,4 +153,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default LogIn;

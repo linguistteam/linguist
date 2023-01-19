@@ -1,7 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from '@screens/Home';
-import { SignUp } from '@screens/authentication';
+import { LogIn, SignUp } from '@screens/authentication';
 import { ClientProfile, TranslatorProfile } from '@screens/userprofiles';
 
 // NOTE: Specifying undefined means that the route doesn't have params
@@ -9,6 +9,7 @@ import { ClientProfile, TranslatorProfile } from '@screens/userprofiles';
 export type StackNavigatorList = {
   HOME: undefined;
   CLIENT_PROFILE: undefined;
+  LOG_IN: undefined;
   SIGN_UP: undefined;
   TRANSLATOR_PROFILE: undefined;
 };
@@ -18,7 +19,7 @@ const Stack = createNativeStackNavigator<StackNavigatorList>();
 const StackNavigator = () => (
   <NavigationContainer>
     <Stack.Navigator
-      initialRouteName="SIGN_UP"
+      initialRouteName="LOG_IN"
       screenOptions={{
         headerShown: false,
         contentStyle: { backgroundColor: '#fff' },
@@ -26,6 +27,7 @@ const StackNavigator = () => (
     >
       <Stack.Screen name="HOME" component={Home} />
       <Stack.Screen name="CLIENT_PROFILE" component={ClientProfile} />
+      <Stack.Screen name="LOG_IN" component={LogIn} />
       <Stack.Screen name="SIGN_UP" component={SignUp} />
       <Stack.Screen name="TRANSLATOR_PROFILE" component={TranslatorProfile} />
     </Stack.Navigator>

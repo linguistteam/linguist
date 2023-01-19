@@ -1,6 +1,5 @@
-import { Box, Flex, Heading, ScrollView, Text, View } from 'native-base';
+import { Button, Flex, Heading, ScrollView, Text, View } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Button } from '@common';
 import { fixedRatingAverage } from '@utils';
 import { EN } from '@assets/strings';
 import {
@@ -13,6 +12,7 @@ import {
 } from '@components/userprofiles';
 import { translatorProfileReviews } from '@assets/dummyData/reviews';
 import { ReviewType } from '@components/userprofiles/reviews/Reviews';
+import { globalStyles } from '@constants/styles';
 import { profileStyles } from './styles';
 
 // TODO: Figure out user data structure
@@ -60,33 +60,33 @@ const isTopLinguist =
 
 const TranslatorProfile = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={globalStyles.appContainer}>
       <ScrollView>
         <ProfileImage name={name} profileImage={profileImage} />
 
-        <Box style={profileStyles.profileContent}>
-          <Flex direction="column" alignItems="center">
-            <Heading size="xl">{name}</Heading>
+        <Flex direction="column" alignItems="center">
+          <Heading size="xl">{name}</Heading>
 
-            <UserLocation location={location} />
-          </Flex>
+          <UserLocation location={location} />
+        </Flex>
 
-          <Flex direction="row" justifyContent={isTopLinguist ? 'space-between' : 'center'}>
-            <UserRating reviews={translatorProfileReviews} />
+        <Flex direction="row" justifyContent={isTopLinguist ? 'space-between' : 'center'}>
+          <UserRating reviews={translatorProfileReviews} />
 
-            <TopLinguistBadge isTopLinguist={isTopLinguist} />
-          </Flex>
+          <TopLinguistBadge isTopLinguist={isTopLinguist} />
+        </Flex>
 
-          <View style={profileStyles.hireButton}>
-            <Button onPress={() => console.log('Pressed!')} text={EN.TRANSLATOR_PROFILE.HIRE} />
-          </View>
+        <View style={profileStyles.hireButton}>
+          <Button variant="magenta" onPress={() => console.log('Pressed!')}>
+            {EN.TRANSLATOR_PROFILE.HIRE}
+          </Button>
+        </View>
 
-          <Text>{bio}</Text>
+        <Text>{bio}</Text>
 
-          <Languages languages={languages} />
+        <Languages languages={languages} />
 
-          <Reviews isTranslator={isTranslator} reviews={translatorProfileReviews} />
-        </Box>
+        <Reviews isTranslator={isTranslator} reviews={translatorProfileReviews} />
       </ScrollView>
     </SafeAreaView>
   );
