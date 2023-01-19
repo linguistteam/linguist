@@ -17,11 +17,12 @@ import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import IoniconsIcon from 'react-native-vector-icons/Ionicons';
 import { handleSignUp, useCheckLoggedInState } from '@utils';
 import { useUserStore } from '@stores/user';
+import { StackNavigatorList } from '@screens/StackNavigator';
 import { EN } from '@assets/strings';
 import Colors from '@assets/colors';
 import { globalStyles } from '@constants/styles';
-import { StackNavigatorList } from '@screens/StackNavigator';
 import { authenticationStyles } from './styles';
+import { FormErrors } from './types';
 
 const SignUp = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList>>();
@@ -31,10 +32,11 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const setUser = useUserStore((state) => state.setUser);
 
-  // TODO: Set isInvalid from Firebase Auth
+  // TODO: Set formErrors from Firebase Auth
   // TODO: Form error messages should be added to strings directory and localized
-  const isInvalid = {
+  const formErrors: FormErrors = {
     email: false,
+    general: false,
     password: false,
   };
 
@@ -76,7 +78,13 @@ const SignUp = () => {
             </View>
             {showEmailForm && (
               <View marginBottom={4}>
-                <FormControl isInvalid={isInvalid.email} marginBottom={3}>
+                {formErrors.general && (
+                  <Text color={Colors.error} marginBottom={2}>
+                    An error has occurred. Our engineers are on it!
+                  </Text>
+                )}
+
+                <FormControl isInvalid={formErrors.email} marginBottom={3}>
                   <Input
                     variant="outline"
                     placeholder={EN.COMMON.EMAIL_ADDRESS}
@@ -89,7 +97,7 @@ const SignUp = () => {
                   </FormControl.ErrorMessage>
                 </FormControl>
 
-                <FormControl isInvalid={isInvalid.password} marginBottom={1}>
+                <FormControl isInvalid={formErrors.password} marginBottom={1}>
                   <Input
                     variant="outline"
                     placeholder={EN.COMMON.PASSWORD}
@@ -100,7 +108,7 @@ const SignUp = () => {
                         <IoniconsIcon
                           name={showPassword ? 'eye-off-outline' : 'eye-outline'}
                           size={20}
-                          color={isInvalid.password ? Colors.error : Colors.grey}
+                          color={formErrors.password ? Colors.error : Colors.grey}
                         />
                       </Pressable>
                     }
