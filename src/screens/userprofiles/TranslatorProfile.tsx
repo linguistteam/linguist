@@ -1,7 +1,6 @@
 import { Box, Button, Flex, Heading, ScrollView, Text, View } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { fixedRatingAverage } from '@utils';
-import Colors from '@assets/colors';
 import { EN } from '@assets/strings';
 import {
   Languages,
@@ -13,6 +12,7 @@ import {
 } from '@components/userprofiles';
 import { translatorProfileReviews } from '@assets/dummyData/reviews';
 import { ReviewType } from '@components/userprofiles/reviews/Reviews';
+import { globalStyles } from '@constants/styles';
 import { profileStyles } from './styles';
 
 // TODO: Figure out user data structure
@@ -60,7 +60,7 @@ const isTopLinguist =
 
 const TranslatorProfile = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={globalStyles.appContainer}>
       <ScrollView>
         <Box>
           <ProfileImage name={name} profileImage={profileImage} />

@@ -1,9 +1,9 @@
 import { Box, Button, Flex, Heading, ScrollView, Text, View } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Colors from '@assets/colors';
 import { EN } from '@assets/strings';
 import { ProfileImage, Reviews, UserLocation, UserRating } from '@components/userprofiles';
 import { clientProfileReviews } from '@assets/dummyData/reviews';
+import { globalStyles } from '@constants/styles';
 import { profileStyles } from './styles';
 
 // TODO: Figure out user data structure
@@ -42,7 +42,7 @@ const { name, bio, location, profileImage, isTranslator } = user;
 
 const ClientProfile = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={globalStyles.appContainer}>
       <ScrollView>
         <Box>
           <ProfileImage name={name} profileImage={profileImage} />
