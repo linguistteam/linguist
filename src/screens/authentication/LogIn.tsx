@@ -40,7 +40,6 @@ const LogIn = () => {
   const hasGeneralAuthError =
     !!firebaseAuthError.errorCode && !hasEmailAuthError && !hasPasswordAuthError;
 
-  // TODO: Form error messages should be added to strings directory and localized
   const formErrors: FormErrors = {
     email: hasEmailAuthError,
     general: hasGeneralAuthError,
