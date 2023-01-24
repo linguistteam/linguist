@@ -17,6 +17,7 @@ import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import IoniconsIcon from 'react-native-vector-icons/Ionicons';
 import { handleLogin, useCheckLoggedInState } from '@utils';
 import { useUserStore } from '@stores/user';
+import { useAuthErrorStore } from '@stores/errors/authError';
 import { StackNavigatorList } from '@screens/StackNavigator';
 import { EN } from '@assets/strings';
 import Colors from '@assets/colors';
@@ -30,7 +31,9 @@ const LogIn = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const firebaseAuthError = useAuthErrorStore((state) => state.error);
   const setUser = useUserStore((state) => state.setUser);
+  const setError = useAuthErrorStore((state) => state.setError);
 
   // TODO: Set formErrors from Firebase Auth
   // TODO: Form error messages should be added to strings directory and localized
@@ -77,9 +80,9 @@ const LogIn = () => {
             </View>
             {showEmailForm && (
               <View marginBottom={4}>
-                {formErrors.general && (
+                {firebaseAuthError && (
                   <Text color={Colors.error} marginBottom={2}>
-                    An error has occurred. Our engineers are on it!
+                    {firebaseAuthError}
                   </Text>
                 )}
 
@@ -131,7 +134,9 @@ const LogIn = () => {
             <Button
               variant="grey"
               onPress={() =>
-                showEmailForm ? handleLogin({ email, password, setUser }) : setShowEmailForm(true)
+                showEmailForm
+                  ? handleLogin({ email, password, setUser, setError })
+                  : setShowEmailForm(true)
               }
               shadow={0}
             >

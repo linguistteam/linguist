@@ -1,6 +1,8 @@
 import { AuthError, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebaseConfig';
 import { User } from '@stores/user';
+import { FirebaseAuthError } from '@stores/errors/authError';
+import mapFirebaseAuthErrors from './mapFirebaseAuthErrors';
 
 // TODO: Cleanup logs/Polish
 // TODO: Add validation (i.e. don't allow empty form, invalid email, etc)
@@ -11,9 +13,10 @@ interface HandleLoginProps {
   email: string;
   password: string;
   setUser: ({ email, uid }: User) => void;
+  setError: ({ error }: FirebaseAuthError) => void;
 }
 
-const handleLogin = ({ email, password, setUser }: HandleLoginProps) => {
+const handleLogin = ({ email, password, setUser, setError }: HandleLoginProps) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
@@ -26,6 +29,7 @@ const handleLogin = ({ email, password, setUser }: HandleLoginProps) => {
     })
     .catch((error: AuthError) => {
       console.error('The following error has occurred: ', error.code);
+      setError({ error: mapFirebaseAuthErrors(error.code) });
     });
 };
 

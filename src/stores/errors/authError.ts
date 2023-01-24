@@ -2,13 +2,13 @@ import create from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export interface AuthError {
+export interface FirebaseAuthError {
   error: string;
 }
 
-export interface AuthErrorState {
+export interface FirebaseAuthErrorState {
   error: string;
-  setError: ({ error }: AuthError) => void;
+  setError: ({ error }: FirebaseAuthError) => void;
   reset: () => void;
 }
 
@@ -16,7 +16,7 @@ const initialState = {
   error: '',
 };
 
-export const useAuthErrorStore = create<AuthErrorState>()(
+export const useAuthErrorStore = create<FirebaseAuthErrorState>()(
   persist(
     (set) => ({
       ...initialState,
