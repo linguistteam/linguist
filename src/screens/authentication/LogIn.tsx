@@ -40,6 +40,7 @@ const LogIn = () => {
   const hasGeneralAuthError =
     !!firebaseAuthError.errorCode && !hasEmailAuthError && !hasPasswordAuthError;
 
+  // TODO: Use reset error action when invalid form fields are touched
   const formErrors: FormErrors = {
     email: hasEmailAuthError,
     general: hasGeneralAuthError,
@@ -138,6 +139,7 @@ const LogIn = () => {
                 </Text>
               </View>
             )}
+            {/* TODO: Disable button when at least one field is empty, form errors exist */}
             <Button
               variant="grey"
               onPress={() =>
