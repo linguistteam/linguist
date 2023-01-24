@@ -35,13 +35,15 @@ const LogIn = () => {
   const setUser = useUserStore((state) => state.setUser);
   const setError = useAuthErrorStore((state) => state.setError);
 
-  const hasEmailAuthError = firebaseAuthError.errorCode.includes('email');
-  const hasPasswordAuthError = firebaseAuthError.errorCode.includes('password');
+  const hasEmailAuthError = firebaseAuthError.errorCode?.includes('email') ?? false;
+  const hasPasswordAuthError = firebaseAuthError.errorCode?.includes('password') ?? false;
+  const hasGeneralAuthError =
+    !!firebaseAuthError.errorCode && !hasEmailAuthError && !hasPasswordAuthError;
 
   // TODO: Form error messages should be added to strings directory and localized
   const formErrors: FormErrors = {
     email: hasEmailAuthError,
-    general: !hasEmailAuthError && !hasPasswordAuthError,
+    general: hasGeneralAuthError,
     password: hasPasswordAuthError,
   };
 
