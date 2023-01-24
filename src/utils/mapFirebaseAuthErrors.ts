@@ -1,5 +1,6 @@
 import { EN } from '@assets/strings';
 
+// TODO: Map all possible Firebase error messages.
 const mapFirebaseAuthErrors = (errorCode: string) => {
   switch (errorCode) {
     case 'auth/invalid-email':
