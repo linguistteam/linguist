@@ -13,7 +13,7 @@ interface HandleLoginProps {
   email: string;
   password: string;
   setUser: ({ email, uid }: User) => void;
-  setError: ({ error }: FirebaseAuthError) => void;
+  setError: ({ errorMessage, errorCode }: FirebaseAuthError) => void;
 }
 
 const handleLogin = ({ email, password, setUser, setError }: HandleLoginProps) => {
@@ -29,7 +29,7 @@ const handleLogin = ({ email, password, setUser, setError }: HandleLoginProps) =
     })
     .catch((error: AuthError) => {
       console.error('The following error has occurred: ', error.code);
-      setError({ error: mapFirebaseAuthErrors(error.code) });
+      setError({ errorMessage: mapFirebaseAuthErrors(error.code), errorCode: error.code });
     });
 };
 
