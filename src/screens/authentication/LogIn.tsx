@@ -38,7 +38,6 @@ const LogIn = () => {
   const hasEmailAuthError = firebaseAuthError.errorCode.includes('email');
   const hasPasswordAuthError = firebaseAuthError.errorCode.includes('password');
 
-  // TODO: Set formErrors from Firebase Auth
   // TODO: Form error messages should be added to strings directory and localized
   const formErrors: FormErrors = {
     email: hasEmailAuthError,
