@@ -35,13 +35,20 @@ const LogIn = () => {
   const setUser = useUserStore((state) => state.setUser);
   const setError = useAuthErrorStore((state) => state.setError);
 
+  const hasEmailAuthError = firebaseAuthError.errorCode.includes('email');
+  const hasPasswordAuthError = firebaseAuthError.errorCode.includes('password');
+
   // TODO: Set formErrors from Firebase Auth
   // TODO: Form error messages should be added to strings directory and localized
   const formErrors: FormErrors = {
-    email: false,
-    general: false,
-    password: false,
+    email: hasEmailAuthError,
+    general: !hasEmailAuthError && !hasPasswordAuthError,
+    password: hasPasswordAuthError,
   };
+
+  console.log('firebaseAuthError', firebaseAuthError);
+
+  console.log('formErrors', formErrors);
 
   // TODO: Add loading spinner for when user is logging in
   useCheckLoggedInState();
@@ -80,9 +87,9 @@ const LogIn = () => {
             </View>
             {showEmailForm && (
               <View marginBottom={4}>
-                {firebaseAuthError && (
+                {formErrors.general && (
                   <Text color={Colors.error} marginBottom={2}>
-                    {firebaseAuthError}
+                    {firebaseAuthError.errorMessage}
                   </Text>
                 )}
 
@@ -95,7 +102,7 @@ const LogIn = () => {
                     type="text"
                   />
                   <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
-                    Invalid email address.
+                    {firebaseAuthError.errorMessage}
                   </FormControl.ErrorMessage>
                 </FormControl>
 
@@ -117,7 +124,7 @@ const LogIn = () => {
                     type={showPassword ? 'text' : 'password'}
                   />
                   <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
-                    Incorrect password.
+                    {firebaseAuthError.errorMessage}
                   </FormControl.ErrorMessage>
                 </FormControl>
 
