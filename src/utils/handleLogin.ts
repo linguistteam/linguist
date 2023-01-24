@@ -22,11 +22,10 @@ const handleLogin = ({ email, password, setUser }: HandleLoginProps) => {
       const { email, uid } = user;
       const userEmail = email ?? '';
 
-      console.log({ email, uid });
       setUser({ email: userEmail, uid });
     })
     .catch((error: AuthError) => {
-      console.error('The following error has occurred: ', error.message);
+      console.error('The following error has occurred: ', error.code);
     });
 };
 
