@@ -1,4 +1,10 @@
 export const EN = {
+  FIREBASE_AUTH_ERRORS: {
+    EMAIL_IS_INVALID: 'Email is invalid.',
+    INVALID_PASSWORD: 'Password is invalid.',
+    WRONG_PASSWORD: 'Password is incorrect.',
+    USER_NOT_FOUND: 'User account not found.',
+  },
   CLIENT_PROFILE: {
     MESSAGE: 'Message',
   },
