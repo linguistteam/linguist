@@ -1,5 +1,7 @@
 export const EN = {
   FIREBASE_AUTH_ERRORS: {
+    INTERNAL_SERVER_ERROR: 'Internal server error has occurred.',
+    EMAIL_ALREADY_EXISTS: 'Email already exists.',
     EMAIL_IS_INVALID: 'Email is invalid.',
     INVALID_PASSWORD: 'Password is invalid.',
     WRONG_PASSWORD: 'Password is incorrect.',
