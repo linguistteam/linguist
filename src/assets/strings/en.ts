@@ -1,4 +1,21 @@
 export const EN = {
+  AUTH_ERRORS: {
+    INTERNAL_SERVER_ERROR: 'Internal server error has occurred.',
+    AUTH_TOKEN_EXPIRED: 'Auth token expired.',
+    AUTH_TOKEN_INVALID: 'Auth token invalid.',
+    AUTH_TOKEN_REVOKED: 'Auth token revoked.',
+    SESSION_COOKIE_REVOKED: 'Session cookie revoked.',
+    EMAIL_ALREADY_IN_USE: 'Email already in use.',
+    PHONE_NUMBER_ALREADY_EXISTS: 'Phone number already exists.',
+    INVALID_EMAIL: 'Please enter a valid mail.',
+    INVALID_PASSWORD: 'Please enter a valid password.',
+    PASSWORD_TOO_SHORT: 'Password is too short.',
+    INVALID_PHONE_NUMBER: 'Phone number is invalid.',
+    INVALID_PHOTO_URL: 'Photo URL is invalid.',
+    INVALID_DISPLAY_NAME: 'Display name is invalid.',
+    WRONG_PASSWORD: 'Password is incorrect.',
+    USER_NOT_FOUND: 'User account not found.',
+  },
   CLIENT_PROFILE: {
     MESSAGE: 'Message',
   },
