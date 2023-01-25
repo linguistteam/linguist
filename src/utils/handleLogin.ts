@@ -4,8 +4,6 @@ import { User } from '@stores/user';
 import { FirebaseAuthError } from '@stores/errors/authError';
 import mapFirebaseAuthErrors from './mapFirebaseAuthErrors';
 
-// TODO: Cleanup logs/Polish
-// TODO: Add validation (i.e. don't allow empty form, invalid email, etc)
 /* Handle logging user in */
 /* Learn more about Firebase Auth: https://firebase.google.com/docs/auth/web/start */
 
