@@ -43,7 +43,7 @@ const LogIn = () => {
   const hasGeneralAuthError =
     !!firebaseAuthError.errorCode && !hasEmailAuthError && !hasPasswordAuthError;
 
-  // TODO: Use reset error action when invalid form fields are touched
+  //
   const formErrors: FormErrors = {
     email: hasEmailAuthError,
     general: hasGeneralAuthError,
@@ -61,7 +61,7 @@ const LogIn = () => {
   // email is invalid or
   // password is less than 6 chars
   const disableSubmit = showEmailForm
-    ? Object.values(formErrors).some(inputHasError) || !validateEmail(email) || passwordTooShort
+    ? Object.values(formErrors).some(inputHasError) || invalidEmail || invalidPassword
     : false;
 
   // TODO: Add loading spinner for when user is logging in
