@@ -43,7 +43,6 @@ const LogIn = () => {
   const hasGeneralAuthError =
     !!firebaseAuthError.errorCode && !hasEmailAuthError && !hasPasswordAuthError;
 
-  //
   const formErrors: FormErrors = {
     email: hasEmailAuthError,
     general: hasGeneralAuthError,
@@ -61,7 +60,7 @@ const LogIn = () => {
   // email is invalid or
   // password is less than 6 chars
   const disableSubmit = showEmailForm
-    ? Object.values(formErrors).some(inputHasError) || invalidEmail || invalidPassword
+    ? Object.values(formErrors).some(inputHasError) || !validateEmail(email) || passwordTooShort
     : false;
 
   // TODO: Add loading spinner for when user is logging in
