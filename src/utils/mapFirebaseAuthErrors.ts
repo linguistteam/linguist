@@ -49,33 +49,33 @@ const mapFirebaseAuthErrors = (errorCode: string) => {
     case 'auth/session-cookie-expired':
     case 'auth/uid-already-exists':
     case 'auth/unauthorized-continue-uri':
-      return EN.FIREBASE_AUTH_ERRORS.INTERNAL_SERVER_ERROR;
+      return EN.AUTH_ERRORS.INTERNAL_SERVER_ERROR;
     case 'auth/email-already-exists':
-      return EN.FIREBASE_AUTH_ERRORS.EMAIL_ALREADY_EXISTS;
+      return EN.AUTH_ERRORS.EMAIL_ALREADY_EXISTS;
     case 'auth/phone-number-already-exists':
-      return EN.FIREBASE_AUTH_ERRORS.PHONE_NUMBER_ALREADY_EXISTS;
+      return EN.AUTH_ERRORS.PHONE_NUMBER_ALREADY_EXISTS;
     case 'auth/id-token-expired':
-      return EN.FIREBASE_AUTH_ERRORS.AUTH_TOKEN_EXPIRED;
+      return EN.AUTH_ERRORS.AUTH_TOKEN_EXPIRED;
     case 'auth/id-token-revoked':
-      return EN.FIREBASE_AUTH_ERRORS.AUTH_TOKEN_REVOKED;
+      return EN.AUTH_ERRORS.AUTH_TOKEN_REVOKED;
     case 'auth/invalid-id-token':
-      return EN.FIREBASE_AUTH_ERRORS.AUTH_TOKEN_INVALID;
+      return EN.AUTH_ERRORS.AUTH_TOKEN_INVALID;
     case 'auth/session-cookie-revoked':
-      return EN.FIREBASE_AUTH_ERRORS.SESSION_COOKIE_REVOKED;
+      return EN.AUTH_ERRORS.SESSION_COOKIE_REVOKED;
     case 'auth/invalid-email':
-      return EN.FIREBASE_AUTH_ERRORS.INVALID_EMAIL;
+      return EN.AUTH_ERRORS.INVALID_EMAIL;
     case 'auth/invalid-password':
-      return EN.FIREBASE_AUTH_ERRORS.INVALID_PASSWORD;
+      return EN.AUTH_ERRORS.INVALID_PASSWORD;
     case 'auth/invalid-phone-number':
-      return EN.FIREBASE_AUTH_ERRORS.INVALID_PHONE_NUMBER;
+      return EN.AUTH_ERRORS.INVALID_PHONE_NUMBER;
     case 'auth/invalid-photo-url':
-      return EN.FIREBASE_AUTH_ERRORS.INVALID_PHOTO_URL;
+      return EN.AUTH_ERRORS.INVALID_PHOTO_URL;
     case 'auth/wrong-password':
-      return EN.FIREBASE_AUTH_ERRORS.WRONG_PASSWORD;
+      return EN.AUTH_ERRORS.WRONG_PASSWORD;
     case 'auth/user-not-found':
-      return EN.FIREBASE_AUTH_ERRORS.USER_NOT_FOUND;
+      return EN.AUTH_ERRORS.USER_NOT_FOUND;
     case 'auth/invalid-display-name':
-      return EN.FIREBASE_AUTH_ERRORS.INVALID_DISPLAY_NAME;
+      return EN.AUTH_ERRORS.INVALID_DISPLAY_NAME;
     default:
       return '';
   }
