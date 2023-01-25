@@ -34,6 +34,7 @@ const LogIn = () => {
   const firebaseAuthError = useAuthErrorStore((state) => state.error);
   const setUser = useUserStore((state) => state.setUser);
   const setError = useAuthErrorStore((state) => state.setError);
+  const resetError = useAuthErrorStore((state) => state.reset);
 
   const hasEmailAuthError = firebaseAuthError.errorCode?.includes('email') ?? false;
   const hasPasswordAuthError = firebaseAuthError.errorCode?.includes('password') ?? false;
@@ -47,9 +48,16 @@ const LogIn = () => {
     password: hasPasswordAuthError,
   };
 
+  const inputHasError = (inputValue: boolean) => inputValue === true;
+  const disableSubmit = showEmailForm
+    ? Object.values(formErrors).some(inputHasError) || !email || !password
+    : false;
+
   console.log('firebaseAuthError', firebaseAuthError);
 
   console.log('formErrors', formErrors);
+
+  console.log('disableSubmit', disableSubmit);
 
   // TODO: Add loading spinner for when user is logging in
   useCheckLoggedInState();
@@ -94,20 +102,21 @@ const LogIn = () => {
                   </Text>
                 )}
 
-                <FormControl isInvalid={formErrors.email} marginBottom={3}>
+                <FormControl isInvalid={formErrors.email} marginBottom={3} isRequired>
                   <Input
                     variant="outline"
                     placeholder={EN.COMMON.EMAIL_ADDRESS}
                     value={email}
                     onChangeText={(text) => setEmail(text)}
                     type="text"
+                    onTextInput={() => resetError()}
                   />
                   <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
                     {firebaseAuthError.errorMessage}
                   </FormControl.ErrorMessage>
                 </FormControl>
 
-                <FormControl isInvalid={formErrors.password} marginBottom={1}>
+                <FormControl isInvalid={formErrors.password} marginBottom={1} isRequired>
                   <Input
                     variant="outline"
                     placeholder={EN.COMMON.PASSWORD}
@@ -123,6 +132,7 @@ const LogIn = () => {
                       </Pressable>
                     }
                     type={showPassword ? 'text' : 'password'}
+                    onTextInput={() => resetError()}
                   />
                   <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
                     {firebaseAuthError.errorMessage}
@@ -148,6 +158,7 @@ const LogIn = () => {
                   : setShowEmailForm(true)
               }
               shadow={0}
+              isDisabled={disableSubmit}
             >
               {EN.LOG_IN.CONTINUE_WITH_EMAIL}
             </Button>
