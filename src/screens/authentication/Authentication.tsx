@@ -13,7 +13,13 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import IoniconsIcon from 'react-native-vector-icons/Ionicons';
-import { handleLogin, handleSignUp, useCheckLoggedInState, validateEmail } from '@utils';
+import {
+  googleAuthentication,
+  handleLogin,
+  handleSignUp,
+  useCheckLoggedInState,
+  validateEmail,
+} from '@utils';
 import { useUserStore } from '@stores/user';
 import { useAuthErrorStore } from '@stores/errors/authError';
 import { EN } from '@assets/strings';
@@ -103,7 +109,7 @@ const Authentication = () => {
               <Button
                 variant="magenta"
                 leftIcon={<FontAwesomeIcon name="google" color={Colors.white} size={15} />}
-                onPress={() => console.log('Handle Google login')}
+                onPress={() => googleAuthentication()}
                 shadow={0}
               >
                 {formView.showLogIn
