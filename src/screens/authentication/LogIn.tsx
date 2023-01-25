@@ -166,7 +166,7 @@ const LogIn = () => {
                 </Text>
               </View>
             )}
-            {/* TODO: Disable button when at least one field is empty, form errors exist */}
+
             <Button
               variant="grey"
               onPress={() =>
