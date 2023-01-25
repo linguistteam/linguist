@@ -5,7 +5,7 @@ export const EN = {
     AUTH_TOKEN_INVALID: 'Auth token invalid.',
     AUTH_TOKEN_REVOKED: 'Auth token revoked.',
     SESSION_COOKIE_REVOKED: 'Session cookie revoked.',
-    EMAIL_ALREADY_EXISTS: 'Email already exists.',
+    EMAIL_ALREADY_IN_USE: 'Email already in use.',
     PHONE_NUMBER_ALREADY_EXISTS: 'Phone number already exists.',
     INVALID_EMAIL: 'Please enter a valid mail.',
     INVALID_PASSWORD: 'Please enter a valid password.',
