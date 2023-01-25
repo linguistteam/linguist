@@ -35,6 +35,8 @@ const LogIn = () => {
   const setUser = useUserStore((state) => state.setUser);
   const setError = useAuthErrorStore((state) => state.setError);
   const resetError = useAuthErrorStore((state) => state.reset);
+  const [emailTouched, setEmailTouched] = useState(false);
+  const [passwordTouched, setPasswordTouched] = useState(false);
 
   const hasEmailAuthError = firebaseAuthError.errorCode?.includes('email') ?? false;
   const hasPasswordAuthError = firebaseAuthError.errorCode?.includes('password') ?? false;
@@ -48,9 +50,18 @@ const LogIn = () => {
     password: hasPasswordAuthError,
   };
 
+  const passwordTooShort = password.length < 6;
+  const invalidEmail = emailTouched && !validateEmail(email);
+  const invalidPassword = passwordTouched && passwordTooShort;
+
   const inputHasError = (inputValue: boolean) => inputValue === true;
+  // NOTE: Disable submit if:
+  // Form is being shown and
+  // Firebase has thrown error or
+  // email is invalid or
+  // password is less than 6 chars
   const disableSubmit = showEmailForm
-    ? Object.values(formErrors).some(inputHasError) || !validateEmail(email) || !password
+    ? Object.values(formErrors).some(inputHasError) || !validateEmail(email) || passwordTooShort
     : false;
 
   // TODO: Add loading spinner for when user is logging in
@@ -96,21 +107,30 @@ const LogIn = () => {
                   </Text>
                 )}
 
-                <FormControl isInvalid={formErrors.email} marginBottom={3} isRequired>
+                <FormControl
+                  isInvalid={formErrors.email || invalidEmail}
+                  marginBottom={3}
+                  isRequired
+                >
                   <Input
                     variant="outline"
                     placeholder={EN.COMMON.EMAIL_ADDRESS}
                     value={email}
                     onChangeText={(text) => setEmail(text)}
                     type="text"
+                    onBlur={() => setEmailTouched(true)}
                     onTextInput={() => resetError()}
                   />
                   <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
-                    {firebaseAuthError.errorMessage}
+                    {firebaseAuthError.errorMessage || EN.AUTH_ERRORS.INVALID_EMAIL}
                   </FormControl.ErrorMessage>
                 </FormControl>
 
-                <FormControl isInvalid={formErrors.password} marginBottom={1} isRequired>
+                <FormControl
+                  isInvalid={formErrors.password || invalidPassword}
+                  marginBottom={1}
+                  isRequired
+                >
                   <Input
                     variant="outline"
                     placeholder={EN.COMMON.PASSWORD}
@@ -121,15 +141,18 @@ const LogIn = () => {
                         <IoniconsIcon
                           name={showPassword ? 'eye-off-outline' : 'eye-outline'}
                           size={20}
-                          color={formErrors.password ? Colors.error : Colors.grey}
+                          color={
+                            formErrors.password || invalidPassword ? Colors.error : Colors.grey
+                          }
                         />
                       </Pressable>
                     }
                     type={showPassword ? 'text' : 'password'}
+                    onBlur={() => setPasswordTouched(true)}
                     onTextInput={() => resetError()}
                   />
                   <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
-                    {firebaseAuthError.errorMessage}
+                    {firebaseAuthError.errorMessage || EN.AUTH_ERRORS.PASSWORD_TOO_SHORT}
                   </FormControl.ErrorMessage>
                 </FormControl>
 
