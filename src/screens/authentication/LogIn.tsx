@@ -15,7 +15,7 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import IoniconsIcon from 'react-native-vector-icons/Ionicons';
-import { handleLogin, useCheckLoggedInState } from '@utils';
+import { handleLogin, useCheckLoggedInState, validateEmail } from '@utils';
 import { useUserStore } from '@stores/user';
 import { useAuthErrorStore } from '@stores/errors/authError';
 import { StackNavigatorList } from '@screens/StackNavigator';
@@ -50,14 +50,8 @@ const LogIn = () => {
 
   const inputHasError = (inputValue: boolean) => inputValue === true;
   const disableSubmit = showEmailForm
-    ? Object.values(formErrors).some(inputHasError) || !email || !password
+    ? Object.values(formErrors).some(inputHasError) || !validateEmail(email) || !password
     : false;
-
-  console.log('firebaseAuthError', firebaseAuthError);
-
-  console.log('formErrors', formErrors);
-
-  console.log('disableSubmit', disableSubmit);
 
   // TODO: Add loading spinner for when user is logging in
   useCheckLoggedInState();
