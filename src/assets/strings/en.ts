@@ -1,9 +1,15 @@
 export const EN = {
   FIREBASE_AUTH_ERRORS: {
     INTERNAL_SERVER_ERROR: 'Internal server error has occurred.',
+    AUTH_TOKEN_EXPIRED: 'Auth token expired.',
+    AUTH_TOKEN_INVALID: 'Auth token invalid.',
+    AUTH_TOKEN_REVOKED: 'Auth token revoked.',
     EMAIL_ALREADY_EXISTS: 'Email already exists.',
-    EMAIL_IS_INVALID: 'Email is invalid.',
+    INVALID_EMAIL: 'Email is invalid.',
     INVALID_PASSWORD: 'Password is invalid.',
+    INVALID_PHONE_NUMBER: 'Phone number is invalid.',
+    INVALID_PHOTO_URL: 'Photo URL is invalid.',
+    INVALID_DISPLAY_NAME: 'Display name is invalid.',
     WRONG_PASSWORD: 'Password is incorrect.',
     USER_NOT_FOUND: 'User account not found.',
   },
