@@ -11,22 +11,21 @@ import {
   WarningOutlineIcon,
 } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import IoniconsIcon from 'react-native-vector-icons/Ionicons';
-import { handleLogin, useCheckLoggedInState, validateEmail } from '@utils';
+import { handleLogin, handleSignUp, useCheckLoggedInState, validateEmail } from '@utils';
 import { useUserStore } from '@stores/user';
 import { useAuthErrorStore } from '@stores/errors/authError';
-import { StackNavigatorList } from '@screens/StackNavigator';
 import { EN } from '@assets/strings';
 import Colors from '@assets/colors';
 import { globalStyles } from '@constants/styles';
 import { authenticationStyles } from './styles';
 import { FormErrors } from './types';
 
-const LogIn = () => {
-  const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList>>();
+const Authentication = () => {
+  const showLogIn = { showLogIn: true, showSignUp: false };
+  const showSignUp = { showLogIn: false, showSignUp: true };
+  const [formView, setFormView] = useState(showLogIn);
   const [showEmailForm, setShowEmailForm] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
@@ -37,6 +36,18 @@ const LogIn = () => {
   const resetError = useAuthErrorStore((state) => state.reset);
   const [emailTouched, setEmailTouched] = useState(false);
   const [passwordTouched, setPasswordTouched] = useState(false);
+
+  const handleAuthCall = () => {
+    if (showEmailForm) {
+      if (formView.showLogIn) {
+        handleLogin({ email, password, setUser, setError });
+      } else {
+        handleSignUp({ email, password, setUser, setError });
+      }
+    } else {
+      setShowEmailForm(true);
+    }
+  };
 
   const hasEmailAuthError = firebaseAuthError.errorCode?.includes('email') ?? false;
   const hasPasswordAuthError = firebaseAuthError.errorCode?.includes('password') ?? false;
@@ -63,7 +74,7 @@ const LogIn = () => {
     ? Object.values(formErrors).some(inputHasError) || !validateEmail(email) || passwordTooShort
     : false;
 
-  // TODO: Add loading spinner for when user is logging in
+  // TODO: Add loading spinner for when user is logging in/signing up
   useCheckLoggedInState();
 
   return (
@@ -84,7 +95,7 @@ const LogIn = () => {
                 {EN.COMMON.HELLO}
               </Heading>
               <Heading size="lg" textAlign="center" style={authenticationStyles.textShadow}>
-                {EN.LOG_IN.SUBHEADING}
+                {formView.showLogIn ? EN.LOG_IN.SUBHEADING : EN.SIGN_UP.SUBHEADING}
               </Heading>
             </View>
 
@@ -95,7 +106,9 @@ const LogIn = () => {
                 onPress={() => console.log('Handle Google login')}
                 shadow={0}
               >
-                {EN.LOG_IN.CONTINUE_WITH_GOOGLE}
+                {formView.showLogIn
+                  ? EN.LOG_IN.CONTINUE_WITH_GOOGLE
+                  : EN.SIGN_UP.CREATE_ACCOUNT_WITH_GOOGLE}
               </Button>
             </View>
             {showEmailForm && (
@@ -155,37 +168,39 @@ const LogIn = () => {
                   </FormControl.ErrorMessage>
                 </FormControl>
 
-                <Text
-                  color={Colors.blueMagenta}
-                  onPress={() => console.log('Handle user forgot password')}
-                  fontSize="xs"
-                  textAlign="right"
-                >
-                  {EN.LOG_IN.FORGOT_PASSWORD}
-                </Text>
+                {formView.showLogIn && (
+                  <Text
+                    color={Colors.blueMagenta}
+                    onPress={() => console.log('Handle user forgot password')}
+                    fontSize="xs"
+                    textAlign="right"
+                  >
+                    {EN.LOG_IN.FORGOT_PASSWORD}
+                  </Text>
+                )}
               </View>
             )}
 
             <Button
               variant="grey"
-              onPress={() =>
-                showEmailForm
-                  ? handleLogin({ email, password, setUser, setError })
-                  : setShowEmailForm(true)
-              }
+              onPress={() => handleAuthCall()}
               shadow={0}
               isDisabled={disableSubmit}
             >
-              {EN.LOG_IN.CONTINUE_WITH_EMAIL}
+              {formView.showLogIn
+                ? EN.LOG_IN.CONTINUE_WITH_EMAIL
+                : EN.SIGN_UP.CREATE_ACCOUNT_WITH_EMAIL}
             </Button>
 
             <Text
               color={Colors.blueMagenta}
-              onPress={() => navigation.navigate('SIGN_UP')}
+              onPress={() =>
+                formView.showLogIn ? setFormView(showSignUp) : setFormView(showLogIn)
+              }
               textAlign="center"
               marginTop={3}
             >
-              {EN.LOG_IN.CREATE_ACCOUNT}
+              {formView.showLogIn ? EN.LOG_IN.CREATE_ACCOUNT : EN.SIGN_UP.LOGIN_INSTEAD}
             </Text>
           </View>
         </View>
@@ -194,4 +209,4 @@ const LogIn = () => {
   );
 };
 
-export default LogIn;
+export default Authentication;
