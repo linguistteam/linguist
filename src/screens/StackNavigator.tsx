@@ -7,6 +7,7 @@ import { ClientProfile, TranslatorProfile } from '@screens/userprofiles';
 import { useUserStore } from '@stores/user';
 import { useLoadingStore } from '@stores/loading';
 import Colors from '@assets/colors';
+import { EN } from '@assets/strings';
 
 // NOTE: Specifying undefined means that the route doesn't have params
 // More info/types here: https://reactnavigation.org/docs/typescript/
@@ -31,7 +32,7 @@ const StackNavigator = () => {
         <HStack space={2} alignItems="center">
           <Spinner accessibilityLabel="Loading posts" color={Colors.blueMagenta} />
           <Heading color={Colors.blueMagenta} fontSize="md">
-            Loading
+            {EN.COMMON.LOADING}
           </Heading>
         </HStack>
       </Center>
