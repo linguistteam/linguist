@@ -25,8 +25,6 @@ const StackNavigator = () => {
   const isLoading = useLoadingStore((state) => state.isLoading);
   const isLoggedIn = user.uid;
 
-  console.log('isLoading', isLoading);
-
   if (isLoading) {
     return (
       <Center flex={1} px="3">
@@ -48,9 +46,6 @@ const StackNavigator = () => {
           contentStyle: { backgroundColor: '#fff' },
         }}
       >
-        {/* TODO: See if adding loading spinner fixes ERROR: The action
-        'REPLACE' with payload {"name":"HOME"} was not handled by any
-        navigator. */}
         {isLoggedIn ? (
           <>
             <Stack.Screen name="HOME" component={Home} />
