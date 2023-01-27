@@ -44,7 +44,7 @@ const Authentication = () => {
       if (formView.showLogIn) {
         handleLogin({ email, password, setUser, setError, setLoading });
       } else {
-        handleSignUp({ email, password, setUser, setError });
+        handleSignUp({ email, password, setUser, setError, setLoading });
       }
     } else {
       setShowEmailForm(true);
