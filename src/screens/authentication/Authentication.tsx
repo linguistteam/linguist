@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Box,
   Button,
@@ -36,8 +36,15 @@ const Authentication = () => {
   const setError = useAuthErrorStore((state) => state.setError);
   const resetError = useAuthErrorStore((state) => state.reset);
   const setLoading = useLoadingStore((state) => state.setLoading);
+  const hasError = useAuthErrorStore((state) => state.error);
   const [emailTouched, setEmailTouched] = useState(false);
   const [passwordTouched, setPasswordTouched] = useState(false);
+
+  useEffect(() => {
+    if (hasError) {
+      setShowEmailForm(true);
+    }
+  }, [hasError]);
 
   const handleAuthCall = () => {
     if (showEmailForm) {
