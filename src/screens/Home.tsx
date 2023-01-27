@@ -4,11 +4,15 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackNavigatorList } from './StackNavigator';
 import { useUserStore } from '@stores/user';
+import { useAuthErrorStore } from '@stores/errors/authError';
+import { useLoadingStore } from '@stores/loading';
 import { handleLogout } from '@utils';
 
 const Home = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList>>();
   const user = useUserStore((state) => state.user);
+  const setError = useAuthErrorStore((state) => state.setError);
+  const setLoading = useLoadingStore((state) => state.setLoading);
   const resetUser = useUserStore((state) => state.reset);
 
   return (
@@ -20,7 +24,7 @@ const Home = () => {
           Translator Profile
         </Button>
         <Button onPress={() => navigation.navigate('CLIENT_PROFILE')}>Client Profile</Button>
-        <Button onPress={() => handleLogout({ resetUser })}>Log Out</Button>
+        <Button onPress={() => handleLogout({ resetUser, setError, setLoading })}>Log Out</Button>
       </Stack>
     </SafeAreaView>
   );
