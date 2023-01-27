@@ -16,6 +16,7 @@ import IoniconsIcon from 'react-native-vector-icons/Ionicons';
 import { handleLogin, handleSignUp, useCheckLoggedInState, validateEmail } from '@utils';
 import { useUserStore } from '@stores/user';
 import { useAuthErrorStore } from '@stores/errors/authError';
+import { useLoadingStore } from '@stores/loading';
 import { EN } from '@assets/strings';
 import Colors from '@assets/colors';
 import { globalStyles } from '@constants/styles';
@@ -34,13 +35,14 @@ const Authentication = () => {
   const setUser = useUserStore((state) => state.setUser);
   const setError = useAuthErrorStore((state) => state.setError);
   const resetError = useAuthErrorStore((state) => state.reset);
+  const setLoading = useLoadingStore((state) => state.setLoading);
   const [emailTouched, setEmailTouched] = useState(false);
   const [passwordTouched, setPasswordTouched] = useState(false);
 
   const handleAuthCall = () => {
     if (showEmailForm) {
       if (formView.showLogIn) {
-        handleLogin({ email, password, setUser, setError });
+        handleLogin({ email, password, setUser, setError, setLoading });
       } else {
         handleSignUp({ email, password, setUser, setError });
       }
