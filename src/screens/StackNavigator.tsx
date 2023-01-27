@@ -1,4 +1,4 @@
-import { Spinner, HStack, Heading, Center } from 'native-base';
+import { Spinner, Center } from 'native-base';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from '@screens/Home';
@@ -28,13 +28,8 @@ const StackNavigator = () => {
 
   if (isLoading) {
     return (
-      <Center flex={1} px="3">
-        <HStack space={2} alignItems="center">
-          <Spinner accessibilityLabel="Loading posts" color={Colors.blueMagenta} />
-          <Heading color={Colors.blueMagenta} fontSize="md">
-            {EN.COMMON.LOADING}
-          </Heading>
-        </HStack>
+      <Center flex={1}>
+        <Spinner accessibilityLabel={EN.COMMON.LOADING} color={Colors.blueMagenta} size="lg" />
       </Center>
     );
   }
