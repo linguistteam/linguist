@@ -20,18 +20,19 @@ const handleLogin = ({ email, password, setUser, setError, setLoading }: HandleL
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       setLoading({ isLoading: true });
-      // Signed in
       // TODO: If !email, throw some error and don't log user in
       const user = userCredential.user;
       const { email, uid } = user;
       const userEmail = email ?? '';
 
       setUser({ email: userEmail, uid });
+
       setLoading({ isLoading: false });
     })
     .catch((error: AuthError) => {
       console.error('The following error has occurred: ', error.code);
       setError({ errorMessage: mapFirebaseAuthErrors(error.code), errorCode: error.code });
+      setLoading({ isLoading: false });
     });
 };
 
