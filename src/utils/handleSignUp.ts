@@ -16,9 +16,10 @@ interface HandleSignUpProps {
 }
 
 const handleSignUp = ({ email, password, setUser, setError, setLoading }: HandleSignUpProps) => {
+  setLoading({ isLoading: true });
+
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      setLoading({ isLoading: true });
       // TODO: If !email, throw some error and don't log user in
       const user = userCredential.user;
       const { email, uid } = user;
