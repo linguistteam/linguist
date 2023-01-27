@@ -2,6 +2,15 @@
 import { initializeApp } from 'firebase/app';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { initializeAuth, getReactNativePersistence } from 'firebase/auth/react-native';
+import {
+  FIREBASE_API_KEY,
+  FIREBASE_AUTH_DOMAIN,
+  FIREBASE_PROJECT_ID,
+  FIREBASE_STORAGE_BUCKET,
+  FIREBASE_MESSAGING_SENDER_ID,
+  FIREBASE_APP_ID,
+  FIREBASE_MEASUREMENT_ID,
+} from '@env';
 
 // Optionally import the services that you want to use
 // import {...} from "firebase/auth";
@@ -16,13 +25,13 @@ import { initializeAuth, getReactNativePersistence } from 'firebase/auth/react-n
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseDevConfig = {
-  apiKey: 'AIzaSyBJuyRjBX3lhdjpNy-wctTyAECkJOpemZE',
-  authDomain: 'linguist-a3b98.firebaseapp.com',
-  projectId: 'linguist-a3b98',
-  storageBucket: 'linguist-a3b98.appspot.com',
-  messagingSenderId: '19062759667',
-  appId: '1:19062759667:web:87e6d95b4496c8e524d786',
-  measurementId: 'G-KY2WD5MZ23',
+  apiKey: FIREBASE_API_KEY,
+  authDomain: FIREBASE_AUTH_DOMAIN,
+  projectId: FIREBASE_PROJECT_ID,
+  storageBucket: FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: FIREBASE_MESSAGING_SENDER_ID,
+  appId: FIREBASE_APP_ID,
+  measurementId: FIREBASE_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
