@@ -1,9 +1,12 @@
+import { Spinner, HStack, Heading, Center } from 'native-base';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from '@screens/Home';
 import { Authentication } from '@screens/authentication';
 import { ClientProfile, TranslatorProfile } from '@screens/userprofiles';
 import { useUserStore } from '@stores/user';
+import { useLoadingStore } from '@stores/loading';
+import Colors from '@assets/colors';
 
 // NOTE: Specifying undefined means that the route doesn't have params
 // More info/types here: https://reactnavigation.org/docs/typescript/
@@ -19,7 +22,23 @@ const Stack = createNativeStackNavigator<StackNavigatorList>();
 
 const StackNavigator = () => {
   const user = useUserStore((state) => state.user);
+  const isLoading = useLoadingStore((state) => state.isLoading);
   const isLoggedIn = user.uid;
+
+  console.log('isLoading', isLoading);
+
+  if (isLoading) {
+    return (
+      <Center flex={1} px="3">
+        <HStack space={2} alignItems="center">
+          <Spinner accessibilityLabel="Loading posts" color={Colors.blueMagenta} />
+          <Heading color={Colors.blueMagenta} fontSize="md">
+            Loading
+          </Heading>
+        </HStack>
+      </Center>
+    );
+  }
 
   return (
     <NavigationContainer>
