@@ -1,6 +1,5 @@
 import { AuthError, createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebaseConfig';
-import { User } from '@stores/user';
 import { FirebaseAuthError } from '@stores/errors/authError';
 import { Loading } from '@stores/loading';
 import mapFirebaseAuthErrors from './mapFirebaseAuthErrors';
@@ -11,23 +10,15 @@ import mapFirebaseAuthErrors from './mapFirebaseAuthErrors';
 interface HandleSignUpProps {
   email: string;
   password: string;
-  setUser: ({ email, uid }: User) => void;
   setError: ({ errorMessage, errorCode }: FirebaseAuthError) => void;
   setLoading: ({ isLoading }: Loading) => void;
 }
 
-const handleSignUp = ({ email, password, setUser, setError, setLoading }: HandleSignUpProps) => {
+const handleSignUp = ({ email, password, setError, setLoading }: HandleSignUpProps) => {
   setLoading({ isLoading: true });
 
   createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // TODO: If !email, throw some error and don't log user in
-      const user = userCredential.user;
-      const { email, uid } = user;
-      const userEmail = email ?? '';
-
-      setUser({ email: userEmail, uid });
-
+    .then(() => {
       setLoading({ isLoading: false });
     })
     .catch((error: AuthError) => {

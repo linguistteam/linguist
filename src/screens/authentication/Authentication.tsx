@@ -13,8 +13,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import IoniconsIcon from 'react-native-vector-icons/Ionicons';
-import { handleLogin, handleSignUp, useCheckLoggedInState, validateEmail } from '@utils';
-import { useUserStore } from '@stores/user';
+import { handleLogin, handleSignUp, validateEmail } from '@utils';
 import { useAuthErrorStore } from '@stores/errors/authError';
 import { useLoadingStore } from '@stores/loading';
 import { EN } from '@assets/strings';
@@ -32,7 +31,6 @@ const Authentication = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const firebaseAuthError = useAuthErrorStore((state) => state.error);
-  const setUser = useUserStore((state) => state.setUser);
   const setError = useAuthErrorStore((state) => state.setError);
   const resetError = useAuthErrorStore((state) => state.reset);
   const setLoading = useLoadingStore((state) => state.setLoading);
@@ -49,9 +47,9 @@ const Authentication = () => {
   const handleAuthCall = () => {
     if (showEmailForm) {
       if (formView.showLogIn) {
-        handleLogin({ email, password, setUser, setError, setLoading });
+        handleLogin({ email, password, setError, setLoading });
       } else {
-        handleSignUp({ email, password, setUser, setError, setLoading });
+        handleSignUp({ email, password, setError, setLoading });
       }
     } else {
       setShowEmailForm(true);
@@ -82,9 +80,6 @@ const Authentication = () => {
   const disableSubmit = showEmailForm
     ? Object.values(formErrors).some(inputHasError) || !validateEmail(email) || passwordTooShort
     : false;
-
-  // TODO: Add loading spinner for when user is logging in/signing up
-  useCheckLoggedInState();
 
   return (
     <SafeAreaView>

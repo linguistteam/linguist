@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Spinner, Center } from 'native-base';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -8,6 +9,7 @@ import { useUserStore } from '@stores/user';
 import { useLoadingStore } from '@stores/loading';
 import Colors from '@assets/colors';
 import { EN } from '@assets/strings';
+import { handleCheckLoggedInState } from '@utils';
 
 // NOTE: Specifying undefined means that the route doesn't have params
 // More info/types here: https://reactnavigation.org/docs/typescript/
@@ -23,8 +25,14 @@ const Stack = createNativeStackNavigator<StackNavigatorList>();
 
 const StackNavigator = () => {
   const user = useUserStore((state) => state.user);
+  const setUser = useUserStore((state) => state.setUser);
+  const resetUser = useUserStore((state) => state.reset);
   const isLoading = useLoadingStore((state) => state.isLoading);
   const isLoggedIn = user.uid;
+
+  useEffect(() => {
+    handleCheckLoggedInState({ setUser, resetUser });
+  }, [setUser, resetUser]);
 
   if (isLoading) {
     return (

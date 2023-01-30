@@ -6,5 +6,5 @@ export { default as handleSignUp } from './handleSignUp';
 export { default as isLongName } from './isLongName';
 export { default as mapFirebaseAuthErrors } from './mapFirebaseAuthErrors';
 export { default as truncateText } from './truncateText';
-export { default as useCheckLoggedInState } from './useCheckLoggedInState';
+export { default as handleCheckLoggedInState } from './handleCheckLoggedInState';
 export { default as validateEmail } from './validateEmail';
