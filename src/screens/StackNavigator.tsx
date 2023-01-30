@@ -39,7 +39,8 @@ const StackNavigator = () => {
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
-          contentStyle: { backgroundColor: '#fff' },
+          // TODO: Background color should change based on light/dark mode
+          contentStyle: { backgroundColor: Colors.white },
         }}
       >
         {isLoggedIn ? (
