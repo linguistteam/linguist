@@ -3,7 +3,7 @@ import { Spinner, Center } from 'native-base';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from '@screens/Home';
-import { Authentication } from '@screens/authentication';
+import { Authentication, PasswordReset } from '@screens/authentication';
 import { ClientProfile, TranslatorProfile } from '@screens/userprofiles';
 import { useUserStore } from '@stores/user';
 import { useLoadingStore } from '@stores/loading';
@@ -14,9 +14,10 @@ import { handleCheckLoggedInState } from '@utils';
 // NOTE: Specifying undefined means that the route doesn't have params
 // More info/types here: https://reactnavigation.org/docs/typescript/
 export type StackNavigatorList = {
-  HOME: undefined;
-  CLIENT_PROFILE: undefined;
   AUTHENTICATION: undefined;
+  CLIENT_PROFILE: undefined;
+  HOME: undefined;
+  PASSWORD_RESET: undefined;
   SIGN_UP: undefined;
   TRANSLATOR_PROFILE: undefined;
 };
@@ -58,7 +59,10 @@ const StackNavigator = () => {
             <Stack.Screen name="TRANSLATOR_PROFILE" component={TranslatorProfile} />
           </>
         ) : (
-          <Stack.Screen name="AUTHENTICATION" component={Authentication} />
+          <>
+            <Stack.Screen name="AUTHENTICATION" component={Authentication} />
+            <Stack.Screen name="PASSWORD_RESET" component={PasswordReset} />
+          </>
         )}
       </Stack.Navigator>
     </NavigationContainer>
