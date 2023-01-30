@@ -13,7 +13,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import IoniconsIcon from 'react-native-vector-icons/Ionicons';
-import { handleLogin, handleSignUp, validateEmail } from '@utils';
+import { handleLogin, handleSendPasswordResetEmail, handleSignUp, validateEmail } from '@utils';
 import { useAuthErrorStore } from '@stores/errors/authError';
 import { useLoadingStore } from '@stores/loading';
 import { EN } from '@assets/strings';
@@ -175,7 +175,7 @@ const Authentication = () => {
                 {formView.showLogIn && (
                   <Text
                     color={Colors.blueMagenta}
-                    onPress={() => console.log('Handle user forgot password')}
+                    onPress={() => handleSendPasswordResetEmail({ setError })}
                     fontSize="xs"
                     textAlign="right"
                   >
