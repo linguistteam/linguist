@@ -35,6 +35,12 @@ export const EN = {
     FORGOT_PASSWORD: 'Forgot password?',
     CREATE_ACCOUNT: 'Create account',
   },
+  PASSWORD_RESET: {
+    HEADING: 'Password Reset',
+    ENTER_EMAIL_ADDRESS:
+      'Enter the email address associated with your account, and we’ll email you a link to reset your password.',
+    SEND_RESET_LINK: 'Send reset link',
+  },
   REVIEWS: {
     FROM_CLIENTS: 'From clients',
     FROM_TRANSLATORS: 'From translators',
