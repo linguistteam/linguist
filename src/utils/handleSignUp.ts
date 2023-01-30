@@ -7,6 +7,7 @@ import mapFirebaseAuthErrors from './mapFirebaseAuthErrors';
 
 /* Handle signing user up */
 /* Learn more about Firebase Auth: https://firebase.google.com/docs/auth/web/start */
+
 interface HandleSignUpProps {
   email: string;
   password: string;
