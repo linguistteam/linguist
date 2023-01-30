@@ -96,121 +96,111 @@ const Authentication = () => {
           },
         }}
       >
-        <View style={globalStyles.appContainer}>
-          <View justifyContent="center" height="100%">
-            <View marginBottom={8}>
-              <Heading size="xl" textAlign="center" style={authenticationStyles.textShadow}>
-                {EN.COMMON.HELLO}
-              </Heading>
-              <Heading size="lg" textAlign="center" style={authenticationStyles.textShadow}>
-                {formView.showLogIn ? EN.LOG_IN.SUBHEADING : EN.SIGN_UP.SUBHEADING}
-              </Heading>
-            </View>
+        <View style={globalStyles.appContainer} justifyContent="center" height="100%">
+          <View marginBottom={8}>
+            <Heading size="xl" textAlign="center" style={authenticationStyles.textShadow}>
+              {EN.COMMON.HELLO}
+            </Heading>
+            <Heading size="lg" textAlign="center" style={authenticationStyles.textShadow}>
+              {formView.showLogIn ? EN.LOG_IN.SUBHEADING : EN.SIGN_UP.SUBHEADING}
+            </Heading>
+          </View>
 
-            <View marginBottom={4}>
-              <Button
-                variant="magenta"
-                leftIcon={<FontAwesomeIcon name="google" color={Colors.white} size={15} />}
-                onPress={() => console.log('Handle Google login')}
-                shadow={0}
-              >
-                {formView.showLogIn
-                  ? EN.LOG_IN.CONTINUE_WITH_GOOGLE
-                  : EN.SIGN_UP.CREATE_ACCOUNT_WITH_GOOGLE}
-              </Button>
-            </View>
-            {showEmailForm && (
-              <View marginBottom={4}>
-                {formErrors.general && (
-                  <Text color={Colors.error} marginBottom={2}>
-                    {firebaseAuthError.errorMessage}
-                  </Text>
-                )}
-
-                <FormControl
-                  isInvalid={formErrors.email || invalidEmail}
-                  marginBottom={3}
-                  isRequired
-                >
-                  <Input
-                    variant="outline"
-                    placeholder={EN.COMMON.EMAIL_ADDRESS}
-                    value={email}
-                    onChangeText={(text) => setEmail(text)}
-                    type="text"
-                    onBlur={() => setEmailTouched(true)}
-                    onTextInput={() => resetError()}
-                  />
-                  <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
-                    {firebaseAuthError.errorMessage || EN.AUTH_ERRORS.INVALID_EMAIL}
-                  </FormControl.ErrorMessage>
-                </FormControl>
-
-                <FormControl
-                  isInvalid={formErrors.password || invalidPassword}
-                  marginBottom={1}
-                  isRequired
-                >
-                  <Input
-                    variant="outline"
-                    placeholder={EN.COMMON.PASSWORD}
-                    value={password}
-                    onChangeText={(text) => setPassword(text)}
-                    InputRightElement={
-                      <Pressable onPress={() => setShowPassword(!showPassword)} marginRight={2}>
-                        <IoniconsIcon
-                          name={showPassword ? 'eye-off-outline' : 'eye-outline'}
-                          size={20}
-                          color={
-                            formErrors.password || invalidPassword ? Colors.error : Colors.grey
-                          }
-                        />
-                      </Pressable>
-                    }
-                    type={showPassword ? 'text' : 'password'}
-                    onBlur={() => setPasswordTouched(true)}
-                    onTextInput={() => resetError()}
-                  />
-                  <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
-                    {firebaseAuthError.errorMessage || EN.AUTH_ERRORS.PASSWORD_TOO_SHORT}
-                  </FormControl.ErrorMessage>
-                </FormControl>
-
-                {formView.showLogIn && (
-                  <Text
-                    color={Colors.blueMagenta}
-                    onPress={() => navigation.navigate('PASSWORD_RESET')}
-                    fontSize="xs"
-                    textAlign="right"
-                  >
-                    {EN.LOG_IN.FORGOT_PASSWORD}
-                  </Text>
-                )}
-              </View>
-            )}
-
+          <View marginBottom={4}>
             <Button
-              variant="grey"
-              onPress={() => handleAuthCall()}
+              variant="magenta"
+              leftIcon={<FontAwesomeIcon name="google" color={Colors.white} size={15} />}
+              onPress={() => console.log('Handle Google login')}
               shadow={0}
-              isDisabled={disableSubmit}
             >
               {formView.showLogIn
-                ? EN.LOG_IN.CONTINUE_WITH_EMAIL
-                : EN.SIGN_UP.CREATE_ACCOUNT_WITH_EMAIL}
+                ? EN.LOG_IN.CONTINUE_WITH_GOOGLE
+                : EN.SIGN_UP.CREATE_ACCOUNT_WITH_GOOGLE}
             </Button>
-
-            <Text
-              color={Colors.blueMagenta}
-              onPress={() =>
-                formView.showLogIn ? setFormView(showSignUp) : setFormView(showLogIn)
-              }
-              textAlign="center"
-              marginTop={3}
-            >
-              {formView.showLogIn ? EN.LOG_IN.CREATE_ACCOUNT : EN.SIGN_UP.LOGIN_INSTEAD}
-            </Text>
           </View>
+          {showEmailForm && (
+            <View marginBottom={4}>
+              {formErrors.general && (
+                <Text color={Colors.error} marginBottom={2}>
+                  {firebaseAuthError.errorMessage}
+                </Text>
+              )}
+
+              <FormControl isInvalid={formErrors.email || invalidEmail} marginBottom={3} isRequired>
+                <Input
+                  variant="outline"
+                  placeholder={EN.COMMON.EMAIL_ADDRESS}
+                  value={email}
+                  onChangeText={(text) => setEmail(text)}
+                  type="text"
+                  onBlur={() => setEmailTouched(true)}
+                  onTextInput={() => resetError()}
+                />
+                <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
+                  {firebaseAuthError.errorMessage || EN.AUTH_ERRORS.INVALID_EMAIL}
+                </FormControl.ErrorMessage>
+              </FormControl>
+
+              <FormControl
+                isInvalid={formErrors.password || invalidPassword}
+                marginBottom={1}
+                isRequired
+              >
+                <Input
+                  variant="outline"
+                  placeholder={EN.COMMON.PASSWORD}
+                  value={password}
+                  onChangeText={(text) => setPassword(text)}
+                  InputRightElement={
+                    <Pressable onPress={() => setShowPassword(!showPassword)} marginRight={2}>
+                      <IoniconsIcon
+                        name={showPassword ? 'eye-off-outline' : 'eye-outline'}
+                        size={20}
+                        color={formErrors.password || invalidPassword ? Colors.error : Colors.grey}
+                      />
+                    </Pressable>
+                  }
+                  type={showPassword ? 'text' : 'password'}
+                  onBlur={() => setPasswordTouched(true)}
+                  onTextInput={() => resetError()}
+                />
+                <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
+                  {firebaseAuthError.errorMessage || EN.AUTH_ERRORS.PASSWORD_TOO_SHORT}
+                </FormControl.ErrorMessage>
+              </FormControl>
+
+              {formView.showLogIn && (
+                <Text
+                  color={Colors.blueMagenta}
+                  onPress={() => navigation.navigate('PASSWORD_RESET')}
+                  fontSize="xs"
+                  textAlign="right"
+                >
+                  {EN.LOG_IN.FORGOT_PASSWORD}
+                </Text>
+              )}
+            </View>
+          )}
+
+          <Button
+            variant="grey"
+            onPress={() => handleAuthCall()}
+            shadow={0}
+            isDisabled={disableSubmit}
+          >
+            {formView.showLogIn
+              ? EN.LOG_IN.CONTINUE_WITH_EMAIL
+              : EN.SIGN_UP.CREATE_ACCOUNT_WITH_EMAIL}
+          </Button>
+
+          <Text
+            color={Colors.blueMagenta}
+            onPress={() => (formView.showLogIn ? setFormView(showSignUp) : setFormView(showLogIn))}
+            textAlign="center"
+            marginTop={3}
+          >
+            {formView.showLogIn ? EN.LOG_IN.CREATE_ACCOUNT : EN.SIGN_UP.LOGIN_INSTEAD}
+          </Text>
         </View>
       </Box>
     </SafeAreaView>
