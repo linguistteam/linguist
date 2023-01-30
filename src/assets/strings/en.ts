@@ -23,6 +23,7 @@ export const EN = {
     HELLO: 'Hello',
     EMAIL_ADDRESS: 'Email address',
     PASSWORD: 'Password',
+    LOADING: 'Loading',
   },
   LANGUAGES: {
     HEADING: 'Lanugages',

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Box,
   Button,
@@ -16,6 +16,7 @@ import IoniconsIcon from 'react-native-vector-icons/Ionicons';
 import { handleLogin, handleSignUp, useCheckLoggedInState, validateEmail } from '@utils';
 import { useUserStore } from '@stores/user';
 import { useAuthErrorStore } from '@stores/errors/authError';
+import { useLoadingStore } from '@stores/loading';
 import { EN } from '@assets/strings';
 import Colors from '@assets/colors';
 import { globalStyles } from '@constants/styles';
@@ -34,15 +35,23 @@ const Authentication = () => {
   const setUser = useUserStore((state) => state.setUser);
   const setError = useAuthErrorStore((state) => state.setError);
   const resetError = useAuthErrorStore((state) => state.reset);
+  const setLoading = useLoadingStore((state) => state.setLoading);
+  const hasError = useAuthErrorStore((state) => state.error);
   const [emailTouched, setEmailTouched] = useState(false);
   const [passwordTouched, setPasswordTouched] = useState(false);
+
+  useEffect(() => {
+    if (hasError) {
+      setShowEmailForm(true);
+    }
+  }, [hasError]);
 
   const handleAuthCall = () => {
     if (showEmailForm) {
       if (formView.showLogIn) {
-        handleLogin({ email, password, setUser, setError });
+        handleLogin({ email, password, setUser, setError, setLoading });
       } else {
-        handleSignUp({ email, password, setUser, setError });
+        handleSignUp({ email, password, setUser, setError, setLoading });
       }
     } else {
       setShowEmailForm(true);

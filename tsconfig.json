@@ -52,5 +52,8 @@
     "metro.config.js",
     "jest.config.js"
   ],
-  "extends": "expo/tsconfig.base"
+  "extends": "expo/tsconfig.base",
+  "typeRoots": [
+    "./env.d.ts"
+  ]
 }
