@@ -11,6 +11,9 @@ interface HandleSendPasswordResetEmailProps {
   setError: ({ errorMessage, errorCode }: FirebaseAuthError) => void;
 }
 
+// TODO: Set some state here that denotes that password reset
+// email has been sent. This state will conditionally route the
+// user back to the Auth page
 const handleSendPasswordResetEmail = ({ email, setError }: HandleSendPasswordResetEmailProps) => {
   sendPasswordResetEmail(auth, email)
     .then(() => {
