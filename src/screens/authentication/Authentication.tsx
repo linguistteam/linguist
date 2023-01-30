@@ -13,7 +13,10 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import IoniconsIcon from 'react-native-vector-icons/Ionicons';
-import { handleLogin, handleSendPasswordResetEmail, handleSignUp, validateEmail } from '@utils';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { StackNavigatorList } from '@screens/StackNavigator';
+import { handleLogin, handleSignUp, validateEmail } from '@utils';
 import { useAuthErrorStore } from '@stores/errors/authError';
 import { useLoadingStore } from '@stores/loading';
 import { EN } from '@assets/strings';
@@ -23,6 +26,7 @@ import { authenticationStyles } from './styles';
 import { FormErrors } from './types';
 
 const Authentication = () => {
+  const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList>>();
   const showLogIn = { showLogIn: true, showSignUp: false };
   const showSignUp = { showLogIn: false, showSignUp: true };
   const [formView, setFormView] = useState(showLogIn);
@@ -175,7 +179,7 @@ const Authentication = () => {
                 {formView.showLogIn && (
                   <Text
                     color={Colors.blueMagenta}
-                    onPress={() => handleSendPasswordResetEmail({ setError })}
+                    onPress={() => navigation.navigate('PASSWORD_RESET')}
                     fontSize="xs"
                     textAlign="right"
                   >
