@@ -2,6 +2,7 @@ export { default as extractInitials } from './extractInitials';
 export { default as fixedRatingAverage } from './fixedRatingAverage';
 export { default as handleLogin } from './handleLogin';
 export { default as handleLogout } from './handleLogout';
+export { default as handleSendPasswordResetEmail } from './handleSendPasswordResetEmail';
 export { default as handleSignUp } from './handleSignUp';
 export { default as isLongName } from './isLongName';
 export { default as mapFirebaseAuthErrors } from './mapFirebaseAuthErrors';
