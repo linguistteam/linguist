@@ -23,13 +23,8 @@ const PasswordReset = () => {
   const resetError = useAuthErrorStore((state) => state.reset);
   const setError = useAuthErrorStore((state) => state.setError);
 
-  // TODO: Remove once done testing
-  const error = useAuthErrorStore((state) => state.error);
-
   const invalidEmail = emailTouched && !validateEmail(email);
   const disableSubmit = !!firebaseAuthError.errorMessage || !validateEmail(email);
-
-  console.log('error', error);
 
   return (
     <SafeAreaView>
