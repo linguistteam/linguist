@@ -1,14 +1,9 @@
 import { useEffect, useState } from 'react';
 import {
-  Alert,
   Box,
   Button,
-  CloseIcon,
-  Collapse,
   FormControl,
   Heading,
-  HStack,
-  IconButton,
   Input,
   Pressable,
   Text,
@@ -27,6 +22,7 @@ import { useLoadingStore } from '@stores/loading';
 import { EN } from '@assets/strings';
 import Colors from '@assets/colors';
 import { globalStyles } from '@constants/styles';
+import { PasswordResetAlert } from '@components/authentication';
 import { authenticationStyles } from './styles';
 import { FormErrors, PasswordResetRouteParams } from './types';
 
@@ -49,20 +45,11 @@ const Authentication = () => {
   const [emailTouched, setEmailTouched] = useState(false);
   const [passwordTouched, setPasswordTouched] = useState(false);
 
-  const { passwordReset } = route.params;
-  // TODO: Default to false
-  const [showPasswordResetAlert, setShowPasswordResetAlert] = useState(true);
-
   useEffect(() => {
     if (hasError) {
       setShowEmailForm(true);
     }
   }, [hasError]);
-
-  // TODO: Uncommment
-  // useEffect(() => {
-  //   setShowPasswordResetAlert(passwordReset);
-  // }, [passwordReset]);
 
   const handleAuthCall = () => {
     if (showEmailForm) {
@@ -115,29 +102,7 @@ const Authentication = () => {
           },
         }}
       >
-        <View position="absolute" width="100%" zIndex={1}>
-          <Collapse isOpen={showPasswordResetAlert}>
-            <Alert variant="subtle" status="success">
-              <HStack justifyContent="space-evenly">
-                <HStack space={1.5} flexShrink={1}>
-                  <Alert.Icon mt="1" />
-                  <Text color="coolGray.800">{EN.PASSWORD_RESET.RESET_LINK_SENT}</Text>
-                  <IconButton
-                    variant="unstyled"
-                    _focus={{
-                      borderWidth: 0,
-                    }}
-                    icon={<CloseIcon size="3" />}
-                    _icon={{
-                      color: 'coolGray.600',
-                    }}
-                    onPress={() => setShowPasswordResetAlert(false)}
-                  />
-                </HStack>
-              </HStack>
-            </Alert>
-          </Collapse>
-        </View>
+        <PasswordResetAlert route={route} />
 
         <View style={globalStyles.appContainer} justifyContent="center" height="100%">
           <View marginBottom={8}>
