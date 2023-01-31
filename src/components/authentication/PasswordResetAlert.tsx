@@ -9,14 +9,12 @@ interface PasswordResetAlertProps {
 }
 
 const PasswordResetAlert = ({ route }: PasswordResetAlertProps) => {
-  const { passwordReset } = route.params;
-  // TODO: Default to false
-  const [showPasswordResetAlert, setShowPasswordResetAlert] = useState(true);
+  const { passwordReset, email } = route.params;
+  const [showPasswordResetAlert, setShowPasswordResetAlert] = useState(false);
 
-  // TODO: Uncommment
-  // useEffect(() => {
-  //   setShowPasswordResetAlert(passwordReset);
-  // }, [passwordReset]);
+  useEffect(() => {
+    setShowPasswordResetAlert(passwordReset);
+  }, [passwordReset]);
 
   return (
     <View position="absolute" width="100%" zIndex={1}>
@@ -25,7 +23,7 @@ const PasswordResetAlert = ({ route }: PasswordResetAlertProps) => {
           <HStack justifyContent="space-evenly">
             <HStack space={1.5} flexShrink={1}>
               <Alert.Icon mt="1" />
-              <Text color="coolGray.800">{EN.PASSWORD_RESET.RESET_LINK_SENT}</Text>
+              <Text color="coolGray.800">{EN.PASSWORD_RESET.RESET_LINK_SENT(email)}</Text>
               <IconButton
                 variant="unstyled"
                 _focus={{
