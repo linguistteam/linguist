@@ -10,11 +10,12 @@ import { useLoadingStore } from '@stores/loading';
 import Colors from '@assets/colors';
 import { EN } from '@assets/strings';
 import { handleCheckLoggedInState } from '@utils';
+import { PasswordResetRouteParams } from '@screens/authentication/types';
 
 // NOTE: Specifying undefined means that the route doesn't have params
 // More info/types here: https://reactnavigation.org/docs/typescript/
 export type StackNavigatorList = {
-  AUTHENTICATION: undefined;
+  AUTHENTICATION: PasswordResetRouteParams;
   CLIENT_PROFILE: undefined;
   HOME: undefined;
   PASSWORD_RESET: undefined;
@@ -60,7 +61,11 @@ const StackNavigator = () => {
           </>
         ) : (
           <>
-            <Stack.Screen name="AUTHENTICATION" component={Authentication} />
+            <Stack.Screen
+              name="AUTHENTICATION"
+              component={Authentication}
+              initialParams={{ passwordReset: false }}
+            />
             <Stack.Screen name="PASSWORD_RESET" component={PasswordReset} />
           </>
         )}
