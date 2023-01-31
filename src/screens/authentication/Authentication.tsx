@@ -1,9 +1,14 @@
 import { useEffect, useState } from 'react';
 import {
+  Alert,
   Box,
   Button,
+  CloseIcon,
+  Collapse,
   FormControl,
   Heading,
+  HStack,
+  IconButton,
   Input,
   Pressable,
   Text,
@@ -43,15 +48,21 @@ const Authentication = () => {
   const hasError = useAuthErrorStore((state) => state.error);
   const [emailTouched, setEmailTouched] = useState(false);
   const [passwordTouched, setPasswordTouched] = useState(false);
-  const { passwordReset } = route.params;
-  console.log('is password reset', passwordReset);
 
-  // on page load, set password
+  const { passwordReset } = route.params;
+  // TODO: Default to false
+  const [showPasswordResetAlert, setShowPasswordResetAlert] = useState(true);
+
   useEffect(() => {
     if (hasError) {
       setShowEmailForm(true);
     }
   }, [hasError]);
+
+  // TODO: Uncommment
+  // useEffect(() => {
+  //   setShowPasswordResetAlert(passwordReset);
+  // }, [passwordReset]);
 
   const handleAuthCall = () => {
     if (showEmailForm) {
@@ -104,6 +115,30 @@ const Authentication = () => {
           },
         }}
       >
+        <View position="absolute" width="100%" zIndex={1}>
+          <Collapse isOpen={showPasswordResetAlert}>
+            <Alert variant="subtle" status="success">
+              <HStack justifyContent="space-evenly">
+                <HStack space={1.5} flexShrink={1}>
+                  <Alert.Icon mt="1" />
+                  <Text color="coolGray.800">{EN.PASSWORD_RESET.RESET_LINK_SENT}</Text>
+                  <IconButton
+                    variant="unstyled"
+                    _focus={{
+                      borderWidth: 0,
+                    }}
+                    icon={<CloseIcon size="3" />}
+                    _icon={{
+                      color: 'coolGray.600',
+                    }}
+                    onPress={() => setShowPasswordResetAlert(false)}
+                  />
+                </HStack>
+              </HStack>
+            </Alert>
+          </Collapse>
+        </View>
+
         <View style={globalStyles.appContainer} justifyContent="center" height="100%">
           <View marginBottom={8}>
             <Heading size="xl" textAlign="center" style={authenticationStyles.textShadow}>
