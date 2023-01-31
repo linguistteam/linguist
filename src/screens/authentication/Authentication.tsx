@@ -88,9 +88,6 @@ const Authentication = () => {
     ? Object.values(formErrors).some(inputHasError) || !validateEmail(email) || passwordTooShort
     : false;
 
-  // TODO: If navigating back to this page after password reset,
-  // show alert that says:
-  // A link to reset your password has been sent to ${email}.
   return (
     <SafeAreaView>
       <Box
