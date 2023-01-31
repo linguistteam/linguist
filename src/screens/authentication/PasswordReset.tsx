@@ -15,13 +15,10 @@ import Colors from '@assets/colors';
 import { globalStyles } from '@constants/styles';
 import { handleSendPasswordResetEmail, validateEmail } from '@utils';
 import { useAuthErrorStore } from '@stores/errors/authError';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { StackNavigatorList } from '@screens/StackNavigator';
-import { PasswordResetNavigate } from './types';
 
-const PasswordReset = () => {
-  const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList>>();
+const PasswordReset = ({ navigation }: NativeStackScreenProps<StackNavigatorList>) => {
   const [email, setEmail] = useState('');
   const [emailTouched, setEmailTouched] = useState(false);
   const firebaseAuthError = useAuthErrorStore((state) => state.error);
@@ -30,9 +27,6 @@ const PasswordReset = () => {
 
   const invalidEmail = emailTouched && !validateEmail(email);
   const disableSubmit = !!firebaseAuthError.errorMessage || !validateEmail(email);
-
-  // TODO: Fix types
-  const navigate = ({ name, params }: PasswordResetNavigate) => navigation.navigate(name, params);
 
   return (
     <SafeAreaView>
@@ -71,7 +65,7 @@ const PasswordReset = () => {
 
           <Button
             variant="magenta"
-            onPress={() => handleSendPasswordResetEmail({ email, setError, navigate })}
+            onPress={() => handleSendPasswordResetEmail({ email, setError, navigation })}
             shadow={0}
             isDisabled={disableSubmit}
           >
