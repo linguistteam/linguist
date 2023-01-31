@@ -9,7 +9,7 @@ import { useLoadingStore } from '@stores/loading';
 import { handleLogout } from '@utils';
 
 const Home = () => {
-  const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList>>();
+  const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList, 'HOME'>>();
   const user = useUserStore((state) => state.user);
   const setError = useAuthErrorStore((state) => state.setError);
   const setLoading = useLoadingStore((state) => state.setLoading);
