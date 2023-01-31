@@ -9,15 +9,21 @@ import mapFirebaseAuthErrors from './mapFirebaseAuthErrors';
 interface HandleSendPasswordResetEmailProps {
   email: string;
   setError: ({ errorMessage, errorCode }: FirebaseAuthError) => void;
+  navigate: any;
 }
 
 // TODO: Set some state here that denotes that password reset
 // email has been sent. This state will conditionally route the
 // user back to the Auth page
-const handleSendPasswordResetEmail = ({ email, setError }: HandleSendPasswordResetEmailProps) => {
+const handleSendPasswordResetEmail = ({
+  email,
+  setError,
+  navigate,
+}: HandleSendPasswordResetEmailProps) => {
   sendPasswordResetEmail(auth, email)
     .then(() => {
       console.log('email sent!');
+      navigate('AUTHENTICATION', { passwordReset: true });
     })
     .catch((error: AuthError) => {
       console.error('The following error has occurred: ', error.code);
