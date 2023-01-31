@@ -13,7 +13,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import IoniconsIcon from 'react-native-vector-icons/Ionicons';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackNavigatorList } from '@screens/StackNavigator';
 import { handleLogin, handleSignUp, validateEmail } from '@utils';
@@ -27,6 +27,7 @@ import { FormErrors } from './types';
 
 const Authentication = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList>>();
+  const route = useRoute<RouteProp<{ params: { passwordReset: boolean } }, 'params'>>();
   const showLogIn = { showLogIn: true, showSignUp: false };
   const showSignUp = { showLogIn: false, showSignUp: true };
   const [formView, setFormView] = useState(showLogIn);
@@ -42,11 +43,16 @@ const Authentication = () => {
   const [emailTouched, setEmailTouched] = useState(false);
   const [passwordTouched, setPasswordTouched] = useState(false);
 
+  // on page load, set password
   useEffect(() => {
     if (hasError) {
       setShowEmailForm(true);
     }
   }, [hasError]);
+
+  const { passwordReset } = route.params;
+
+  console.log('is password reset', passwordReset);
 
   const handleAuthCall = () => {
     if (showEmailForm) {
