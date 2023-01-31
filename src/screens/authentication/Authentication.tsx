@@ -23,11 +23,12 @@ import { EN } from '@assets/strings';
 import Colors from '@assets/colors';
 import { globalStyles } from '@constants/styles';
 import { authenticationStyles } from './styles';
-import { FormErrors } from './types';
+import { FormErrors, PasswordResetRouteParams } from './types';
 
 const Authentication = () => {
-  const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList>>();
-  const route = useRoute<RouteProp<{ params: { passwordReset: boolean } }, 'params'>>();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<StackNavigatorList, 'AUTHENTICATION'>>();
+  const route = useRoute<RouteProp<{ params: PasswordResetRouteParams }, 'params'>>();
   const showLogIn = { showLogIn: true, showSignUp: false };
   const showSignUp = { showLogIn: false, showSignUp: true };
   const [formView, setFormView] = useState(showLogIn);
@@ -42,6 +43,8 @@ const Authentication = () => {
   const hasError = useAuthErrorStore((state) => state.error);
   const [emailTouched, setEmailTouched] = useState(false);
   const [passwordTouched, setPasswordTouched] = useState(false);
+  const { passwordReset } = route.params;
+  console.log('is password reset', passwordReset);
 
   // on page load, set password
   useEffect(() => {
@@ -49,10 +52,6 @@ const Authentication = () => {
       setShowEmailForm(true);
     }
   }, [hasError]);
-
-  const { passwordReset } = route.params;
-
-  console.log('is password reset', passwordReset);
 
   const handleAuthCall = () => {
     if (showEmailForm) {
