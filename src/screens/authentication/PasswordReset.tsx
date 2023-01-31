@@ -15,11 +15,11 @@ import Colors from '@assets/colors';
 import { globalStyles } from '@constants/styles';
 import { handleSendPasswordResetEmail, validateEmail } from '@utils';
 import { useAuthErrorStore } from '@stores/errors/authError';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackNavigatorList } from '@screens/StackNavigator';
 
 interface PasswordResetProps {
-  navigation: NativeStackScreenProps<StackNavigatorList>;
+  navigation: NativeStackNavigationProp<StackNavigatorList>;
 }
 
 const PasswordReset = ({ navigation }: PasswordResetProps) => {
