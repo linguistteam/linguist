@@ -8,6 +8,7 @@ export interface FormErrors {
 
 export interface PasswordResetRouteParams {
   passwordReset: boolean;
+  email: string;
 }
 
 export interface PasswordResetNavigate {
