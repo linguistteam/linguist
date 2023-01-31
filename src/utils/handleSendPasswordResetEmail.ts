@@ -20,7 +20,7 @@ const handleSendPasswordResetEmail = ({
   setError,
   navigation,
 }: HandleSendPasswordResetEmailProps) => {
-  navigation.navigate('AUTHENTICATION', { passwordReset: true });
+  navigation.navigate('AUTHENTICATION', { passwordReset: true, email });
   // sendPasswordResetEmail(auth, email)
   //   .then(() => {
   //     console.log('email sent!');
