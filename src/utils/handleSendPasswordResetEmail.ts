@@ -2,7 +2,6 @@ import { AuthError, sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../../firebaseConfig';
 import { FirebaseAuthError } from '@stores/errors/authError';
 import mapFirebaseAuthErrors from './mapFirebaseAuthErrors';
-import { PasswordResetNavigate } from '@screens/authentication/types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { StackNavigatorList } from '@screens/StackNavigator';
 
@@ -20,16 +19,14 @@ const handleSendPasswordResetEmail = ({
   setError,
   navigation,
 }: HandleSendPasswordResetEmailProps) => {
-  navigation.navigate('AUTHENTICATION', { passwordReset: true, email });
-  // sendPasswordResetEmail(auth, email)
-  //   .then(() => {
-  //     console.log('email sent!');
-  //     navigation.navigate('AUTHENTICATION', { passwordReset: true });
-  //   })
-  //   .catch((error: AuthError) => {
-  //     console.error('The following error has occurred: ', error.code);
-  //     setError({ errorMessage: mapFirebaseAuthErrors(error.code), errorCode: error.code });
-  //   });
+  sendPasswordResetEmail(auth, email)
+    .then(() => {
+      navigation.navigate('AUTHENTICATION', { passwordReset: true, email });
+    })
+    .catch((error: AuthError) => {
+      console.error('The following error has occurred: ', error.code);
+      setError({ errorMessage: mapFirebaseAuthErrors(error.code), errorCode: error.code });
+    });
 };
 
 export default handleSendPasswordResetEmail;
