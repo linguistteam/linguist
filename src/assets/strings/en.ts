@@ -40,6 +40,7 @@ export const EN = {
     ENTER_EMAIL_ADDRESS:
       'Enter the email address associated with your account, and we’ll email you a link to reset your password.',
     SEND_RESET_LINK: 'Send reset link',
+    RESET_LINK_SENT: 'A link to reset your password has been sent to test@email.com.',
   },
   REVIEWS: {
     FROM_CLIENTS: 'From clients',
