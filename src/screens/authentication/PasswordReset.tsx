@@ -18,7 +18,11 @@ import { useAuthErrorStore } from '@stores/errors/authError';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { StackNavigatorList } from '@screens/StackNavigator';
 
-const PasswordReset = ({ navigation }: NativeStackScreenProps<StackNavigatorList>) => {
+interface PasswordResetProps {
+  navigation: NativeStackScreenProps<StackNavigatorList>;
+}
+
+const PasswordReset = ({ navigation }: PasswordResetProps) => {
   const [email, setEmail] = useState('');
   const [emailTouched, setEmailTouched] = useState(false);
   const firebaseAuthError = useAuthErrorStore((state) => state.error);
