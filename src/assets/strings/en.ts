@@ -21,6 +21,8 @@ export const EN = {
   },
   COMMON: {
     HELLO: 'Hello',
+    FIRST_NAME: 'First Name',
+    LAST_NAME: 'Last Name',
     EMAIL_ADDRESS: 'Email address',
     PASSWORD: 'Password',
     LOADING: 'Loading',

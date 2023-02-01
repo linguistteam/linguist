@@ -131,6 +131,48 @@ const Authentication = () => {
                 </Text>
               )}
 
+              {formView.showSignUp && (
+                <>
+                  <FormControl
+                    isInvalid={formErrors.email || invalidEmail}
+                    marginBottom={3}
+                    isRequired
+                  >
+                    <Input
+                      variant="outline"
+                      placeholder={EN.COMMON.FIRST_NAME}
+                      value={email}
+                      onChangeText={(text) => setEmail(text)}
+                      type="text"
+                      onBlur={() => setEmailTouched(true)}
+                      onTextInput={() => resetError()}
+                    />
+                    <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
+                      {firebaseAuthError.errorMessage || EN.AUTH_ERRORS.INVALID_EMAIL}
+                    </FormControl.ErrorMessage>
+                  </FormControl>
+
+                  <FormControl
+                    isInvalid={formErrors.email || invalidEmail}
+                    marginBottom={3}
+                    isRequired
+                  >
+                    <Input
+                      variant="outline"
+                      placeholder={EN.COMMON.LAST_NAME}
+                      value={email}
+                      onChangeText={(text) => setEmail(text)}
+                      type="text"
+                      onBlur={() => setEmailTouched(true)}
+                      onTextInput={() => resetError()}
+                    />
+                    <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
+                      {firebaseAuthError.errorMessage || EN.AUTH_ERRORS.INVALID_EMAIL}
+                    </FormControl.ErrorMessage>
+                  </FormControl>
+                </>
+              )}
+
               <FormControl isInvalid={formErrors.email || invalidEmail} marginBottom={3} isRequired>
                 <Input
                   variant="outline"
