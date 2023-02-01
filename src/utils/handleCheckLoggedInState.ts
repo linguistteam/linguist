@@ -19,6 +19,8 @@ const handleCheckLoggedInState = ({ setUser, resetUser }: HandleCheckLoggedInSta
 
       setUser({ email, uid });
 
+      console.log({ user });
+
       console.info('user is logged in');
     } else {
       // User is logged out
