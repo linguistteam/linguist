@@ -1,5 +1,6 @@
 /* Extracts initials from first and last name */
 const extractInitials = (name: string) => {
+  // TODO: Should handle name errors gracefully
   const fn = name.split(' ')[0];
   const ln = name.split(' ')[1];
 
