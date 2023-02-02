@@ -136,6 +136,7 @@ const Authentication = () => {
               )}
 
               {formView.showSignUp && (
+                // TODO: Add validation for name
                 <>
                   <FormControl
                     isInvalid={formErrors.email || invalidEmail}
