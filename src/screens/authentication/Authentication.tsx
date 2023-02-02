@@ -35,6 +35,8 @@ const Authentication = () => {
   const [formView, setFormView] = useState(showLogIn);
   const [showEmailForm, setShowEmailForm] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const firebaseAuthError = useAuthErrorStore((state) => state.error);
@@ -44,6 +46,8 @@ const Authentication = () => {
   const hasError = useAuthErrorStore((state) => state.error);
   const [emailTouched, setEmailTouched] = useState(false);
   const [passwordTouched, setPasswordTouched] = useState(false);
+
+  const displayName = firstName.concat(' ', lastName);
 
   useEffect(() => {
     if (hasError) {
@@ -56,7 +60,7 @@ const Authentication = () => {
       if (formView.showLogIn) {
         handleLogin({ email, password, setError, setLoading });
       } else {
-        handleSignUp({ email, password, setError, setLoading });
+        handleSignUp({ displayName, email, password, setError, setLoading });
       }
     } else {
       setShowEmailForm(true);
@@ -141,13 +145,15 @@ const Authentication = () => {
                     <Input
                       variant="outline"
                       placeholder={EN.COMMON.FIRST_NAME}
-                      value={email}
-                      onChangeText={(text) => setEmail(text)}
+                      value={firstName}
+                      onChangeText={(text) => setFirstName(text)}
                       type="text"
-                      onBlur={() => setEmailTouched(true)}
+                      // TODO: Add name touched useState
+                      // onBlur={() => setEmailTouched(true)}
                       onTextInput={() => resetError()}
                     />
                     <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
+                      {/* TODO: Add error message for invalid name */}
                       {firebaseAuthError.errorMessage || EN.AUTH_ERRORS.INVALID_EMAIL}
                     </FormControl.ErrorMessage>
                   </FormControl>
@@ -160,13 +166,15 @@ const Authentication = () => {
                     <Input
                       variant="outline"
                       placeholder={EN.COMMON.LAST_NAME}
-                      value={email}
-                      onChangeText={(text) => setEmail(text)}
+                      value={lastName}
+                      onChangeText={(text) => setLastName(text)}
                       type="text"
-                      onBlur={() => setEmailTouched(true)}
+                      // TODO: Add name touched useState
+                      // onBlur={() => setEmailTouched(true)}
                       onTextInput={() => resetError()}
                     />
                     <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
+                      {/* TODO: Add error message for invalid name */}
                       {firebaseAuthError.errorMessage || EN.AUTH_ERRORS.INVALID_EMAIL}
                     </FormControl.ErrorMessage>
                   </FormControl>
