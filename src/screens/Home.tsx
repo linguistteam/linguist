@@ -17,7 +17,8 @@ const Home = () => {
 
   return (
     <SafeAreaView>
-      <Heading size="md">Logged in as: {user.email}</Heading>
+      <Heading size="md">Logged in as: {user.displayName}</Heading>
+      <Heading size="md">Email: {user.email}</Heading>
 
       <Stack space={4} w="75%" maxW="300px" mx="auto" alignItems="center">
         <Button onPress={() => navigation.navigate('TRANSLATOR_PROFILE')}>
