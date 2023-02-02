@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export interface User {
   displayName: string | null;
   email: string | null;
-  photoURL: string;
+  photoURL: string | null;
   uid: string;
 }
 
