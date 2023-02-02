@@ -4,8 +4,8 @@ import { extractInitials } from '@utils';
 import { profileImageStyles } from './styles';
 
 interface ProfileImageProps {
-  name: string;
-  profileImage: string;
+  name: string | null;
+  profileImage: string | null;
 }
 
 const ProfileImage = ({ name, profileImage }: ProfileImageProps) => {
@@ -31,7 +31,7 @@ const ProfileImage = ({ name, profileImage }: ProfileImageProps) => {
           size="2xl"
           style={profileImageStyles.profileImage}
         >
-          {extractInitials(name)}
+          {name && extractInitials(name)}
         </Avatar>
       )}
     </View>
