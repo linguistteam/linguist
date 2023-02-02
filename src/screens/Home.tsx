@@ -6,7 +6,7 @@ import { StackNavigatorList } from './StackNavigator';
 import { useUserStore } from '@stores/user';
 import { useAuthErrorStore } from '@stores/errors/authError';
 import { useLoadingStore } from '@stores/loading';
-import { handleLogout, handleUpdateProfilePhoto } from '@utils';
+import { handleLogout, handleUpdateDisplayName, handleUpdateProfilePhoto } from '@utils';
 import { ProfileImage } from '@components/userprofiles';
 
 const Home = () => {
@@ -16,8 +16,10 @@ const Home = () => {
   const setLoading = useLoadingStore((state) => state.setLoading);
   const resetUser = useUserStore((state) => state.reset);
 
+  const displayName = 'Jamie Test';
+
   const photoURL =
-    'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80';
+    'https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1160&q=80';
 
   return (
     <SafeAreaView>
@@ -30,9 +32,12 @@ const Home = () => {
       <Heading size="sm" textAlign="center">
         Email: {user.email}
       </Heading>
-      <ProfileImage name="Test User" profileImage={user.photoURL ?? ''} />
+      <ProfileImage name={user.displayName ?? ''} profileImage={user.photoURL ?? ''} />
 
       <Stack space={4} w="75%" maxW="300px" mx="auto" alignItems="center">
+        <Button onPress={() => handleUpdateDisplayName({ displayName, setError, setLoading })}>
+          Update display name
+        </Button>
         <Button onPress={() => handleUpdateProfilePhoto({ photoURL, setError, setLoading })}>
           Update profile photo
         </Button>
