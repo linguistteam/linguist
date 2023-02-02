@@ -25,8 +25,8 @@ const handleSignUp = ({
   setLoading({ isLoading: true });
 
   createUserWithEmailAndPassword(auth, email, password)
-    .then(() => {
-      updateProfile(auth.currentUser, {
+    .then((result) => {
+      updateProfile(result.user, {
         displayName,
       })
         .then(() => {
