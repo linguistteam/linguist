@@ -1,4 +1,5 @@
-import { Button, Heading, Stack } from 'native-base';
+import { useState } from 'react';
+import { Button, Heading, Input, Stack } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -16,10 +17,9 @@ const Home = () => {
   const setLoading = useLoadingStore((state) => state.setLoading);
   const resetUser = useUserStore((state) => state.reset);
 
-  const displayName = 'Jamie Test';
-
-  const photoURL =
-    'https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1160&q=80';
+  // NOTE: For profile updates
+  const [displayName, setDisplayName] = useState(user.displayName ?? '');
+  const [photoURL, setPhotoURL] = useState('');
 
   return (
     <SafeAreaView>
@@ -35,9 +35,24 @@ const Home = () => {
       <ProfileImage name={user.displayName ?? ''} profileImage={user.photoURL ?? ''} />
 
       <Stack space={4} w="75%" maxW="300px" mx="auto" alignItems="center">
+        <Input
+          variant="outline"
+          placeholder="Display Name"
+          value={displayName}
+          onChangeText={(text) => setDisplayName(text)}
+          type="text"
+        />
         <Button onPress={() => handleUpdateDisplayName({ displayName, setError, setLoading })}>
           Update display name
         </Button>
+
+        <Input
+          variant="outline"
+          placeholder="Photo URL"
+          value={photoURL}
+          onChangeText={(text) => setPhotoURL(text)}
+          type="text"
+        />
         <Button onPress={() => handleUpdateProfilePhoto({ photoURL, setError, setLoading })}>
           Update profile photo
         </Button>
