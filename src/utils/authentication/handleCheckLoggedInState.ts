@@ -1,4 +1,4 @@
-import { auth } from '../../firebaseConfig';
+import { auth } from '../../../firebaseConfig';
 import { User } from '@stores/user';
 
 /* Handle checking if user is logged in */

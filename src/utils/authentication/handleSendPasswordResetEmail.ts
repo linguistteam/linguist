@@ -1,5 +1,5 @@
 import { AuthError, sendPasswordResetEmail } from 'firebase/auth';
-import { auth } from '../../firebaseConfig';
+import { auth } from '../../../firebaseConfig';
 import { FirebaseAuthError } from '@stores/errors/authError';
 import mapFirebaseAuthErrors from './mapFirebaseAuthErrors';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';

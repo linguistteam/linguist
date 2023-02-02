@@ -1,5 +1,5 @@
 import { AuthError } from 'firebase/auth';
-import { auth } from '../../firebaseConfig';
+import { auth } from '../../../firebaseConfig';
 import { FirebaseAuthError } from '@stores/errors/authError';
 import { Loading } from '@stores/loading';
 import mapFirebaseAuthErrors from './mapFirebaseAuthErrors';
