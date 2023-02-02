@@ -20,20 +20,21 @@ const handleUpdateDisplayName = ({
 }: HandleUpdateDisplayNameProps) => {
   setLoading({ isLoading: true });
 
-  // TODO: Fix TS error
-  updateProfile(auth.currentUser, {
-    displayName,
-  })
-    .then(() => {
-      // TODO: Trigger show alert that says display name has been updated?
-      console.log('display name updated!');
-      setLoading({ isLoading: false });
+  if (auth.currentUser) {
+    updateProfile(auth.currentUser, {
+      displayName,
     })
-    .catch((error: AuthError) => {
-      console.error('The following error has occurred: ', error.code);
-      setError({ errorMessage: mapFirebaseAuthErrors(error.code), errorCode: error.code });
-      setLoading({ isLoading: false });
-    });
+      .then(() => {
+        // TODO: Trigger show alert that says display name has been updated?
+        console.log('display name updated!');
+        setLoading({ isLoading: false });
+      })
+      .catch((error: AuthError) => {
+        console.error('The following error has occurred: ', error.code);
+        setError({ errorMessage: mapFirebaseAuthErrors(error.code), errorCode: error.code });
+        setLoading({ isLoading: false });
+      });
+  }
 };
 
 export default handleUpdateDisplayName;

@@ -20,20 +20,21 @@ const handleUpdateProfilePhoto = ({
 }: HandleUpdateProfilePhotoProps) => {
   setLoading({ isLoading: true });
 
-  // TODO: Fix TS error
-  updateProfile(auth.currentUser, {
-    photoURL,
-  })
-    .then(() => {
-      // TODO: Trigger show alert that says profile image has been updated?
-      console.log('photo updated!');
-      setLoading({ isLoading: false });
+  if (auth.currentUser) {
+    updateProfile(auth.currentUser, {
+      photoURL,
     })
-    .catch((error: AuthError) => {
-      console.error('The following error has occurred: ', error.code);
-      setError({ errorMessage: mapFirebaseAuthErrors(error.code), errorCode: error.code });
-      setLoading({ isLoading: false });
-    });
+      .then(() => {
+        // TODO: Trigger show alert that says profile image has been updated?
+        console.log('photo updated!');
+        setLoading({ isLoading: false });
+      })
+      .catch((error: AuthError) => {
+        console.error('The following error has occurred: ', error.code);
+        setError({ errorMessage: mapFirebaseAuthErrors(error.code), errorCode: error.code });
+        setLoading({ isLoading: false });
+      });
+  }
 };
 
 export default handleUpdateProfilePhoto;
