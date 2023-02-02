@@ -8,31 +8,31 @@ import mapFirebaseAuthErrors from './mapFirebaseAuthErrors';
 /* Learn more about user profile updates: https://firebase.google.com/docs/auth/web/manage-users#update_a_users_profile */
 
 interface HandleUpdateProfilePhotoProps {
-    photoURL: string;
-    setError: ({ errorMessage, errorCode }: FirebaseAuthError) => void;
-    setLoading: ({ isLoading }: Loading) => void;
+  photoURL: string;
+  setError: ({ errorMessage, errorCode }: FirebaseAuthError) => void;
+  setLoading: ({ isLoading }: Loading) => void;
 }
 
 const handleUpdateProfilePhoto = ({
-    photoURL,
-    setError,
-    setLoading,
+  photoURL,
+  setError,
+  setLoading,
 }: HandleUpdateProfilePhotoProps) => {
-    setLoading({ isLoading: true });
+  setLoading({ isLoading: true });
 
-    updateProfile(auth.currentUser, {
-        photoURL,
+  updateProfile(auth.currentUser, {
+    photoURL,
+  })
+    .then(() => {
+      // TODO: Trigger show alert that says profile image has been updated?
+      console.log('photo updated!');
+      setLoading({ isLoading: false });
     })
-        .then(() => {
-            // TODO: Trigger show alert that says profile image has been updated?
-            console.log('photo updated!');
-            setLoading({ isLoading: false });
-        })
-        .catch((error: AuthError) => {
-            console.error('The following error has occurred: ', error.code);
-            setError({ errorMessage: mapFirebaseAuthErrors(error.code), errorCode: error.code });
-            setLoading({ isLoading: false });
-        });
+    .catch((error: AuthError) => {
+      console.error('The following error has occurred: ', error.code);
+      setError({ errorMessage: mapFirebaseAuthErrors(error.code), errorCode: error.code });
+      setLoading({ isLoading: false });
+    });
 };
 
 export default handleUpdateProfilePhoto;
