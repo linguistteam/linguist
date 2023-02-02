@@ -5,19 +5,23 @@ import { User } from '@stores/user';
 /* Learn more about Firebase Auth: https://firebase.google.com/docs/auth/web/start */
 
 interface HandleCheckLoggedInStateProps {
-  setUser: ({ email, uid }: User) => void;
+  setUser: ({ displayName, email, uid }: User) => void;
   resetUser: () => void;
+  isLoading: boolean;
 }
 
-const handleCheckLoggedInState = ({ setUser, resetUser }: HandleCheckLoggedInStateProps) => {
+const handleCheckLoggedInState = ({
+  setUser,
+  resetUser,
+  isLoading,
+}: HandleCheckLoggedInStateProps) => {
   auth.onAuthStateChanged((user) => {
-    if (user) {
+    if (user && !isLoading) {
       // TODO: If no !email, throw error
       // User is logged in
-      const email = user.email ?? '';
-      const uid = user.uid;
+      const { displayName, email, uid } = user;
 
-      setUser({ email, uid });
+      setUser({ displayName, email, uid });
 
       console.log({ user });
 
