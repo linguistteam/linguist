@@ -33,8 +33,8 @@ const StackNavigator = () => {
   const isLoggedIn = user.uid;
 
   useEffect(() => {
-    handleCheckLoggedInState({ setUser, resetUser });
-  }, [setUser, resetUser]);
+    handleCheckLoggedInState({ setUser, resetUser, isLoading });
+  }, [setUser, resetUser, isLoading]);
 
   if (isLoading) {
     return (
