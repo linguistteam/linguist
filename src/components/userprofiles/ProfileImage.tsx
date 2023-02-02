@@ -27,7 +27,7 @@ const ProfileImage = ({ name, profileImage }: ProfileImageProps) => {
       ) : (
         <Avatar
           bg={Colors.grey}
-          source={{ uri: profileImage }}
+          source={profileImage ? { uri: profileImage } : undefined}
           size="2xl"
           style={profileImageStyles.profileImage}
         >
