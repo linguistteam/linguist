@@ -8,9 +8,9 @@ import mapFirebaseAuthErrors from './mapFirebaseAuthErrors';
 /* Learn more about user profile updates: https://firebase.google.com/docs/auth/web/manage-users#update_a_users_profile */
 
 interface HandleUpdateProfilePhotoProps {
-  photoURL: string;
-  setError: ({ errorMessage, errorCode }: FirebaseAuthError) => void;
-  setLoading: ({ isLoading }: Loading) => void;
+    photoURL: string;
+    setError: ({ errorMessage, errorCode }: FirebaseAuthError) => void;
+    setLoading: ({ isLoading }: Loading) => void;
 }
 
 const handleUpdateProfilePhoto = ({
@@ -20,6 +20,7 @@ const handleUpdateProfilePhoto = ({
 }: HandleUpdateProfilePhotoProps) => {
   setLoading({ isLoading: true });
 
+  // TODO: Fix TS error
   updateProfile(auth.currentUser, {
     photoURL,
   })
