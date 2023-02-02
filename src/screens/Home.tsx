@@ -21,14 +21,27 @@ const Home = () => {
 
   return (
     <SafeAreaView>
-      <Heading size="md">Logged in as: {user.displayName}</Heading>
-      <Heading size="md">Email: {user.email}</Heading>
+      <Heading size="md" textAlign="center">
+        Profile
+      </Heading>
+      <Heading size="sm" textAlign="center">
+        Logged in as: {user.displayName}
+      </Heading>
+      <Heading size="sm" textAlign="center">
+        Email: {user.email}
+      </Heading>
       <ProfileImage name="Test User" profileImage={photoURL} />
 
       <Stack space={4} w="75%" maxW="300px" mx="auto" alignItems="center">
         <Button onPress={() => handleUpdateProfilePhoto({ photoURL, setError, setLoading })}>
           Update profile photo
         </Button>
+      </Stack>
+
+      <Heading size="sm" textAlign="center" mt={10}>
+        Navigation
+      </Heading>
+      <Stack space={4} w="75%" maxW="300px" mx="auto" alignItems="center">
         <Button onPress={() => navigation.navigate('TRANSLATOR_PROFILE')}>
           Translator Profile
         </Button>
