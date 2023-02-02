@@ -17,7 +17,7 @@ const Home = () => {
   const resetUser = useUserStore((state) => state.reset);
 
   const photoURL =
-    'https://images.unsplash.com/photo-1664575600850-c4b712e6e2bf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80';
+    'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80';
 
   return (
     <SafeAreaView>
@@ -30,7 +30,7 @@ const Home = () => {
       <Heading size="sm" textAlign="center">
         Email: {user.email}
       </Heading>
-      <ProfileImage name="Test User" profileImage={photoURL} />
+      <ProfileImage name="Test User" profileImage={user.photoURL ?? ''} />
 
       <Stack space={4} w="75%" maxW="300px" mx="auto" alignItems="center">
         <Button onPress={() => handleUpdateProfilePhoto({ photoURL, setError, setLoading })}>
