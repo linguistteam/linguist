@@ -32,7 +32,7 @@ const Home = () => {
       <Heading size="sm" textAlign="center">
         Email: {user.email}
       </Heading>
-      <ProfileImage name={user.displayName ?? ''} profileImage={user.photoURL ?? ''} />
+      <ProfileImage name={user.displayName} profileImage={user.photoURL} />
 
       <Stack space={4} w="75%" maxW="300px" mx="auto" alignItems="center">
         <Input
