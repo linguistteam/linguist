@@ -1,6 +1,7 @@
 import { StackNavigatorList } from '@screens/StackNavigator';
 
 export interface FormErrors {
+  displayName: boolean;
   email: boolean;
   general: boolean;
   password: boolean;
