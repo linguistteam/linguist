@@ -13,3 +13,4 @@ export { default as fixedRatingAverage } from './fixedRatingAverage';
 export { default as isLongName } from './isLongName';
 export { default as truncateText } from './truncateText';
 export { default as validateEmail } from './validateEmail';
+export { default as validateTextInput } from './validateTextInput';
