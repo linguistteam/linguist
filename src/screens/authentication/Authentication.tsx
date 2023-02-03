@@ -16,7 +16,7 @@ import IoniconsIcon from 'react-native-vector-icons/Ionicons';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackNavigatorList } from '@screens/StackNavigator';
-import { handleLogin, handleSignUp, validateEmail } from '@utils';
+import { handleLogin, handleSignUp, validateEmail, validateTextInput } from '@utils';
 import { useAuthErrorStore } from '@stores/errors/authError';
 import { useLoadingStore } from '@stores/loading';
 import { EN } from '@assets/strings';
@@ -44,10 +44,15 @@ const Authentication = () => {
   const resetError = useAuthErrorStore((state) => state.reset);
   const setLoading = useLoadingStore((state) => state.setLoading);
   const hasError = useAuthErrorStore((state) => state.error);
+  // TODO: Can these be refactored to be all one func?
   const [emailTouched, setEmailTouched] = useState(false);
   const [passwordTouched, setPasswordTouched] = useState(false);
+  const [firstNameTouched, setFirstNameTouched] = useState(false);
+  const [lastNameTouched, setLastNameTouched] = useState(false);
 
-  const displayName = `${firstName} ${lastName}`;
+  const displayName = `${firstName.trim()} ${lastName.trim()}`;
+
+  console.log('displayName', displayName);
 
   useEffect(() => {
     if (hasError) {
@@ -68,18 +73,24 @@ const Authentication = () => {
   };
 
   const hasEmailAuthError = firebaseAuthError.errorCode?.includes('email') ?? false;
+  const hasDisplayNameAuthError = firebaseAuthError.errorCode?.includes('display-name') ?? false;
   const hasPasswordAuthError = firebaseAuthError.errorCode?.includes('password') ?? false;
+  // NOTE: Has auth error that isn't specific to input fields
   const hasGeneralAuthError =
-    !!firebaseAuthError.errorCode && !hasEmailAuthError && !hasPasswordAuthError;
+    !!firebaseAuthError.errorCode &&
+    !hasEmailAuthError &&
+    !hasPasswordAuthError &&
+    !hasDisplayNameAuthError;
 
   const formErrors: FormErrors = {
+    displayName: hasDisplayNameAuthError,
     email: hasEmailAuthError,
     general: hasGeneralAuthError,
     password: hasPasswordAuthError,
   };
 
-  const firstNameTooShort = firstName.length < 1;
-  const lastNameTooShort = lastName.length < 1;
+  const invalidFirstName = firstNameTouched && !validateTextInput(firstName);
+  const invalidLastName = lastNameTouched && !validateTextInput(lastName);
   const passwordTooShort = password.length < 6;
   const invalidEmail = emailTouched && !validateEmail(email);
   const invalidPassword = passwordTouched && passwordTooShort;
@@ -91,7 +102,11 @@ const Authentication = () => {
   // email is invalid or
   // password is less than 6 chars
   const disableSubmit = showEmailForm
-    ? Object.values(formErrors).some(inputHasError) || !validateEmail(email) || passwordTooShort
+    ? Object.values(formErrors).some(inputHasError) ||
+    !validateEmail(email) ||
+    invalidFirstName ||
+    invalidLastName ||
+    passwordTooShort
     : false;
 
   return (
@@ -141,7 +156,7 @@ const Authentication = () => {
                 // TODO: Add validation for name
                 <>
                   <FormControl
-                    isInvalid={formErrors.email || firstNameTooShort}
+                    isInvalid={formErrors.displayName || invalidFirstName}
                     marginBottom={3}
                     isRequired
                   >
@@ -151,18 +166,16 @@ const Authentication = () => {
                       value={firstName}
                       onChangeText={(text) => setFirstName(text)}
                       type="text"
-                      // TODO: Add name touched useState
-                      // onBlur={() => setEmailTouched(true)}
+                      onBlur={() => setFirstNameTouched(true)}
                       onTextInput={() => resetError()}
                     />
                     <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
-                      {firebaseAuthError.errorMessage ||
-                        EN.AUTH_ERRORS.NAME_TOO_SHORT(EN.COMMON.FIRST_NAME.toLowerCase())}
+                      {EN.AUTH_ERRORS.INVALID_NAME(EN.COMMON.FIRST_NAME.toLowerCase())}
                     </FormControl.ErrorMessage>
                   </FormControl>
 
                   <FormControl
-                    isInvalid={formErrors.email || lastNameTooShort}
+                    isInvalid={formErrors.displayName || invalidLastName}
                     marginBottom={3}
                     isRequired
                   >
@@ -172,13 +185,11 @@ const Authentication = () => {
                       value={lastName}
                       onChangeText={(text) => setLastName(text)}
                       type="text"
-                      // TODO: Add name touched useState
-                      // onBlur={() => setEmailTouched(true)}
+                      onBlur={() => setLastNameTouched(true)}
                       onTextInput={() => resetError()}
                     />
                     <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
-                      {firebaseAuthError.errorMessage ||
-                        EN.AUTH_ERRORS.NAME_TOO_SHORT(EN.COMMON.LAST_NAME.toLowerCase())}
+                      {EN.AUTH_ERRORS.INVALID_NAME(EN.COMMON.LAST_NAME.toLowerCase())}
                     </FormControl.ErrorMessage>
                   </FormControl>
                 </>
