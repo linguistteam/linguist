@@ -47,7 +47,7 @@ const Authentication = () => {
   const [emailTouched, setEmailTouched] = useState(false);
   const [passwordTouched, setPasswordTouched] = useState(false);
 
-  const displayName = firstName.concat(' ', lastName);
+  const displayName = `${firstName} ${lastName}`;
 
   useEffect(() => {
     if (hasError) {
@@ -78,6 +78,7 @@ const Authentication = () => {
     password: hasPasswordAuthError,
   };
 
+  const nameTooShort = firstName.length < 1 || lastName.length < 1;
   const passwordTooShort = password.length < 6;
   const invalidEmail = emailTouched && !validateEmail(email);
   const invalidPassword = passwordTouched && passwordTooShort;
@@ -139,7 +140,7 @@ const Authentication = () => {
                 // TODO: Add validation for name
                 <>
                   <FormControl
-                    isInvalid={formErrors.email || invalidEmail}
+                    isInvalid={formErrors.email || nameTooShort}
                     marginBottom={3}
                     isRequired
                   >
@@ -154,13 +155,13 @@ const Authentication = () => {
                       onTextInput={() => resetError()}
                     />
                     <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
-                      {/* TODO: Add error message for invalid name */}
-                      {firebaseAuthError.errorMessage || EN.AUTH_ERRORS.INVALID_EMAIL}
+                      {firebaseAuthError.errorMessage ||
+                        EN.AUTH_ERRORS.NAME_TOO_SHORT(EN.COMMON.FIRST_NAME.toLowerCase())}
                     </FormControl.ErrorMessage>
                   </FormControl>
 
                   <FormControl
-                    isInvalid={formErrors.email || invalidEmail}
+                    isInvalid={formErrors.email || nameTooShort}
                     marginBottom={3}
                     isRequired
                   >
@@ -175,8 +176,8 @@ const Authentication = () => {
                       onTextInput={() => resetError()}
                     />
                     <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
-                      {/* TODO: Add error message for invalid name */}
-                      {firebaseAuthError.errorMessage || EN.AUTH_ERRORS.INVALID_EMAIL}
+                      {firebaseAuthError.errorMessage ||
+                        EN.AUTH_ERRORS.NAME_TOO_SHORT(EN.COMMON.LAST_NAME.toLowerCase())}
                     </FormControl.ErrorMessage>
                   </FormControl>
                 </>
