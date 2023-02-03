@@ -78,7 +78,8 @@ const Authentication = () => {
     password: hasPasswordAuthError,
   };
 
-  const nameTooShort = firstName.length < 1 || lastName.length < 1;
+  const firstNameTooShort = firstName.length < 1;
+  const lastNameTooShort = lastName.length < 1;
   const passwordTooShort = password.length < 6;
   const invalidEmail = emailTouched && !validateEmail(email);
   const invalidPassword = passwordTouched && passwordTooShort;
@@ -140,7 +141,7 @@ const Authentication = () => {
                 // TODO: Add validation for name
                 <>
                   <FormControl
-                    isInvalid={formErrors.email || nameTooShort}
+                    isInvalid={formErrors.email || firstNameTooShort}
                     marginBottom={3}
                     isRequired
                   >
@@ -161,7 +162,7 @@ const Authentication = () => {
                   </FormControl>
 
                   <FormControl
-                    isInvalid={formErrors.email || nameTooShort}
+                    isInvalid={formErrors.email || lastNameTooShort}
                     marginBottom={3}
                     isRequired
                   >
