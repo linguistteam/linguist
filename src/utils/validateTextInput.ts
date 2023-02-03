@@ -1,12 +1,13 @@
 /* Validates text input length and against regex, returns true or false */
 const validateTextInput = (text: string) => {
-  const specialCharsRegex = /[-'`~!@#$%^&*()_|+=?;:'",.<>{}[\]\\/0-9]/gi;
+    // NOTE: Removes special chars and numbers
+    const invalidNameRegex = /[-'`~!@#$%^&*()_|+=?;:'",.<>{}[\]\\/0-9]/gi;
 
-  if (text.trim().length && !specialCharsRegex.test(text)) {
-    return true;
-  }
+    if (text.trim().length && !invalidNameRegex.test(text)) {
+        return true;
+    }
 
-  return false;
+    return false;
 };
 
 export default validateTextInput;
