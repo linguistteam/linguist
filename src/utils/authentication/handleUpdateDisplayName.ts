@@ -26,7 +26,6 @@ const handleUpdateDisplayName = ({
     })
       .then(() => {
         // TODO: Trigger show alert that says display name has been updated?
-        console.log('display name updated!');
         setLoading({ isLoading: false });
       })
       .catch((error: AuthError) => {
