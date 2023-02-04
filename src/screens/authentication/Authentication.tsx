@@ -104,9 +104,9 @@ const Authentication = () => {
   // password is less than 6 chars
   const disableSubmit = showEmailForm
     ? Object.values(formErrors).some(inputHasError) ||
-    !validateEmail(email) ||
-    checkInvalidDisplayName ||
-    passwordTooShort
+      !validateEmail(email) ||
+      checkInvalidDisplayName ||
+      passwordTooShort
     : false;
 
   return (
