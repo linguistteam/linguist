@@ -52,8 +52,6 @@ const Authentication = () => {
 
   const displayName = `${firstName.trim()} ${lastName.trim()}`;
 
-  console.log('displayName', displayName);
-
   useEffect(() => {
     if (hasError) {
       setShowEmailForm(true);
@@ -104,8 +102,8 @@ const Authentication = () => {
   const disableSubmit = showEmailForm
     ? Object.values(formErrors).some(inputHasError) ||
       !validateEmail(email) ||
-      invalidFirstName ||
-      invalidLastName ||
+      !validateTextInput(firstName) ||
+      !validateTextInput(lastName) ||
       passwordTooShort
     : false;
 
@@ -153,7 +151,6 @@ const Authentication = () => {
               )}
 
               {formView.showSignUp && (
-                // TODO: Add validation for name
                 <>
                   <FormControl
                     isInvalid={formErrors.displayName || invalidFirstName}
