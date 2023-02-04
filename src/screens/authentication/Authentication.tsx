@@ -16,7 +16,7 @@ import IoniconsIcon from 'react-native-vector-icons/Ionicons';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackNavigatorList } from '@screens/StackNavigator';
-import { handleLogin, handleSignUp, validateEmail } from '@utils';
+import { handleLogin, handleSignUp, validateEmail, validateTextInput } from '@utils';
 import { useAuthErrorStore } from '@stores/errors/authError';
 import { useLoadingStore } from '@stores/loading';
 import { EN } from '@assets/strings';
@@ -35,6 +35,8 @@ const Authentication = () => {
   const [formView, setFormView] = useState(showLogIn);
   const [showEmailForm, setShowEmailForm] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const firebaseAuthError = useAuthErrorStore((state) => state.error);
@@ -42,8 +44,13 @@ const Authentication = () => {
   const resetError = useAuthErrorStore((state) => state.reset);
   const setLoading = useLoadingStore((state) => state.setLoading);
   const hasError = useAuthErrorStore((state) => state.error);
+  // TODO: Can these be refactored to be all one func?
   const [emailTouched, setEmailTouched] = useState(false);
   const [passwordTouched, setPasswordTouched] = useState(false);
+  const [firstNameTouched, setFirstNameTouched] = useState(false);
+  const [lastNameTouched, setLastNameTouched] = useState(false);
+
+  const displayName = `${firstName.trim()} ${lastName.trim()}`;
 
   useEffect(() => {
     if (hasError) {
@@ -56,7 +63,7 @@ const Authentication = () => {
       if (formView.showLogIn) {
         handleLogin({ email, password, setError, setLoading });
       } else {
-        handleSignUp({ email, password, setError, setLoading });
+        handleSignUp({ displayName, email, password, setError, setLoading });
       }
     } else {
       setShowEmailForm(true);
@@ -64,19 +71,30 @@ const Authentication = () => {
   };
 
   const hasEmailAuthError = firebaseAuthError.errorCode?.includes('email') ?? false;
+  const hasDisplayNameAuthError = firebaseAuthError.errorCode?.includes('display-name') ?? false;
   const hasPasswordAuthError = firebaseAuthError.errorCode?.includes('password') ?? false;
+  // NOTE: Has auth error that isn't specific to input fields
   const hasGeneralAuthError =
-    !!firebaseAuthError.errorCode && !hasEmailAuthError && !hasPasswordAuthError;
+    !!firebaseAuthError.errorCode &&
+    !hasEmailAuthError &&
+    !hasPasswordAuthError &&
+    !hasDisplayNameAuthError;
 
   const formErrors: FormErrors = {
+    displayName: hasDisplayNameAuthError,
     email: hasEmailAuthError,
     general: hasGeneralAuthError,
     password: hasPasswordAuthError,
   };
 
+  const invalidFirstName = firstNameTouched && !validateTextInput(firstName);
+  const invalidLastName = lastNameTouched && !validateTextInput(lastName);
   const passwordTooShort = password.length < 6;
   const invalidEmail = emailTouched && !validateEmail(email);
   const invalidPassword = passwordTouched && passwordTooShort;
+  const invalidDisplayName = !validateTextInput(firstName) || !validateTextInput(lastName);
+
+  const checkInvalidDisplayName = formView.showSignUp && invalidDisplayName;
 
   const inputHasError = (inputValue: boolean) => inputValue === true;
   // NOTE: Disable submit if:
@@ -85,7 +103,10 @@ const Authentication = () => {
   // email is invalid or
   // password is less than 6 chars
   const disableSubmit = showEmailForm
-    ? Object.values(formErrors).some(inputHasError) || !validateEmail(email) || passwordTooShort
+    ? Object.values(formErrors).some(inputHasError) ||
+      !validateEmail(email) ||
+      checkInvalidDisplayName ||
+      passwordTooShort
     : false;
 
   return (
@@ -129,6 +150,50 @@ const Authentication = () => {
                 <Text color={Colors.error} marginBottom={2}>
                   {firebaseAuthError.errorMessage}
                 </Text>
+              )}
+
+              {formView.showSignUp && (
+                <>
+                  <FormControl
+                    isInvalid={formErrors.displayName || invalidFirstName}
+                    marginBottom={3}
+                    isRequired
+                  >
+                    <Input
+                      variant="outline"
+                      placeholder={EN.COMMON.FIRST_NAME}
+                      value={firstName}
+                      onChangeText={(text) => setFirstName(text)}
+                      type="text"
+                      onBlur={() => setFirstNameTouched(true)}
+                      onTextInput={() => resetError()}
+                    />
+                    <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
+                      {firebaseAuthError.errorMessage ||
+                        EN.AUTH_ERRORS.INVALID_NAME(EN.COMMON.FIRST_NAME.toLowerCase())}
+                    </FormControl.ErrorMessage>
+                  </FormControl>
+
+                  <FormControl
+                    isInvalid={formErrors.displayName || invalidLastName}
+                    marginBottom={3}
+                    isRequired
+                  >
+                    <Input
+                      variant="outline"
+                      placeholder={EN.COMMON.LAST_NAME}
+                      value={lastName}
+                      onChangeText={(text) => setLastName(text)}
+                      type="text"
+                      onBlur={() => setLastNameTouched(true)}
+                      onTextInput={() => resetError()}
+                    />
+                    <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
+                      {firebaseAuthError.errorMessage ||
+                        EN.AUTH_ERRORS.INVALID_NAME(EN.COMMON.LAST_NAME.toLowerCase())}
+                    </FormControl.ErrorMessage>
+                  </FormControl>
+                </>
               )}
 
               <FormControl isInvalid={formErrors.email || invalidEmail} marginBottom={3} isRequired>

@@ -13,6 +13,7 @@ import {
 import { translatorProfileReviews } from '@assets/dummyData/reviews';
 import { ReviewType } from '@components/userprofiles/reviews/Reviews';
 import { globalStyles } from '@constants/styles';
+import { useUserStore } from '@stores/user';
 import { profileStyles } from './styles';
 
 // TODO: Figure out user data structure
@@ -30,35 +31,36 @@ import { profileStyles } from './styles';
 //   isTopLinguist: boolean;
 // }
 
-// TODO: Values here should be editable by user and passed in from DB
-// TODO: When user location text length is longer than certain amount of chars, truncate the text
-// TODO: Lanugage data coming from DB needs to match ISO 3166-1 alpha-2: https://www.iban.com/country-codes
-const user = {
-  userId: 'c5ca67d5-a754-465d-add9-7508cfe0d821',
-  emailAddress: 'john@getlinguist.app',
-  name: 'Macauley Chan',
-  profileImage:
-    'https://images.unsplash.com/photo-1544168190-79c17527004f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=776&q=80',
-  languages: ['gb', 'kr', 'jp', 'cn'],
-  location: 'Philadelphia, Pennsylvania, USA',
-  bio: 'Egestas pretium aenean pharetra nisi lacus sed viverra tellus in hac habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras faucibus et porttitor ac feugiat sed lectus vestibulum mattis ullamcorper velit sed ullamcorper.',
-  currency: 'yen',
-  isTranslator: true,
-  isTopLinguist: true,
-};
-
-const { name, bio, location, languages, profileImage, isTranslator } = user;
-
-const combinedReviews: ReviewType[] = translatorProfileReviews.fromClients.concat(
-  translatorProfileReviews.fromTranslators,
-);
-
-const numberOfReviews = (array: ReviewType[]) => array.length;
-
-const isTopLinguist =
-  numberOfReviews(combinedReviews) >= 10 && Number(fixedRatingAverage(combinedReviews)) >= 4.5;
-
 const TranslatorProfile = () => {
+  const user = useUserStore((state) => state.user);
+
+  // TODO: Values here should be editable by user and passed in from DB
+  // TODO: When user location text length is longer than certain amount of chars, truncate the text
+  // TODO: Lanugage data coming from DB needs to match ISO 3166-1 alpha-2: https://www.iban.com/country-codes
+  const userData = {
+    userId: user.uid,
+    emailAddress: user.email,
+    name: user?.displayName ?? '',
+    profileImage: user.photoURL ?? '',
+    languages: ['gb', 'kr', 'jp', 'cn'],
+    location: 'Philadelphia, Pennsylvania, USA',
+    bio: 'Egestas pretium aenean pharetra nisi lacus sed viverra tellus in hac habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras faucibus et porttitor ac feugiat sed lectus vestibulum mattis ullamcorper velit sed ullamcorper.',
+    currency: 'yen',
+    isTranslator: true,
+    isTopLinguist: true,
+  };
+
+  const { name, bio, location, languages, profileImage, isTranslator } = userData;
+
+  const combinedReviews: ReviewType[] = translatorProfileReviews.fromClients.concat(
+    translatorProfileReviews.fromTranslators,
+  );
+
+  const numberOfReviews = (array: ReviewType[]) => array.length;
+
+  const isTopLinguist =
+    numberOfReviews(combinedReviews) >= 10 && Number(fixedRatingAverage(combinedReviews)) >= 4.5;
+
   return (
     <SafeAreaView style={globalStyles.appContainer}>
       <ScrollView>

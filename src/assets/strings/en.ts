@@ -9,6 +9,7 @@ export const EN = {
     PHONE_NUMBER_ALREADY_EXISTS: 'Phone number already exists.',
     INVALID_EMAIL: 'Please enter a valid mail.',
     INVALID_PASSWORD: 'Please enter a valid password.',
+    INVALID_NAME: (name: string) => `Please enter a valid ${name}.`,
     PASSWORD_TOO_SHORT: 'Password is too short.',
     INVALID_PHONE_NUMBER: 'Phone number is invalid.',
     INVALID_PHOTO_URL: 'Photo URL is invalid.',
@@ -21,6 +22,8 @@ export const EN = {
   },
   COMMON: {
     HELLO: 'Hello',
+    FIRST_NAME: 'First Name',
+    LAST_NAME: 'Last Name',
     EMAIL_ADDRESS: 'Email address',
     PASSWORD: 'Password',
     LOADING: 'Loading',
