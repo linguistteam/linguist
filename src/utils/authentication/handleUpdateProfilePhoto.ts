@@ -26,7 +26,6 @@ const handleUpdateProfilePhoto = ({
     })
       .then(() => {
         // TODO: Trigger show alert that says profile image has been updated?
-        console.log('photo updated!');
         setLoading({ isLoading: false });
       })
       .catch((error: AuthError) => {
