@@ -23,8 +23,6 @@ const handleCheckLoggedInState = ({
 
       setUser({ displayName, email, photoURL, uid });
 
-      console.log({ user });
-
       console.info('user is logged in');
     } else {
       // User is logged out
