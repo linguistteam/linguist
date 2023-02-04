@@ -169,7 +169,8 @@ const Authentication = () => {
                       onTextInput={() => resetError()}
                     />
                     <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
-                      {EN.AUTH_ERRORS.INVALID_NAME(EN.COMMON.FIRST_NAME.toLowerCase())}
+                      {firebaseAuthError.errorMessage ||
+                        EN.AUTH_ERRORS.INVALID_NAME(EN.COMMON.FIRST_NAME.toLowerCase())}
                     </FormControl.ErrorMessage>
                   </FormControl>
 
@@ -188,7 +189,8 @@ const Authentication = () => {
                       onTextInput={() => resetError()}
                     />
                     <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
-                      {EN.AUTH_ERRORS.INVALID_NAME(EN.COMMON.LAST_NAME.toLowerCase())}
+                      {firebaseAuthError.errorMessage ||
+                        EN.AUTH_ERRORS.INVALID_NAME(EN.COMMON.LAST_NAME.toLowerCase())}
                     </FormControl.ErrorMessage>
                   </FormControl>
                 </>
