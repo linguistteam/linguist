@@ -92,6 +92,9 @@ const Authentication = () => {
   const passwordTooShort = password.length < 6;
   const invalidEmail = emailTouched && !validateEmail(email);
   const invalidPassword = passwordTouched && passwordTooShort;
+  const invalidDisplayName = !validateTextInput(firstName) || !validateTextInput(lastName);
+
+  const checkInvalidDisplayName = formView.showSignUp && invalidDisplayName;
 
   const inputHasError = (inputValue: boolean) => inputValue === true;
   // NOTE: Disable submit if:
@@ -101,10 +104,9 @@ const Authentication = () => {
   // password is less than 6 chars
   const disableSubmit = showEmailForm
     ? Object.values(formErrors).some(inputHasError) ||
-      !validateEmail(email) ||
-      !validateTextInput(firstName) ||
-      !validateTextInput(lastName) ||
-      passwordTooShort
+    !validateEmail(email) ||
+    checkInvalidDisplayName ||
+    passwordTooShort
     : false;
 
   return (
