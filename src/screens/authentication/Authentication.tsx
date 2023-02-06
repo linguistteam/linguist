@@ -16,7 +16,7 @@ import IoniconsIcon from 'react-native-vector-icons/Ionicons';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackNavigatorList } from '@screens/StackNavigator';
-import { handleLogin, handleSignUp, validateEmail, validateTextInput } from '@utils';
+import { handleLogin, handleSignUp, invalidField, validateEmail, validateTextInput } from '@utils';
 import { useAuthErrorStore } from '@stores/errors/authError';
 import { useLoadingStore } from '@stores/loading';
 import { EN } from '@assets/strings';
@@ -44,11 +44,13 @@ const Authentication = () => {
   const resetError = useAuthErrorStore((state) => state.reset);
   const setLoading = useLoadingStore((state) => state.setLoading);
   const hasError = useAuthErrorStore((state) => state.error);
-  // TODO: Can these be refactored to be all one func?
-  const [emailTouched, setEmailTouched] = useState(false);
-  const [passwordTouched, setPasswordTouched] = useState(false);
-  const [firstNameTouched, setFirstNameTouched] = useState(false);
-  const [lastNameTouched, setLastNameTouched] = useState(false);
+  const [fieldTouched, setFieldTouched] = useState({
+    emailTouched: false,
+    passwordTouched: false,
+    firstNameTouched: false,
+    lastNameTouched: false,
+  });
+  const { firstNameTouched, lastNameTouched, emailTouched, passwordTouched } = fieldTouched;
 
   const displayName = `${firstName.trim()} ${lastName.trim()}`;
 
@@ -73,12 +75,12 @@ const Authentication = () => {
   const hasEmailAuthError = firebaseAuthError.errorCode?.includes('email') ?? false;
   const hasDisplayNameAuthError = firebaseAuthError.errorCode?.includes('display-name') ?? false;
   const hasPasswordAuthError = firebaseAuthError.errorCode?.includes('password') ?? false;
-  // NOTE: Has auth error that isn't specific to input fields
+  // NOTE: Has Firebase Auth error that isn't specific to input fields
   const hasGeneralAuthError =
     !!firebaseAuthError.errorCode &&
     !hasEmailAuthError &&
-    !hasPasswordAuthError &&
-    !hasDisplayNameAuthError;
+    !hasDisplayNameAuthError &&
+    !hasPasswordAuthError;
 
   const formErrors: FormErrors = {
     displayName: hasDisplayNameAuthError,
@@ -87,26 +89,15 @@ const Authentication = () => {
     password: hasPasswordAuthError,
   };
 
-  const invalidFirstName = firstNameTouched && !validateTextInput(firstName);
-  const invalidLastName = lastNameTouched && !validateTextInput(lastName);
+  const inputHasError = (inputValue: boolean) => inputValue === true;
+  const firebaseErrorThrown = Object.values(formErrors).some(inputHasError);
   const passwordTooShort = password.length < 6;
-  const invalidEmail = emailTouched && !validateEmail(email);
-  const invalidPassword = passwordTouched && passwordTooShort;
   const invalidDisplayName = !validateTextInput(firstName) || !validateTextInput(lastName);
-
   const checkInvalidDisplayName = formView.showSignUp && invalidDisplayName;
 
-  const inputHasError = (inputValue: boolean) => inputValue === true;
-  // NOTE: Disable submit if:
-  // Form is being shown and
-  // Firebase has thrown error or
-  // email is invalid or
-  // password is less than 6 chars
+  // NOTE: Disable submit if: Form is being shown AND Firebase has thrown error OR email is invalid OR display name is invalid OR password is less than 6 chars
   const disableSubmit = showEmailForm
-    ? Object.values(formErrors).some(inputHasError) ||
-      !validateEmail(email) ||
-      checkInvalidDisplayName ||
-      passwordTooShort
+    ? firebaseErrorThrown || !validateEmail(email) || checkInvalidDisplayName || passwordTooShort
     : false;
 
   return (
@@ -155,7 +146,10 @@ const Authentication = () => {
               {formView.showSignUp && (
                 <>
                   <FormControl
-                    isInvalid={formErrors.displayName || invalidFirstName}
+                    isInvalid={
+                      formErrors.displayName ||
+                      invalidField(firstNameTouched, !validateTextInput(firstName))
+                    }
                     marginBottom={3}
                     isRequired
                   >
@@ -165,7 +159,7 @@ const Authentication = () => {
                       value={firstName}
                       onChangeText={(text) => setFirstName(text)}
                       type="text"
-                      onBlur={() => setFirstNameTouched(true)}
+                      onBlur={() => setFieldTouched({ ...fieldTouched, firstNameTouched: true })}
                       onTextInput={() => resetError()}
                     />
                     <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
@@ -175,7 +169,10 @@ const Authentication = () => {
                   </FormControl>
 
                   <FormControl
-                    isInvalid={formErrors.displayName || invalidLastName}
+                    isInvalid={
+                      formErrors.displayName ||
+                      invalidField(lastNameTouched, !validateTextInput(lastName))
+                    }
                     marginBottom={3}
                     isRequired
                   >
@@ -185,7 +182,7 @@ const Authentication = () => {
                       value={lastName}
                       onChangeText={(text) => setLastName(text)}
                       type="text"
-                      onBlur={() => setLastNameTouched(true)}
+                      onBlur={() => setFieldTouched({ ...fieldTouched, lastNameTouched: true })}
                       onTextInput={() => resetError()}
                     />
                     <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
@@ -196,14 +193,18 @@ const Authentication = () => {
                 </>
               )}
 
-              <FormControl isInvalid={formErrors.email || invalidEmail} marginBottom={3} isRequired>
+              <FormControl
+                isInvalid={formErrors.email || invalidField(emailTouched, !validateEmail(email))}
+                marginBottom={3}
+                isRequired
+              >
                 <Input
                   variant="outline"
                   placeholder={EN.COMMON.EMAIL_ADDRESS}
                   value={email}
                   onChangeText={(text) => setEmail(text)}
                   type="text"
-                  onBlur={() => setEmailTouched(true)}
+                  onBlur={() => setFieldTouched({ ...fieldTouched, emailTouched: true })}
                   onTextInput={() => resetError()}
                 />
                 <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
@@ -212,7 +213,7 @@ const Authentication = () => {
               </FormControl>
 
               <FormControl
-                isInvalid={formErrors.password || invalidPassword}
+                isInvalid={formErrors.password || invalidField(passwordTouched, passwordTooShort)}
                 marginBottom={1}
                 isRequired
               >
@@ -226,12 +227,16 @@ const Authentication = () => {
                       <IoniconsIcon
                         name={showPassword ? 'eye-off-outline' : 'eye-outline'}
                         size={20}
-                        color={formErrors.password || invalidPassword ? Colors.error : Colors.grey}
+                        color={
+                          formErrors.password || invalidField(passwordTouched, passwordTooShort)
+                            ? Colors.error
+                            : Colors.grey
+                        }
                       />
                     </Pressable>
                   }
                   type={showPassword ? 'text' : 'password'}
-                  onBlur={() => setPasswordTouched(true)}
+                  onBlur={() => setFieldTouched({ ...fieldTouched, passwordTouched: true })}
                   onTextInput={() => resetError()}
                 />
                 <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
