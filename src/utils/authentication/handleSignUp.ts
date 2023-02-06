@@ -36,22 +36,20 @@ const handleSignUp = ({
 
   createUserWithEmailAndPassword(auth, email, password)
     .then((result) => {
-      const createUserResult = result;
-
-      updateProfile(result.user, {
-        displayName,
-      })
-        .then(() => {
-          setLoading({ isLoading: false });
-        })
-        .catch((error: AuthError) => {
-          console.error('The following error has occurred: ', error.code);
-          setError({ errorMessage: mapFirebaseAuthErrors(error.code), errorCode: error.code });
-          setLoading({ isLoading: false });
-        });
+      createUserResult = result;
     })
     .then(() => {
-      console.log('createUserResult', createUserResult);
+      return updateProfile(createUserResult.user, {
+        displayName,
+      });
+    })
+    .then(() => {
+      return setDoc(doc(usersRef, createUserResult.user.uid), {
+        bio: 'Test bio!',
+      });
+    })
+    .then(() => {
+      setLoading({ isLoading: false });
     })
     .catch((error: AuthError) => {
       console.error('The following error has occurred: ', error.code);
