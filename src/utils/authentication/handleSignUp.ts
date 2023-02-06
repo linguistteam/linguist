@@ -1,5 +1,11 @@
-import { AuthError, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { auth } from '../../../firebaseConfig';
+import {
+  AuthError,
+  createUserWithEmailAndPassword,
+  updateProfile,
+  UserCredential,
+} from 'firebase/auth';
+import { collection, doc, setDoc } from 'firebase/firestore';
+import { auth, db } from '../../../firebaseConfig';
 import { FirebaseAuthError } from '@stores/errors/authError';
 import { Loading } from '@stores/loading';
 import mapFirebaseAuthErrors from './mapFirebaseAuthErrors';
@@ -22,10 +28,16 @@ const handleSignUp = ({
   setError,
   setLoading,
 }: HandleSignUpProps) => {
+  const usersRef = collection(db, 'users');
+
   setLoading({ isLoading: true });
+
+  let createUserResult: UserCredential;
 
   createUserWithEmailAndPassword(auth, email, password)
     .then((result) => {
+      const createUserResult = result;
+
       updateProfile(result.user, {
         displayName,
       })
@@ -37,6 +49,9 @@ const handleSignUp = ({
           setError({ errorMessage: mapFirebaseAuthErrors(error.code), errorCode: error.code });
           setLoading({ isLoading: false });
         });
+    })
+    .then(() => {
+      console.log('createUserResult', createUserResult);
     })
     .catch((error: AuthError) => {
       console.error('The following error has occurred: ', error.code);
