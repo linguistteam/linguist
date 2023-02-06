@@ -21,7 +21,7 @@ const Home = () => {
   const setLoading = useLoadingStore((state) => state.setLoading);
   const resetUser = useUserStore((state) => state.reset);
 
-  const docRef = getDoc(doc(db, 'user', user.uid));
+  const docRef = getDoc(doc(db, 'users', user.uid));
 
   docRef.then((docSnap) => {
     if (docSnap.exists()) {
