@@ -10,12 +10,26 @@ import { useLoadingStore } from '@stores/loading';
 import { handleLogout, handleUpdateDisplayName, handleUpdateProfilePhoto } from '@utils';
 import { ProfileImage } from '@components/userprofiles';
 
+// TODO: Remove
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../../firebaseConfig';
+
 const Home = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList, 'HOME'>>();
   const user = useUserStore((state) => state.user);
   const setError = useAuthErrorStore((state) => state.setError);
   const setLoading = useLoadingStore((state) => state.setLoading);
   const resetUser = useUserStore((state) => state.reset);
+
+  const docRef = getDoc(doc(db, 'user', user.uid));
+
+  docRef.then((docSnap) => {
+    if (docSnap.exists()) {
+      console.log('Document data:', docSnap.data());
+    } else {
+      console.log('No such document!');
+    }
+  });
 
   // NOTE: For profile updates
   const [displayName, setDisplayName] = useState(user.displayName ?? '');
