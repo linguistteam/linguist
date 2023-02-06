@@ -10,6 +10,7 @@ export { default as mapFirebaseAuthErrors } from './authentication/mapFirebaseAu
 
 export { default as extractInitials } from './extractInitials';
 export { default as fixedRatingAverage } from './fixedRatingAverage';
+export { default as invalidField } from './invalidField';
 export { default as isLongName } from './isLongName';
 export { default as truncateText } from './truncateText';
 export { default as validateEmail } from './validateEmail';

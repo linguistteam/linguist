@@ -7,7 +7,7 @@ export const EN = {
     SESSION_COOKIE_REVOKED: 'Session cookie revoked.',
     EMAIL_ALREADY_IN_USE: 'Email already in use.',
     PHONE_NUMBER_ALREADY_EXISTS: 'Phone number already exists.',
-    INVALID_EMAIL: 'Please enter a valid mail.',
+    INVALID_EMAIL: 'Please enter a valid email.',
     INVALID_PASSWORD: 'Please enter a valid password.',
     INVALID_NAME: (name: string) => `Please enter a valid ${name}.`,
     PASSWORD_TOO_SHORT: 'Password is too short.',
