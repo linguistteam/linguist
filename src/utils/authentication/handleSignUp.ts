@@ -45,7 +45,7 @@ const handleSignUp = ({
     })
     .then(() => {
       return setDoc(doc(usersRef, createUserResult.user.uid), {
-        bio: 'Test bio!',
+        name: createUserResult.user.displayName,
       });
     })
     .then(() => {
