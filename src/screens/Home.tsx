@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Button, Heading, Input, Stack } from 'native-base';
+import { collection, doc, getDoc } from 'firebase/firestore';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -7,12 +8,9 @@ import { StackNavigatorList } from './StackNavigator';
 import { useUserStore } from '@stores/user';
 import { useAuthErrorStore } from '@stores/errors/authError';
 import { useLoadingStore } from '@stores/loading';
+import { db } from '../../firebaseConfig';
 import { handleLogout, handleUpdateDisplayName, handleUpdateProfilePhoto } from '@utils';
 import { ProfileImage } from '@components/userprofiles';
-
-// TODO: Remove
-import { doc, getDoc } from 'firebase/firestore';
-import { db } from '../../firebaseConfig';
 
 const Home = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList, 'HOME'>>();
@@ -21,19 +19,21 @@ const Home = () => {
   const setLoading = useLoadingStore((state) => state.setLoading);
   const resetUser = useUserStore((state) => state.reset);
 
-  const docRef = getDoc(doc(db, 'users', user.uid));
+  const usersRef = collection(db, 'users');
 
-  docRef.then((docSnap) => {
-    if (docSnap.exists()) {
-      console.log('Document data:', docSnap.data());
-    } else {
-      console.log('No such document!');
-    }
-  });
+  // const docRef = getDoc(doc(db, 'users', user.uid));
+
+  // docRef.then((docSnap) => {
+  //   if (docSnap.exists()) {
+  //     console.log('Document data:', docSnap.data());
+  //   } else {
+  //     console.log('No such document!');
+  //   }
+  // });
 
   // NOTE: For profile updates
   const [displayName, setDisplayName] = useState(user.displayName ?? '');
-  const [photoURL, setPhotoURL] = useState('');
+  const [base64PhotoURL, setBase64PhotoURL] = useState('');
 
   return (
     <SafeAreaView>
@@ -63,11 +63,15 @@ const Home = () => {
         <Input
           variant="outline"
           placeholder="Photo URL"
-          value={photoURL}
-          onChangeText={(text) => setPhotoURL(text)}
+          value={base64PhotoURL}
+          onChangeText={(text) => setBase64PhotoURL(text)}
           type="text"
         />
-        <Button onPress={() => handleUpdateProfilePhoto({ photoURL, setError, setLoading })}>
+        <Button
+          onPress={() =>
+            handleUpdateProfilePhoto({ photoURL: base64PhotoURL, setError, setLoading })
+          }
+        >
           Update profile photo
         </Button>
       </Stack>
