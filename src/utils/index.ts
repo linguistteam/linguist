@@ -4,12 +4,10 @@ export { default as handleLogin } from './authentication/handleLogin';
 export { default as handleLogout } from './authentication/handleLogout';
 export { default as handleSendPasswordResetEmail } from './authentication/handleSendPasswordResetEmail';
 export { default as handleSignUp } from './authentication/handleSignUp';
+export { default as handleUpdateAuthPhotoURL } from './authentication/handleUpdateAuthPhotoURL';
 export { default as handleUpdateDisplayName } from './authentication/handleUpdateDisplayName';
 export { default as handleUpdateProfilePhoto } from './authentication/handleUpdateProfilePhoto';
 export { default as mapFirebaseAuthErrors } from './authentication/mapFirebaseAuthErrors';
-
-// Storage
-export { default as handleUpdateAuthPhotoURL } from './storage/handleUpdateAuthPhotoURL';
 
 export { default as extractInitials } from './extractInitials';
 export { default as fixedRatingAverage } from './fixedRatingAverage';
