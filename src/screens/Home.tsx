@@ -7,12 +7,7 @@ import { StackNavigatorList } from './StackNavigator';
 import { useUserStore } from '@stores/user';
 import { useAuthErrorStore } from '@stores/errors/authError';
 import { useLoadingStore } from '@stores/loading';
-import {
-  handleLogout,
-  handleUpdateDisplayName,
-  handleUpdateProfilePhoto,
-  handleUpdateAuthPhotoURL,
-} from '@utils';
+import { handleLogout, handleUpdateDisplayName, handleUpdateProfilePhoto } from '@utils';
 import { ProfileImage } from '@components/userprofiles';
 
 // TODO: Move to own file
@@ -28,7 +23,6 @@ const Home = () => {
 
   // NOTE: For profile updates
   const [displayName, setDisplayName] = useState(user.displayName ?? '');
-  const [base64PhotoURL, setBase64PhotoURL] = useState('');
 
   // TODO: Move to own file
   const [photo, setPhoto] = useState<string | null>(null);
@@ -60,7 +54,6 @@ const Home = () => {
       <Heading size="sm" textAlign="center">
         Email: {user.email}
       </Heading>
-      {/* <ProfileImage name={user.displayName} profileImage={user.photoURL} /> */}
       <ProfileImage name={user.displayName} profileImage={user.photoURL} />
 
       <Stack space={4} w="75%" maxW="300px" mx="auto" alignItems="center">
@@ -74,28 +67,10 @@ const Home = () => {
         <Button onPress={() => handleUpdateDisplayName({ displayName, setError, setLoading })}>
           Update display name
         </Button>
-
-        <Input
-          variant="outline"
-          placeholder="Photo URL"
-          value={base64PhotoURL}
-          onChangeText={(text) => setBase64PhotoURL(text)}
-          type="text"
-        />
-        <Button
-          onPress={() =>
-            handleUpdateProfilePhoto({ photoURL: base64PhotoURL, setError, setLoading })
-          }
-        >
+        <Button onPress={pickPhoto}>Select profile photo</Button>
+        <Button onPress={() => handleUpdateProfilePhoto({ photo, setPhoto, setError, setLoading })}>
           Update profile photo
         </Button>
-
-        <Button onPress={pickPhoto}>Select photo</Button>
-        {photo && (
-          <Button onPress={() => handleUpdateAuthPhotoURL({ photo, setPhoto, setLoading })}>
-            Upload photo
-          </Button>
-        )}
       </Stack>
 
       <Heading size="sm" textAlign="center" mt={10}>
