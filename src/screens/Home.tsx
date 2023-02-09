@@ -1,8 +1,5 @@
 import { useState } from 'react';
-import { Alert, Button, Heading, Input, Stack } from 'native-base';
-import { collection, doc, getDoc } from 'firebase/firestore';
-import { updateProfile } from 'firebase/auth';
-import * as DocumentPicker from 'expo-document-picker';
+import { Button, Heading, Input, Stack } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -10,10 +7,14 @@ import { StackNavigatorList } from './StackNavigator';
 import { useUserStore } from '@stores/user';
 import { useAuthErrorStore } from '@stores/errors/authError';
 import { useLoadingStore } from '@stores/loading';
-import { auth, db } from '../../firebaseConfig';
 import { handleLogout, handleUpdateDisplayName, handleUpdateProfilePhoto } from '@utils';
 import { ProfileImage } from '@components/userprofiles';
-import { PermissionsAndroid } from 'react-native';
+
+// TODO: Move to own file
+import * as ImagePicker from 'expo-image-picker';
+import { ref, uploadBytes } from 'firebase/storage';
+import { storage } from '../../firebaseConfig';
+// END move to own file
 
 const Home = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList, 'HOME'>>();
@@ -22,96 +23,45 @@ const Home = () => {
   const setLoading = useLoadingStore((state) => state.setLoading);
   const resetUser = useUserStore((state) => state.reset);
 
-  const usersRef = collection(db, 'users');
-
-  // const docRef = getDoc(doc(db, 'users', user.uid));
-
-  // docRef.then((docSnap) => {
-  //   if (docSnap.exists()) {
-  //     console.log('Document data:', docSnap.data());
-  //   } else {
-  //     console.log('No such document!');
-  //   }
-  // });
-
-  // TODO: Move to own file
-  const [photo, setPhoto] = useState(null);
-
-  const checkPermissions = async () => {
-    try {
-      const result = await PermissionsAndroid.check(
-        PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-      );
-
-      if (!result) {
-        const granted = await PermissionsAndroid.request(
-          PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-          {
-            title: 'You need to give storage permission to download and save the file',
-            message: 'App needs access to your camera ',
-            buttonNeutral: 'Ask Me Later',
-            buttonNegative: 'Cancel',
-            buttonPositive: 'OK',
-          },
-        );
-        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-          console.log('You can use the camera');
-          return true;
-        } else {
-          Alert.alert('Error', I18n.t('PERMISSION_ACCESS_FILE'));
-
-          console.log('Camera permission denied');
-          return false;
-        }
-      } else {
-        return true;
-      }
-    } catch (err) {
-      console.warn(err);
-      return false;
-    }
-  };
-
-  async function selectFile() {
-    try {
-      const result = await checkPermissions();
-
-      if (result) {
-        const result = await DocumentPicker.getDocumentAsync({
-          copyToCacheDirectory: false,
-          type: 'image/*',
-        });
-
-        if (result.type === 'success') {
-          // Printing the log realted to the file
-          console.log('res : ' + JSON.stringify(result));
-          // Setting the state to show single file attributes
-          setPhoto(result);
-        }
-      }
-    } catch (err) {
-      setPhoto(null);
-      console.warn(err);
-      return false;
-    }
-  }
-
   // NOTE: For profile updates
   const [displayName, setDisplayName] = useState(user.displayName ?? '');
   const [base64PhotoURL, setBase64PhotoURL] = useState('');
 
-  const handleUpdatePhotoUrl = (photo: string) => {
-    updateProfile(auth.currentUser, {
-      photoURL: photo.uri,
-    })
-      .then(() => console.log('upload success!'))
-      .catch((error: any) => {
-        console.error('Error occurred:', error);
-      });
+  // TODO: Move to own file
+  const [photo, setPhoto] = useState(null);
+  const [uploadingPhoto, setUploadingPhoto] = useState(false);
+
+  const pickPhoto = async () => {
+    // No permissions request is necessary for launching the image library
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      // allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log('photo result', result);
+
+    if (!result.canceled) {
+      setPhoto(result.assets[0].uri);
+    }
   };
 
+  // const storageRef = ref(storage, 'images');
+  // console.log('storage img', storageRef);
+
+  // const uploadImage = async () => {
+  //   // set some uploading state to true
+  //   const profileImageRef = ref(storage, photo?.name);
+  //   const blob = await photo?.uri;
+
+  //   uploadBytes(profileImageRef, blob).then((snapshot) => {
+  //     console.log('Uploaded file!', snapshot);
+  //   });
+  // };
+
   console.log('photo', photo);
-  console.log('user photo', user.photoURL);
+  // END move to own file
 
   return (
     <SafeAreaView>
@@ -124,8 +74,8 @@ const Home = () => {
       <Heading size="sm" textAlign="center">
         Email: {user.email}
       </Heading>
-      <ProfileImage name={user.displayName} profileImage={user.photoURL} />
-      {/* <ProfileImage name={user.displayName} profileImage={photo?.uri} /> */}
+      {/* <ProfileImage name={user.displayName} profileImage={user.photoURL} /> */}
+      <ProfileImage name={user.displayName} profileImage={photo} />
 
       <Stack space={4} w="75%" maxW="300px" mx="auto" alignItems="center">
         <Input
@@ -154,8 +104,8 @@ const Home = () => {
           Update profile photo
         </Button>
 
-        <Button onPress={selectFile}>Select photo</Button>
-        <Button onPress={handleUpdatePhotoUrl}>Upload photo</Button>
+        <Button onPress={pickPhoto}>Select photo</Button>
+        {/* <Button onPress={uploadImage}>Upload photo</Button> */}
       </Stack>
 
       <Heading size="sm" textAlign="center" mt={10}>
