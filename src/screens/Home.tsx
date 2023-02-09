@@ -11,7 +11,7 @@ import {
   handleLogout,
   handleUpdateDisplayName,
   handleUpdateProfilePhoto,
-  handleUploadImageToStorage,
+  handleUpdateAuthPhotoURL,
 } from '@utils';
 import { ProfileImage } from '@components/userprofiles';
 
@@ -92,7 +92,7 @@ const Home = () => {
 
         <Button onPress={pickPhoto}>Select photo</Button>
         {photo && (
-          <Button onPress={() => handleUploadImageToStorage({ photo, setPhoto, setLoading })}>
+          <Button onPress={() => handleUpdateAuthPhotoURL({ photo, setPhoto, setLoading })}>
             Upload photo
           </Button>
         )}

@@ -6,18 +6,18 @@ import { auth, storage } from '../../../firebaseConfig';
 /* Handle uploading image to Firebase Cloud Storage */
 /* Learn more about uploading files to Cloud Storage: https://firebase.google.com/docs/storage/web/upload-files */
 
-interface HandleUploadImageToStorageProps {
+interface HandleUpdateAuthPhotoURLProps {
   photo: string | null;
   // TODO: Add proper type
   setPhoto: any;
   setLoading: ({ isLoading }: Loading) => void;
 }
 
-const handleUploadImageToStorage = async ({
+const handleUpdateAuthPhotoURL = async ({
   photo,
   setPhoto,
   setLoading,
-}: HandleUploadImageToStorageProps) => {
+}: HandleUpdateAuthPhotoURLProps) => {
   if (photo) {
     setLoading({ isLoading: true });
 
@@ -51,4 +51,4 @@ const handleUploadImageToStorage = async ({
   }
 };
 
-export default handleUploadImageToStorage;
+export default handleUpdateAuthPhotoURL;

@@ -9,7 +9,7 @@ export { default as handleUpdateProfilePhoto } from './authentication/handleUpda
 export { default as mapFirebaseAuthErrors } from './authentication/mapFirebaseAuthErrors';
 
 // Storage
-export { default as handleUploadImageToStorage } from './storage/handleUploadImageToStorage';
+export { default as handleUpdateAuthPhotoURL } from './storage/handleUpdateAuthPhotoURL';
 
 export { default as extractInitials } from './extractInitials';
 export { default as fixedRatingAverage } from './fixedRatingAverage';
