@@ -25,7 +25,7 @@ const handleUpdateProfilePhoto = async ({
     const response = await fetch(photo);
     const blob = await response.blob();
     const fileName = photo.substring(photo.lastIndexOf('/') + 1);
-    const storageRef = ref(storage, fileName);
+    const storageRef = ref(storage, `profileImages/${fileName}`);
 
     uploadBytes(storageRef, blob)
       .then((snapshot) => {
