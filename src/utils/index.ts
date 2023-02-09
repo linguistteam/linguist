@@ -8,6 +8,9 @@ export { default as handleUpdateDisplayName } from './authentication/handleUpdat
 export { default as handleUpdateProfilePhoto } from './authentication/handleUpdateProfilePhoto';
 export { default as mapFirebaseAuthErrors } from './authentication/mapFirebaseAuthErrors';
 
+// Storage
+export { default as handleUploadImageToStorage } from './storage/handleUploadImageToStorage';
+
 export { default as extractInitials } from './extractInitials';
 export { default as fixedRatingAverage } from './fixedRatingAverage';
 export { default as invalidField } from './invalidField';
