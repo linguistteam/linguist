@@ -28,7 +28,7 @@ const Home = () => {
   const [base64PhotoURL, setBase64PhotoURL] = useState('');
 
   // TODO: Move to own file
-  const [photo, setPhoto] = useState(null);
+  const [photo, setPhoto] = useState<string | null>(null);
   const [uploadingPhoto, setUploadingPhoto] = useState(false);
 
   const pickPhoto = async () => {
@@ -40,25 +40,31 @@ const Home = () => {
       quality: 1,
     });
 
-    console.log('photo result', result);
-
     if (!result.canceled) {
-      setPhoto(result.assets[0].uri);
+      const photoURI = result.assets[0].uri;
+      console.log('photoURI', photoURI);
+      setPhoto(photoURI);
     }
   };
 
   // const storageRef = ref(storage, 'images');
   // console.log('storage img', storageRef);
 
-  // const uploadImage = async () => {
-  //   // set some uploading state to true
-  //   const profileImageRef = ref(storage, photo?.name);
-  //   const blob = await photo?.uri;
+  const uploadImage = async () => {
+    if (photo) {
+      setUploadingPhoto(true);
 
-  //   uploadBytes(profileImageRef, blob).then((snapshot) => {
-  //     console.log('Uploaded file!', snapshot);
-  //   });
-  // };
+      const response = await fetch(photo);
+      const blob = await response.blob();
+      const fileName = photo.substring(photo.lastIndexOf('/') + 1);
+      console.log('fileName', fileName);
+      const storageRef = ref(storage, fileName);
+
+      uploadBytes(storageRef, blob).then((snapshot) => {
+        console.log('Uploaded file!', snapshot);
+      });
+    }
+  };
 
   console.log('photo', photo);
   // END move to own file
@@ -105,7 +111,7 @@ const Home = () => {
         </Button>
 
         <Button onPress={pickPhoto}>Select photo</Button>
-        {/* <Button onPress={uploadImage}>Upload photo</Button> */}
+        <Button onPress={uploadImage}>Upload photo</Button>
       </Stack>
 
       <Heading size="sm" textAlign="center" mt={10}>
