@@ -7,12 +7,13 @@ import { StackNavigatorList } from './StackNavigator';
 import { useUserStore } from '@stores/user';
 import { useAuthErrorStore } from '@stores/errors/authError';
 import { useLoadingStore } from '@stores/loading';
-import { handleLogout, handleUpdateDisplayName, handleUpdateProfilePhoto } from '@utils';
+import {
+  handleLogout,
+  handleUpdateDisplayName,
+  handleUpdateProfilePhoto,
+  imagePicker,
+} from '@utils';
 import { ProfileImage } from '@components/userprofiles';
-
-// TODO: Move to own file
-import * as ImagePicker from 'expo-image-picker';
-// END move to own file
 
 const Home = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList, 'HOME'>>();
@@ -23,25 +24,9 @@ const Home = () => {
 
   // NOTE: For profile updates
   const [displayName, setDisplayName] = useState(user.displayName ?? '');
-
-  // TODO: Move to own file
   const [photo, setPhoto] = useState<string | null>(null);
 
-  const pickPhoto = async () => {
-    // No permissions request is necessary for launching the image library
-    const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      // allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
-
-    if (!result.canceled) {
-      const photoURI = result.assets[0].uri;
-      setPhoto(photoURI);
-    }
-  };
-  // END move to own file
+  console.log('photo', photo);
 
   return (
     <SafeAreaView>
@@ -67,10 +52,12 @@ const Home = () => {
         <Button onPress={() => handleUpdateDisplayName({ displayName, setError, setLoading })}>
           Update display name
         </Button>
-        <Button onPress={pickPhoto}>Select profile photo</Button>
-        <Button onPress={() => handleUpdateProfilePhoto({ photo, setPhoto, setError, setLoading })}>
-          Update profile photo
-        </Button>
+        <Button onPress={() => imagePicker({ setPhoto })}>Select profile photo</Button>
+        {photo && (
+          <Button onPress={() => handleUpdateProfilePhoto({ photo, setLoading })}>
+            Update profile photo
+          </Button>
+        )}
       </Stack>
 
       <Heading size="sm" textAlign="center" mt={10}>
