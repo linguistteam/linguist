@@ -7,13 +7,16 @@ import { StackNavigatorList } from './StackNavigator';
 import { useUserStore } from '@stores/user';
 import { useAuthErrorStore } from '@stores/errors/authError';
 import { useLoadingStore } from '@stores/loading';
-import { handleLogout, handleUpdateDisplayName, handleUpdateProfilePhoto } from '@utils';
+import {
+  handleLogout,
+  handleUpdateDisplayName,
+  handleUpdateProfilePhoto,
+  handleUploadImageToStorage,
+} from '@utils';
 import { ProfileImage } from '@components/userprofiles';
 
 // TODO: Move to own file
 import * as ImagePicker from 'expo-image-picker';
-import { ref, uploadBytes } from 'firebase/storage';
-import { storage } from '../../firebaseConfig';
 // END move to own file
 
 const Home = () => {
@@ -29,7 +32,6 @@ const Home = () => {
 
   // TODO: Move to own file
   const [photo, setPhoto] = useState<string | null>(null);
-  const [uploadingPhoto, setUploadingPhoto] = useState(false);
 
   const pickPhoto = async () => {
     // No permissions request is necessary for launching the image library
@@ -42,31 +44,9 @@ const Home = () => {
 
     if (!result.canceled) {
       const photoURI = result.assets[0].uri;
-      console.log('photoURI', photoURI);
       setPhoto(photoURI);
     }
   };
-
-  // const storageRef = ref(storage, 'images');
-  // console.log('storage img', storageRef);
-
-  const uploadImage = async () => {
-    if (photo) {
-      setUploadingPhoto(true);
-
-      const response = await fetch(photo);
-      const blob = await response.blob();
-      const fileName = photo.substring(photo.lastIndexOf('/') + 1);
-      console.log('fileName', fileName);
-      const storageRef = ref(storage, fileName);
-
-      uploadBytes(storageRef, blob).then((snapshot) => {
-        console.log('Uploaded file!', snapshot);
-      });
-    }
-  };
-
-  console.log('photo', photo);
   // END move to own file
 
   return (
@@ -81,7 +61,7 @@ const Home = () => {
         Email: {user.email}
       </Heading>
       {/* <ProfileImage name={user.displayName} profileImage={user.photoURL} /> */}
-      <ProfileImage name={user.displayName} profileImage={photo} />
+      <ProfileImage name={user.displayName} profileImage={user.photoURL} />
 
       <Stack space={4} w="75%" maxW="300px" mx="auto" alignItems="center">
         <Input
@@ -111,7 +91,11 @@ const Home = () => {
         </Button>
 
         <Button onPress={pickPhoto}>Select photo</Button>
-        <Button onPress={uploadImage}>Upload photo</Button>
+        {photo && (
+          <Button onPress={() => handleUploadImageToStorage({ photo, setPhoto, setLoading })}>
+            Upload photo
+          </Button>
+        )}
       </Stack>
 
       <Heading size="sm" textAlign="center" mt={10}>
