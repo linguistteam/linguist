@@ -26,6 +26,8 @@ const mapFirebaseStorageErrors = (errorCode: string) => {
       return EN.STORAGE_ERRORS.PLEASE_TRY_AGAIN;
     case 'storage/canceled':
       return EN.STORAGE_ERRORS.ACTION_CANCELED;
+    default:
+      return '';
   }
 };
 
