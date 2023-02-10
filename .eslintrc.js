@@ -20,13 +20,6 @@ module.exports = {
     'prettier/prettier': 'error',
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
-    // NOTE: Disabling rule per this issue: https://github.com/typescript-eslint/typescript-eslint/issues/4650
-    // Otherwise imagePicker and handleUpdateProfilePhoto will error onPress
-    "@typescript-eslint/no-misused-promises": ["error", {
-      "checksVoidReturn": {
-        "attributes": false
-      }
-    }]
   },
   plugins: ['prettier', 'react', 'react-hooks', '@typescript-eslint'],
   settings: {
