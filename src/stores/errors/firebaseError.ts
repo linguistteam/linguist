@@ -1,13 +1,13 @@
 import create from 'zustand';
 
-export interface FirebaseAuthError {
+export interface FirebaseError {
   errorMessage: string;
   errorCode: string;
 }
 
-export interface FirebaseAuthErrorState {
-  error: FirebaseAuthError;
-  setError: ({ errorMessage, errorCode }: FirebaseAuthError) => void;
+export interface FirebaseErrorState {
+  error: FirebaseError;
+  setError: ({ errorMessage, errorCode }: FirebaseError) => void;
   reset: () => void;
 }
 
@@ -15,7 +15,7 @@ const initialState = {
   error: { errorMessage: '', errorCode: '' },
 };
 
-export const useAuthErrorStore = create<FirebaseAuthErrorState>()((set) => ({
+export const useFirebaseErrorStore = create<FirebaseErrorState>()((set) => ({
   ...initialState,
   setError: ({ errorMessage, errorCode }) => set(() => ({ error: { errorMessage, errorCode } })),
 

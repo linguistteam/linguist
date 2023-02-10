@@ -1,5 +1,6 @@
 import { updateProfile } from 'firebase/auth';
 import { StorageError, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { FirebaseError } from '@stores/errors/firebaseError';
 import { Loading } from '@stores/loading';
 import { auth, storage } from '../../../firebaseConfig';
 
@@ -9,6 +10,7 @@ import { auth, storage } from '../../../firebaseConfig';
 
 interface HandleUpdateProfilePhotoProps {
   photo: string | null;
+  setError: ({ errorMessage, errorCode }: FirebaseError) => void;
   setLoading: ({ isLoading }: Loading) => void;
 }
 

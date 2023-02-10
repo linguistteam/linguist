@@ -1,6 +1,6 @@
 import { AuthError, sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../../../firebaseConfig';
-import { FirebaseAuthError } from '@stores/errors/authError';
+import { FirebaseError } from '@stores/errors/firebaseError';
 import mapFirebaseAuthErrors from './mapFirebaseAuthErrors';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackNavigatorList } from '@screens/StackNavigator';
@@ -10,7 +10,7 @@ import { StackNavigatorList } from '@screens/StackNavigator';
 
 interface HandleSendPasswordResetEmailProps {
   email: string;
-  setError: ({ errorMessage, errorCode }: FirebaseAuthError) => void;
+  setError: ({ errorMessage, errorCode }: FirebaseError) => void;
   navigation: NativeStackNavigationProp<StackNavigatorList>;
 }
 

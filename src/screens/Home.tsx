@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackNavigatorList } from './StackNavigator';
 import { useUserStore } from '@stores/user';
-import { useAuthErrorStore } from '@stores/errors/authError';
+import { useFirebaseErrorStore } from '@stores/errors/firebaseError';
 import { useLoadingStore } from '@stores/loading';
 import {
   handleLogout,
@@ -18,7 +18,7 @@ import { ProfileImage } from '@components/userprofiles';
 const Home = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList, 'HOME'>>();
   const user = useUserStore((state) => state.user);
-  const setError = useAuthErrorStore((state) => state.setError);
+  const setError = useFirebaseErrorStore((state) => state.setError);
   const setLoading = useLoadingStore((state) => state.setLoading);
   const resetUser = useUserStore((state) => state.reset);
 
@@ -54,7 +54,7 @@ const Home = () => {
         {/* Docs here: https://typescript-eslint.io/rules/no-misused-promises/#checksvoidreturn */}
         <Button onPress={() => void imagePicker({ setPhoto })}>Select profile photo</Button>
         {photo && (
-          <Button onPress={() => void handleUpdateProfilePhoto({ photo, setLoading })}>
+          <Button onPress={() => void handleUpdateProfilePhoto({ photo, setError, setLoading })}>
             Update profile photo
           </Button>
         )}

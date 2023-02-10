@@ -14,7 +14,7 @@ import { EN } from '@assets/strings';
 import Colors from '@assets/colors';
 import { globalStyles } from '@constants/styles';
 import { handleSendPasswordResetEmail, validateEmail } from '@utils';
-import { useAuthErrorStore } from '@stores/errors/authError';
+import { useFirebaseErrorStore } from '@stores/errors/firebaseError';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackNavigatorList } from '@screens/StackNavigator';
 
@@ -25,9 +25,9 @@ interface PasswordResetProps {
 const PasswordReset = ({ navigation }: PasswordResetProps) => {
   const [email, setEmail] = useState('');
   const [emailTouched, setEmailTouched] = useState(false);
-  const firebaseAuthError = useAuthErrorStore((state) => state.error);
-  const resetError = useAuthErrorStore((state) => state.reset);
-  const setError = useAuthErrorStore((state) => state.setError);
+  const firebaseAuthError = useFirebaseErrorStore((state) => state.error);
+  const resetError = useFirebaseErrorStore((state) => state.reset);
+  const setError = useFirebaseErrorStore((state) => state.setError);
 
   const invalidEmail = emailTouched && !validateEmail(email);
   const disableSubmit = !!firebaseAuthError.errorMessage || !validateEmail(email);

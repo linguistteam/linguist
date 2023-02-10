@@ -17,7 +17,7 @@ import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackNavigatorList } from '@screens/StackNavigator';
 import { handleLogin, handleSignUp, invalidField, validateEmail, validateTextInput } from '@utils';
-import { useAuthErrorStore } from '@stores/errors/authError';
+import { useFirebaseErrorStore } from '@stores/errors/firebaseError';
 import { useLoadingStore } from '@stores/loading';
 import { EN } from '@assets/strings';
 import Colors from '@assets/colors';
@@ -39,11 +39,11 @@ const Authentication = () => {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const firebaseAuthError = useAuthErrorStore((state) => state.error);
-  const setError = useAuthErrorStore((state) => state.setError);
-  const resetError = useAuthErrorStore((state) => state.reset);
+  const firebaseAuthError = useFirebaseErrorStore((state) => state.error);
+  const setError = useFirebaseErrorStore((state) => state.setError);
+  const resetError = useFirebaseErrorStore((state) => state.reset);
   const setLoading = useLoadingStore((state) => state.setLoading);
-  const hasError = useAuthErrorStore((state) => state.error);
+  const hasError = useFirebaseErrorStore((state) => state.error);
   const [fieldTouched, setFieldTouched] = useState({
     emailTouched: false,
     passwordTouched: false,
