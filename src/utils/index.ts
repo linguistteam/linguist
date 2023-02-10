@@ -11,6 +11,9 @@ export { default as mapFirebaseAuthErrors } from './authentication/mapFirebaseAu
 // Expo
 export { default as imagePicker } from './expo/imagePicker';
 
+// Storage
+export { default as mapFirebaseStorageErrors } from './storage/mapFirebaseStorageErrors';
+
 export { default as extractInitials } from './extractInitials';
 export { default as fixedRatingAverage } from './fixedRatingAverage';
 export { default as invalidField } from './invalidField';
