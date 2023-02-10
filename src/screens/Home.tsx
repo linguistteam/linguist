@@ -26,8 +26,6 @@ const Home = () => {
   const [displayName, setDisplayName] = useState(user.displayName ?? '');
   const [photo, setPhoto] = useState<string | null>(null);
 
-  console.log('photo', photo);
-
   return (
     <SafeAreaView>
       <Heading size="md" textAlign="center">
