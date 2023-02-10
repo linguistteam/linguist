@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Heading, Input, Stack } from 'native-base';
+import { Button, Heading, Input, Text, Stack } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -14,11 +14,13 @@ import {
   imagePicker,
 } from '@utils';
 import { ProfileImage } from '@components/userprofiles';
+import Colors from '@assets/colors';
 
 const Home = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList, 'HOME'>>();
   const user = useUserStore((state) => state.user);
   const setError = useFirebaseErrorStore((state) => state.setError);
+  const firebaseError = useFirebaseErrorStore((state) => state.error);
   const setLoading = useLoadingStore((state) => state.setLoading);
   const resetUser = useUserStore((state) => state.reset);
 
@@ -40,6 +42,8 @@ const Home = () => {
       <ProfileImage name={user.displayName} profileImage={user.photoURL} />
 
       <Stack space={4} w="75%" maxW="300px" mx="auto" alignItems="center">
+        <Text color={Colors.error}>{firebaseError.errorMessage}</Text>
+
         <Input
           variant="outline"
           placeholder="Display Name"
