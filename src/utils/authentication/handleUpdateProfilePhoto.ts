@@ -9,16 +9,10 @@ import { auth, storage } from '../../../firebaseConfig';
 
 interface HandleUpdateProfilePhotoProps {
   photo: string | null;
-  // TODO: Add proper type
-  // setPhoto: any;
   setLoading: ({ isLoading }: Loading) => void;
 }
 
-const handleUpdateProfilePhoto = async ({
-  photo,
-  // setPhoto,
-  setLoading,
-}: HandleUpdateProfilePhotoProps) => {
+const handleUpdateProfilePhoto = async ({ photo, setLoading }: HandleUpdateProfilePhotoProps) => {
   if (photo) {
     setLoading({ isLoading: true });
 
@@ -47,7 +41,6 @@ const handleUpdateProfilePhoto = async ({
       .catch((error: StorageError) => {
         // TODO: Map all storage errors and handle setting/mapping errors here
         console.error('error occurred', error);
-        // setPhoto(null);
         setLoading({ isLoading: false });
       });
   }
