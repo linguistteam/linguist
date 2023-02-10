@@ -1,6 +1,5 @@
 export const EN = {
   AUTH_ERRORS: {
-    INTERNAL_SERVER_ERROR: 'Internal server error has occurred.',
     AUTH_TOKEN_EXPIRED: 'Auth token expired.',
     AUTH_TOKEN_INVALID: 'Auth token invalid.',
     AUTH_TOKEN_REVOKED: 'Auth token revoked.',
@@ -27,6 +26,9 @@ export const EN = {
     EMAIL_ADDRESS: 'Email address',
     PASSWORD: 'Password',
     LOADING: 'Loading',
+  },
+  GENERAL_ERRORS: {
+    INTERNAL_SERVER_ERROR: 'Internal server error has occurred.',
   },
   LANGUAGES: {
     HEADING: 'Lanugages',
@@ -59,6 +61,12 @@ export const EN = {
     LOGIN_INSTEAD: 'Login instead',
     CREATE_ACCOUNT_WITH_EMAIL: 'Create account with Email',
     CREATE_ACCOUNT_WITH_GOOGLE: 'Create account with Google',
+  },
+  STORAGE_ERRORS: {
+    UNAUTHENTICATED: 'We were unable to verify your account. Please log in again.',
+    UNAUTHORIZED: 'You are unauthorized to perform this action.',
+    PLEASE_TRY_AGAIN: 'Your request has timed out. Please try again.',
+    ACTION_CANCELED: 'You have canceled the action.',
   },
   TRANSLATOR_PROFILE: {
     HIRE: 'Hire',
