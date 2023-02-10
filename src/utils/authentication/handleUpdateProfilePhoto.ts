@@ -8,6 +8,7 @@ import mapFirebaseStorageErrors from '../storage/mapFirebaseStorageErrors';
 
 /* Handle updating user photo */
 /* Learn more about uploading files to Cloud Storage: https://firebase.google.com/docs/storage/web/upload-files */
+
 /* Learn more about user profile updates: https://firebase.google.com/docs/auth/web/manage-users#update_a_users_profile */
 
 interface HandleUpdateProfilePhotoProps {
