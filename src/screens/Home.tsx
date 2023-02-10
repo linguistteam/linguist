@@ -52,9 +52,9 @@ const Home = () => {
         <Button onPress={() => handleUpdateDisplayName({ displayName, setError, setLoading })}>
           Update display name
         </Button>
-        <Button onPress={() => void imagePicker({ setPhoto })}>Select profile photo</Button>
+        <Button onPress={() => imagePicker({ setPhoto })}>Select profile photo</Button>
         {photo && (
-          <Button onPress={() => void handleUpdateProfilePhoto({ photo, setLoading })}>
+          <Button onPress={() => handleUpdateProfilePhoto({ photo, setLoading })}>
             Update profile photo
           </Button>
         )}
