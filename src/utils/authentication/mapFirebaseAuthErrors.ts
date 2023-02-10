@@ -49,7 +49,7 @@ const mapFirebaseAuthErrors = (errorCode: string) => {
     case 'auth/session-cookie-expired':
     case 'auth/uid-already-exists':
     case 'auth/unauthorized-continue-uri':
-      return EN.AUTH_ERRORS.INTERNAL_SERVER_ERROR;
+      return EN.GENERAL_ERRORS.INTERNAL_SERVER_ERROR;
     case 'auth/email-already-exists':
     case 'auth/email-already-in-use':
       return EN.AUTH_ERRORS.EMAIL_ALREADY_IN_USE;
