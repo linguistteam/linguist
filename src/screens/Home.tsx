@@ -52,9 +52,11 @@ const Home = () => {
         <Button onPress={() => handleUpdateDisplayName({ displayName, setError, setLoading })}>
           Update display name
         </Button>
-        <Button onPress={() => imagePicker({ setPhoto })}>Select profile photo</Button>
+        {/* NOTE: Add `void` keyword to tell `no-floating-promises` rule to ignore unhandled rejection */}
+        {/* Docs here: https://typescript-eslint.io/rules/no-misused-promises/#checksvoidreturn */}
+        <Button onPress={() => void imagePicker({ setPhoto })}>Select profile photo</Button>
         {photo && (
-          <Button onPress={() => handleUpdateProfilePhoto({ photo, setLoading })}>
+          <Button onPress={() => void handleUpdateProfilePhoto({ photo, setLoading })}>
             Update profile photo
           </Button>
         )}
