@@ -1,36 +1,46 @@
-import { AuthError, updateProfile } from 'firebase/auth';
-import { auth } from '../../../firebaseConfig';
-import { FirebaseAuthError } from '@stores/errors/authError';
+import { updateProfile } from 'firebase/auth';
+import { StorageError, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { Loading } from '@stores/loading';
-import mapFirebaseAuthErrors from './mapFirebaseAuthErrors';
+import { auth, storage } from '../../../firebaseConfig';
 
 /* Handle updating user photo */
+/* Learn more about uploading files to Cloud Storage: https://firebase.google.com/docs/storage/web/upload-files */
 /* Learn more about user profile updates: https://firebase.google.com/docs/auth/web/manage-users#update_a_users_profile */
 
 interface HandleUpdateProfilePhotoProps {
-  photoURL: string;
-  setError: ({ errorMessage, errorCode }: FirebaseAuthError) => void;
+  photo: string | null;
   setLoading: ({ isLoading }: Loading) => void;
 }
 
-const handleUpdateProfilePhoto = ({
-  photoURL,
-  setError,
-  setLoading,
-}: HandleUpdateProfilePhotoProps) => {
-  setLoading({ isLoading: true });
+const handleUpdateProfilePhoto = async ({ photo, setLoading }: HandleUpdateProfilePhotoProps) => {
+  if (photo) {
+    setLoading({ isLoading: true });
 
-  if (auth.currentUser) {
-    updateProfile(auth.currentUser, {
-      photoURL,
-    })
+    const response = await fetch(photo);
+    const blob = await response.blob();
+    const fileName = photo.substring(photo.lastIndexOf('/') + 1);
+    const storageRef = ref(storage, `profileImages/${fileName}`);
+
+    uploadBytes(storageRef, blob)
+      .then((snapshot) => {
+        return snapshot.ref;
+      })
+      .then((snapshotRef) => {
+        return getDownloadURL(snapshotRef);
+      })
+      .then((photoURL) => {
+        if (auth.currentUser) {
+          return updateProfile(auth.currentUser, {
+            photoURL,
+          });
+        }
+      })
       .then(() => {
-        // TODO: Trigger show alert that says profile image has been updated?
         setLoading({ isLoading: false });
       })
-      .catch((error: AuthError) => {
-        console.error('The following error has occurred: ', error.code);
-        setError({ errorMessage: mapFirebaseAuthErrors(error.code), errorCode: error.code });
+      .catch((error: StorageError) => {
+        // TODO: Map all storage errors and handle setting/mapping errors here
+        console.error('error occurred', error);
         setLoading({ isLoading: false });
       });
   }

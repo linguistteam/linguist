@@ -7,7 +7,12 @@ import { StackNavigatorList } from './StackNavigator';
 import { useUserStore } from '@stores/user';
 import { useAuthErrorStore } from '@stores/errors/authError';
 import { useLoadingStore } from '@stores/loading';
-import { handleLogout, handleUpdateDisplayName, handleUpdateProfilePhoto } from '@utils';
+import {
+  handleLogout,
+  handleUpdateDisplayName,
+  handleUpdateProfilePhoto,
+  imagePicker,
+} from '@utils';
 import { ProfileImage } from '@components/userprofiles';
 
 const Home = () => {
@@ -19,7 +24,7 @@ const Home = () => {
 
   // NOTE: For profile updates
   const [displayName, setDisplayName] = useState(user.displayName ?? '');
-  const [photoURL, setPhotoURL] = useState('');
+  const [photo, setPhoto] = useState<string | null>(null);
 
   return (
     <SafeAreaView>
@@ -45,17 +50,14 @@ const Home = () => {
         <Button onPress={() => handleUpdateDisplayName({ displayName, setError, setLoading })}>
           Update display name
         </Button>
-
-        <Input
-          variant="outline"
-          placeholder="Photo URL"
-          value={photoURL}
-          onChangeText={(text) => setPhotoURL(text)}
-          type="text"
-        />
-        <Button onPress={() => handleUpdateProfilePhoto({ photoURL, setError, setLoading })}>
-          Update profile photo
-        </Button>
+        {/* NOTE: Add `void` keyword to tell `no-floating-promises` rule to ignore unhandled rejection */}
+        {/* Docs here: https://typescript-eslint.io/rules/no-misused-promises/#checksvoidreturn */}
+        <Button onPress={() => void imagePicker({ setPhoto })}>Select profile photo</Button>
+        {photo && (
+          <Button onPress={() => void handleUpdateProfilePhoto({ photo, setLoading })}>
+            Update profile photo
+          </Button>
+        )}
       </Stack>
 
       <Heading size="sm" textAlign="center" mt={10}>

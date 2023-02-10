@@ -8,6 +8,9 @@ export { default as handleUpdateDisplayName } from './authentication/handleUpdat
 export { default as handleUpdateProfilePhoto } from './authentication/handleUpdateProfilePhoto';
 export { default as mapFirebaseAuthErrors } from './authentication/mapFirebaseAuthErrors';
 
+// Expo
+export { default as imagePicker } from './expo/imagePicker';
+
 export { default as extractInitials } from './extractInitials';
 export { default as fixedRatingAverage } from './fixedRatingAverage';
 export { default as invalidField } from './invalidField';
