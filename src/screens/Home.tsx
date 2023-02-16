@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { Button, Heading, Input, Stack } from 'native-base';
+import { Button, Heading, Input, Text, Stack } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackNavigatorList } from './StackNavigator';
 import { useUserStore } from '@stores/user';
-import { useAuthErrorStore } from '@stores/errors/authError';
+import { useFirebaseErrorStore } from '@stores/errors/firebaseError';
 import { useLoadingStore } from '@stores/loading';
 import {
   handleLogout,
@@ -14,11 +14,13 @@ import {
   imagePicker,
 } from '@utils';
 import { ProfileImage } from '@components/userprofiles';
+import Colors from '@assets/colors';
 
 const Home = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList, 'HOME'>>();
   const user = useUserStore((state) => state.user);
-  const setError = useAuthErrorStore((state) => state.setError);
+  const setError = useFirebaseErrorStore((state) => state.setError);
+  const firebaseError = useFirebaseErrorStore((state) => state.error);
   const setLoading = useLoadingStore((state) => state.setLoading);
   const resetUser = useUserStore((state) => state.reset);
 
@@ -40,6 +42,8 @@ const Home = () => {
       <ProfileImage name={user.displayName} profileImage={user.photoURL} />
 
       <Stack space={4} w="75%" maxW="300px" mx="auto" alignItems="center">
+        <Text color={Colors.error}>{firebaseError.errorMessage}</Text>
+
         <Input
           variant="outline"
           placeholder="Display Name"
@@ -54,7 +58,7 @@ const Home = () => {
         {/* Docs here: https://typescript-eslint.io/rules/no-misused-promises/#checksvoidreturn */}
         <Button onPress={() => void imagePicker({ setPhoto })}>Select profile photo</Button>
         {photo && (
-          <Button onPress={() => void handleUpdateProfilePhoto({ photo, setLoading })}>
+          <Button onPress={() => void handleUpdateProfilePhoto({ photo, setError, setLoading })}>
             Update profile photo
           </Button>
         )}

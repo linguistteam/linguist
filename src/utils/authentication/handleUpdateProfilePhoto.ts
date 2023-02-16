@@ -1,18 +1,27 @@
 import { updateProfile } from 'firebase/auth';
 import { StorageError, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { Loading } from '@stores/loading';
 import { auth, storage } from '../../../firebaseConfig';
+import { FirebaseError } from '@stores/errors/firebaseError';
+import { Loading } from '@stores/loading';
+import mapFirebaseAuthErrors from './mapFirebaseAuthErrors';
+import mapFirebaseStorageErrors from '../storage/mapFirebaseStorageErrors';
 
 /* Handle updating user photo */
 /* Learn more about uploading files to Cloud Storage: https://firebase.google.com/docs/storage/web/upload-files */
+
 /* Learn more about user profile updates: https://firebase.google.com/docs/auth/web/manage-users#update_a_users_profile */
 
 interface HandleUpdateProfilePhotoProps {
   photo: string | null;
+  setError: ({ errorMessage, errorCode }: FirebaseError) => void;
   setLoading: ({ isLoading }: Loading) => void;
 }
 
-const handleUpdateProfilePhoto = async ({ photo, setLoading }: HandleUpdateProfilePhotoProps) => {
+const handleUpdateProfilePhoto = async ({
+  photo,
+  setError,
+  setLoading,
+}: HandleUpdateProfilePhotoProps) => {
   if (photo) {
     setLoading({ isLoading: true });
 
@@ -39,8 +48,15 @@ const handleUpdateProfilePhoto = async ({ photo, setLoading }: HandleUpdateProfi
         setLoading({ isLoading: false });
       })
       .catch((error: StorageError) => {
-        // TODO: Map all storage errors and handle setting/mapping errors here
-        console.error('error occurred', error);
+        console.error('The following error has occurred: ', error.code);
+        if (error.code.includes('auth')) {
+          setError({ errorMessage: mapFirebaseAuthErrors(error.code), errorCode: error.code });
+        }
+
+        if (error.code.includes('storage')) {
+          setError({ errorMessage: mapFirebaseStorageErrors(error.code), errorCode: error.code });
+        }
+
         setLoading({ isLoading: false });
       });
   }

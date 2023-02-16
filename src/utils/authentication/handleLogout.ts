@@ -1,6 +1,6 @@
 import { AuthError } from 'firebase/auth';
 import { auth } from '../../../firebaseConfig';
-import { FirebaseAuthError } from '@stores/errors/authError';
+import { FirebaseError } from '@stores/errors/firebaseError';
 import { Loading } from '@stores/loading';
 import mapFirebaseAuthErrors from './mapFirebaseAuthErrors';
 
@@ -9,7 +9,7 @@ import mapFirebaseAuthErrors from './mapFirebaseAuthErrors';
 
 interface HandleLogoutProps {
   resetUser: () => void;
-  setError: ({ errorMessage, errorCode }: FirebaseAuthError) => void;
+  setError: ({ errorMessage, errorCode }: FirebaseError) => void;
   setLoading: ({ isLoading }: Loading) => void;
 }
 

@@ -6,7 +6,7 @@ import {
 } from 'firebase/auth';
 import { collection, doc, setDoc } from 'firebase/firestore';
 import { auth, db } from '../../../firebaseConfig';
-import { FirebaseAuthError } from '@stores/errors/authError';
+import { FirebaseError } from '@stores/errors/firebaseError';
 import { Loading } from '@stores/loading';
 import mapFirebaseAuthErrors from './mapFirebaseAuthErrors';
 
@@ -17,7 +17,7 @@ interface HandleSignUpProps {
   displayName: string;
   email: string;
   password: string;
-  setError: ({ errorMessage, errorCode }: FirebaseAuthError) => void;
+  setError: ({ errorMessage, errorCode }: FirebaseError) => void;
   setLoading: ({ isLoading }: Loading) => void;
 }
 
