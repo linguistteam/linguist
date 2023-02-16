@@ -10,6 +10,7 @@ interface SeeMoreButtonProps {
   onPress: (event: GestureResponderEvent) => void;
 }
 
+// TODO: See if theme Button variant can be added for this
 const SeeMoreButton = ({ content, isLoading, loadingText, onPress }: SeeMoreButtonProps) => (
   <View>
     <Button

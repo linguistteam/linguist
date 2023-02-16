@@ -24,7 +24,7 @@
         "src/assets/*"
       ],
       "@common": [
-        "src/components/common/index"
+        "src/components/common"
       ],
       "@constants/*": [
         "src/constants/*"
@@ -34,6 +34,9 @@
       ],
       "@screens/*": [
         "src/screens/*"
+      ],
+      "@stores/*": [
+        "src/stores/*"
       ],
       "@strings": [
         "src/assets/strings/index"
@@ -49,5 +52,8 @@
     "metro.config.js",
     "jest.config.js"
   ],
-  "extends": "expo/tsconfig.base"
+  "extends": "expo/tsconfig.base",
+  "typeRoots": [
+    "./env.d.ts"
+  ]
 }

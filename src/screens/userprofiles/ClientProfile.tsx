@@ -1,9 +1,9 @@
-import { Box, Flex, Heading, ScrollView, Text, View } from 'native-base';
+import { Button, Flex, Heading, ScrollView, Text, View } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Button } from '@common';
 import { EN } from '@assets/strings';
 import { ProfileImage, Reviews, UserLocation, UserRating } from '@components/userprofiles';
 import { clientProfileReviews } from '@assets/dummyData/reviews';
+import { globalStyles } from '@constants/styles';
 import { profileStyles } from './styles';
 
 // TODO: Figure out user data structure
@@ -42,29 +42,29 @@ const { name, bio, location, profileImage, isTranslator } = user;
 
 const ClientProfile = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={globalStyles.appContainer}>
       <ScrollView>
         <ProfileImage name={name} profileImage={profileImage} />
 
-        <Box style={profileStyles.profileContent}>
-          <Flex direction="column" alignItems="center">
-            <Heading size="xl">{name}</Heading>
+        <Flex direction="column" alignItems="center">
+          <Heading size="xl">{name}</Heading>
 
-            <UserLocation location={location} />
-          </Flex>
+          <UserLocation location={location} />
+        </Flex>
 
-          <Flex direction="row" justifyContent={'center'}>
-            <UserRating reviews={clientProfileReviews} />
-          </Flex>
+        <Flex direction="row" justifyContent={'center'}>
+          <UserRating reviews={clientProfileReviews} />
+        </Flex>
 
-          <View style={profileStyles.hireButton}>
-            <Button onPress={() => console.log('Pressed!')} text={EN.CLIENT_PROFILE.MESSAGE} />
-          </View>
+        <View style={profileStyles.hireButton}>
+          <Button variant="magenta" onPress={() => console.log('Pressed!')}>
+            {EN.CLIENT_PROFILE.MESSAGE}
+          </Button>
+        </View>
 
-          <Text>{bio}</Text>
+        <Text>{bio}</Text>
 
-          <Reviews isTranslator={isTranslator} reviews={clientProfileReviews} />
-        </Box>
+        <Reviews isTranslator={isTranslator} reviews={clientProfileReviews} />
       </ScrollView>
     </SafeAreaView>
   );
