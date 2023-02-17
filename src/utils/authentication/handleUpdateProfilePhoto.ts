@@ -22,13 +22,13 @@ const handleUpdateProfilePhoto = async ({
   setError,
   setLoading,
 }: HandleUpdateProfilePhotoProps) => {
-  if (photo) {
+  if (photo && auth.currentUser?.uid) {
     setLoading({ isLoading: true });
 
     const response = await fetch(photo);
     const blob = await response.blob();
-    const fileName = photo.substring(photo.lastIndexOf('/') + 1);
-    const storageRef = ref(storage, `profileImages/${fileName}`);
+    const userId = auth.currentUser.uid;
+    const storageRef = ref(storage, `profileImages/${userId}`);
 
     uploadBytes(storageRef, blob)
       .then((snapshot) => {
