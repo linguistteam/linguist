@@ -81,6 +81,7 @@ const Home = () => {
 
           {/* TODO: Pop up a modal telling the user their password was changed successfully */}
           {/* TODO: Add Confirm New Password field and validate to make sure fields match */}
+          {/* TODO: Add Forgot Password link that takes user to modified version of password reset page */}
           <Input
             variant="outline"
             placeholder="Current Password"
