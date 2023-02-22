@@ -29,6 +29,10 @@ const Home = () => {
   const [displayName, setDisplayName] = useState(user.displayName ?? '');
   const [photo, setPhoto] = useState<string | null>(null);
 
+  // NOTE: For account updates
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+
   return (
     <SafeAreaView>
       <ScrollView>
@@ -75,8 +79,30 @@ const Home = () => {
             Account Info
           </Heading>
 
-          <Button onPress={() => handleUpdatePassword({ password: 'test123' })}>
-            Reauthenticate
+          {/* TODO: Pop up a modal telling the user their password was changed successfully */}
+          {/* TODO: Add Confirm New Password field and validate to make sure fields match */}
+          <Input
+            variant="outline"
+            placeholder="Current Password"
+            value={currentPassword}
+            onChangeText={(text) => setCurrentPassword(text)}
+            type="text"
+          />
+
+          <Input
+            variant="outline"
+            placeholder="New Password"
+            value={newPassword}
+            onChangeText={(text) => setNewPassword(text)}
+            type="text"
+          />
+
+          <Button
+            onPress={() =>
+              handleUpdatePassword({ currentPassword, newPassword, setError, setLoading })
+            }
+          >
+            Update password
           </Button>
         </Stack>
 
