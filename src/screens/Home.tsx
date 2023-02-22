@@ -9,8 +9,8 @@ import { useFirebaseErrorStore } from '@stores/errors/firebaseError';
 import { useLoadingStore } from '@stores/loading';
 import {
   handleLogout,
-  handleReauthenticateUser,
   handleUpdateDisplayName,
+  handleUpdatePassword,
   handleUpdateProfilePhoto,
   imagePicker,
 } from '@utils';
@@ -46,6 +46,10 @@ const Home = () => {
         <Stack space={4} w="75%" maxW="300px" mx="auto" alignItems="center">
           <Text color={Colors.error}>{firebaseError.errorMessage}</Text>
 
+          <Heading size="sm" textAlign="center">
+            Personal Info
+          </Heading>
+
           <Input
             variant="outline"
             placeholder="Display Name"
@@ -66,17 +70,25 @@ const Home = () => {
           )}
         </Stack>
 
-        <Heading size="sm" textAlign="center" mt={10}>
-          Navigation
-        </Heading>
-        <Stack space={4} w="75%" maxW="300px" mx="auto" alignItems="center">
+        <Stack space={4} w="75%" maxW="300px" mx="auto" mt={10} alignItems="center">
+          <Heading size="sm" textAlign="center">
+            Account Info
+          </Heading>
+
+          <Button onPress={() => handleUpdatePassword({ password: 'test123' })}>
+            Reauthenticate
+          </Button>
+        </Stack>
+
+        <Stack space={4} w="75%" maxW="300px" mx="auto" mt={10} alignItems="center">
+          <Heading size="sm" textAlign="center">
+            Navigation
+          </Heading>
+
           <Button onPress={() => navigation.navigate('TRANSLATOR_PROFILE')}>
             Translator Profile
           </Button>
           <Button onPress={() => navigation.navigate('CLIENT_PROFILE')}>Client Profile</Button>
-          <Button onPress={() => handleReauthenticateUser({ password: 'test123' })}>
-            Reauthenticate
-          </Button>
           <Button onPress={() => handleLogout({ resetUser, setError, setLoading })}>Log Out</Button>
         </Stack>
       </ScrollView>

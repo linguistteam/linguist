@@ -1,17 +1,16 @@
 import { auth } from '../../../firebaseConfig';
 import { AuthError, EmailAuthProvider, reauthenticateWithCredential } from 'firebase/auth';
 
-interface HandleReauthenticateUserProps {
+interface HandleUpdatePasswordProps {
   password: string;
 }
 
-const handleReauthenticateUser = ({ password }: HandleReauthenticateUserProps) => {
+const handleUpdatePassword = ({ password }: HandleUpdatePasswordProps) => {
   if (auth.currentUser && auth.currentUser.email) {
     const credentials = EmailAuthProvider.credential(auth.currentUser.email, password);
 
     reauthenticateWithCredential(auth.currentUser, credentials)
       .then(() => {
-        // User reauthenticated
         console.log('User reauthenticated!');
       })
       .catch((error: AuthError) => {
@@ -20,4 +19,4 @@ const handleReauthenticateUser = ({ password }: HandleReauthenticateUserProps) =
   }
 };
 
-export default handleReauthenticateUser;
+export default handleUpdatePassword;
