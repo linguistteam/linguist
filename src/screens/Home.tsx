@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Heading, Input, Text, Stack } from 'native-base';
+import { Button, Heading, Input, Text, ScrollView, Stack } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -9,6 +9,7 @@ import { useFirebaseErrorStore } from '@stores/errors/firebaseError';
 import { useLoadingStore } from '@stores/loading';
 import {
   handleLogout,
+  handleReauthenticateUser,
   handleUpdateDisplayName,
   handleUpdateProfilePhoto,
   imagePicker,
@@ -30,50 +31,55 @@ const Home = () => {
 
   return (
     <SafeAreaView>
-      <Heading size="md" textAlign="center">
-        Profile
-      </Heading>
-      <Heading size="sm" textAlign="center">
-        Logged in as: {user.displayName}
-      </Heading>
-      <Heading size="sm" textAlign="center">
-        Email: {user.email}
-      </Heading>
-      <ProfileImage name={user.displayName} profileImage={user.photoURL} />
+      <ScrollView>
+        <Heading size="md" textAlign="center">
+          Profile
+        </Heading>
+        <Heading size="sm" textAlign="center">
+          Logged in as: {user.displayName}
+        </Heading>
+        <Heading size="sm" textAlign="center">
+          Email: {user.email}
+        </Heading>
+        <ProfileImage name={user.displayName} profileImage={user.photoURL} />
 
-      <Stack space={4} w="75%" maxW="300px" mx="auto" alignItems="center">
-        <Text color={Colors.error}>{firebaseError.errorMessage}</Text>
+        <Stack space={4} w="75%" maxW="300px" mx="auto" alignItems="center">
+          <Text color={Colors.error}>{firebaseError.errorMessage}</Text>
 
-        <Input
-          variant="outline"
-          placeholder="Display Name"
-          value={displayName}
-          onChangeText={(text) => setDisplayName(text)}
-          type="text"
-        />
-        <Button onPress={() => handleUpdateDisplayName({ displayName, setError, setLoading })}>
-          Update display name
-        </Button>
-        {/* NOTE: Add `void` keyword to tell `no-floating-promises` rule to ignore unhandled rejection */}
-        {/* Docs here: https://typescript-eslint.io/rules/no-misused-promises/#checksvoidreturn */}
-        <Button onPress={() => void imagePicker({ setPhoto })}>Select profile photo</Button>
-        {photo && (
-          <Button onPress={() => void handleUpdateProfilePhoto({ photo, setError, setLoading })}>
-            Update profile photo
+          <Input
+            variant="outline"
+            placeholder="Display Name"
+            value={displayName}
+            onChangeText={(text) => setDisplayName(text)}
+            type="text"
+          />
+          <Button onPress={() => handleUpdateDisplayName({ displayName, setError, setLoading })}>
+            Update display name
           </Button>
-        )}
-      </Stack>
+          {/* NOTE: Add `void` keyword to tell `no-floating-promises` rule to ignore unhandled rejection */}
+          {/* Docs here: https://typescript-eslint.io/rules/no-misused-promises/#checksvoidreturn */}
+          <Button onPress={() => void imagePicker({ setPhoto })}>Select profile photo</Button>
+          {photo && (
+            <Button onPress={() => void handleUpdateProfilePhoto({ photo, setError, setLoading })}>
+              Update profile photo
+            </Button>
+          )}
+        </Stack>
 
-      <Heading size="sm" textAlign="center" mt={10}>
-        Navigation
-      </Heading>
-      <Stack space={4} w="75%" maxW="300px" mx="auto" alignItems="center">
-        <Button onPress={() => navigation.navigate('TRANSLATOR_PROFILE')}>
-          Translator Profile
-        </Button>
-        <Button onPress={() => navigation.navigate('CLIENT_PROFILE')}>Client Profile</Button>
-        <Button onPress={() => handleLogout({ resetUser, setError, setLoading })}>Log Out</Button>
-      </Stack>
+        <Heading size="sm" textAlign="center" mt={10}>
+          Navigation
+        </Heading>
+        <Stack space={4} w="75%" maxW="300px" mx="auto" alignItems="center">
+          <Button onPress={() => navigation.navigate('TRANSLATOR_PROFILE')}>
+            Translator Profile
+          </Button>
+          <Button onPress={() => navigation.navigate('CLIENT_PROFILE')}>Client Profile</Button>
+          <Button onPress={() => handleReauthenticateUser({ password: 'test123' })}>
+            Reauthenticate
+          </Button>
+          <Button onPress={() => handleLogout({ resetUser, setError, setLoading })}>Log Out</Button>
+        </Stack>
+      </ScrollView>
     </SafeAreaView>
   );
 };
