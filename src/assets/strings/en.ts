@@ -26,6 +26,7 @@ export const EN = {
     EMAIL_ADDRESS: 'Email address',
     PASSWORD: 'Password',
     LOADING: 'Loading',
+    FORGOT_PASSWORD: 'Forgot password?',
   },
   GENERAL_ERRORS: {
     INTERNAL_SERVER_ERROR: 'Internal server error has occurred.',
@@ -37,11 +38,11 @@ export const EN = {
     SUBHEADING: 'Welcome back to Linguist',
     CONTINUE_WITH_EMAIL: 'Continue with Email',
     CONTINUE_WITH_GOOGLE: 'Continue with Google',
-    FORGOT_PASSWORD: 'Forgot password?',
     CREATE_ACCOUNT: 'Create account',
   },
   PASSWORD_RESET: {
     HEADING: 'Password Reset',
+    USE_ACCOUNT_INFORMATION: 'You can use the information associated with your account.',
     ENTER_EMAIL_ADDRESS:
       'Enter the email address associated with your account, and we’ll email you a link to reset your password.',
     SEND_RESET_LINK: 'Send reset link',
