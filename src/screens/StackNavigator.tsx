@@ -53,6 +53,8 @@ const StackNavigator = () => {
           contentStyle: { backgroundColor: Colors.white },
         }}
       >
+        <Stack.Screen name="PASSWORD_RESET" component={PasswordReset} />
+
         {isLoggedIn ? (
           <>
             <Stack.Screen name="HOME" component={Home} />
@@ -66,7 +68,6 @@ const StackNavigator = () => {
               component={Authentication}
               initialParams={{ passwordReset: false }}
             />
-            <Stack.Screen name="PASSWORD_RESET" component={PasswordReset} />
           </>
         )}
       </Stack.Navigator>
