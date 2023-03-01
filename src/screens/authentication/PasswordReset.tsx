@@ -5,11 +5,13 @@ import {
   FormControl,
   Heading,
   Input,
+  Radio,
   Text,
   View,
   WarningOutlineIcon,
 } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useUserStore } from '@stores/user';
 import { EN } from '@assets/strings';
 import Colors from '@assets/colors';
 import { globalStyles } from '@constants/styles';
@@ -23,14 +25,19 @@ interface PasswordResetProps {
 }
 
 const PasswordReset = ({ navigation }: PasswordResetProps) => {
+  const user = useUserStore((state) => state.user);
   const [email, setEmail] = useState('');
   const [emailTouched, setEmailTouched] = useState(false);
   const firebaseAuthError = useFirebaseErrorStore((state) => state.error);
   const resetError = useFirebaseErrorStore((state) => state.reset);
   const setError = useFirebaseErrorStore((state) => state.setError);
 
+  const loggedInUser = user?.email;
+
   const invalidEmail = emailTouched && !validateEmail(email);
   const disableSubmit = !!firebaseAuthError.errorMessage || !validateEmail(email);
+
+  console.log('user', user);
 
   return (
     <SafeAreaView>
@@ -46,26 +53,41 @@ const PasswordReset = ({ navigation }: PasswordResetProps) => {
         <View style={globalStyles.appContainer} justifyContent="center" height="100%">
           <Heading marginBottom={3}>{EN.PASSWORD_RESET.HEADING}</Heading>
 
-          <Text marginBottom={3}>{EN.PASSWORD_RESET.ENTER_EMAIL_ADDRESS}</Text>
+          {loggedInUser ? (
+            <>
+              <Text marginBottom={3}>{EN.PASSWORD_RESET.USE_ACCOUNT_INFORMATION}</Text>
 
-          <FormControl
-            isInvalid={!!firebaseAuthError.errorMessage || invalidEmail}
-            marginBottom={3}
-            isRequired
-          >
-            <Input
-              variant="outline"
-              placeholder={EN.COMMON.EMAIL_ADDRESS}
-              value={email}
-              onChangeText={(text) => setEmail(text)}
-              type="text"
-              onChange={() => setEmailTouched(true)}
-              onTextInput={() => resetError()}
-            />
-            <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
-              {firebaseAuthError.errorMessage || EN.AUTH_ERRORS.INVALID_EMAIL}
-            </FormControl.ErrorMessage>
-          </FormControl>
+              <Radio.Group
+                name="resetPasswordMethod"
+                accessibilityLabel="Select reset password method"
+              >
+                <Radio value={loggedInUser}>Send an email to {loggedInUser}</Radio>
+              </Radio.Group>
+            </>
+          ) : (
+            <>
+              <Text marginBottom={3}>{EN.PASSWORD_RESET.ENTER_EMAIL_ADDRESS}</Text>
+
+              <FormControl
+                isInvalid={!!firebaseAuthError.errorMessage || invalidEmail}
+                marginBottom={3}
+                isRequired
+              >
+                <Input
+                  variant="outline"
+                  placeholder={EN.COMMON.EMAIL_ADDRESS}
+                  value={email}
+                  onChangeText={(text) => setEmail(text)}
+                  type="text"
+                  onChange={() => setEmailTouched(true)}
+                  onTextInput={() => resetError()}
+                />
+                <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
+                  {firebaseAuthError.errorMessage || EN.AUTH_ERRORS.INVALID_EMAIL}
+                </FormControl.ErrorMessage>
+              </FormControl>
+            </>
+          )}
 
           <Button
             variant="magenta"
