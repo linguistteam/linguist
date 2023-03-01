@@ -251,7 +251,7 @@ const Authentication = () => {
                   fontSize="xs"
                   textAlign="right"
                 >
-                  {EN.LOG_IN.FORGOT_PASSWORD}
+                  {EN.COMMON.FORGOT_PASSWORD}
                 </Text>
               )}
             </View>
