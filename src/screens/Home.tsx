@@ -16,6 +16,7 @@ import {
 } from '@utils';
 import { ProfileImage } from '@components/userprofiles';
 import Colors from '@assets/colors';
+import { EN } from '@assets/strings';
 
 const Home = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList, 'HOME'>>();
@@ -74,7 +75,7 @@ const Home = () => {
           )}
         </Stack>
 
-        <Stack space={4} w="75%" maxW="300px" mx="auto" mt={10} alignItems="center">
+        <Stack space={4} w="75%" maxW="300px" mx="auto" mt={10}>
           <Heading size="sm" textAlign="center">
             Account Info
           </Heading>
@@ -89,6 +90,14 @@ const Home = () => {
             onChangeText={(text) => setCurrentPassword(text)}
             type="text"
           />
+          <Text
+            color={Colors.blueMagenta}
+            onPress={() => navigation.navigate('PASSWORD_RESET')}
+            fontSize="xs"
+            marginTop={-3}
+          >
+            {EN.COMMON.FORGOT_PASSWORD}
+          </Text>
 
           <Input
             variant="outline"
